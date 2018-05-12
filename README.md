@@ -1,4 +1,4 @@
-# Little ASP.NET Core Book
+# The Little ASP.NET Core Book
 
 *by Nate Barbettini*
 
