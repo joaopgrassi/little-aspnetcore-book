@@ -1,4 +1,4 @@
-# ASP.NET Core - Guia de bolso
+# Little ASP.NET Core Book
 
 *by Nate Barbettini*
 
@@ -11,9 +11,9 @@ Publicado sobre a licença Creative Commons Attribution 4.0. Você é livre para
 Para mais informações, visite https://creativecommons.org/licenses/by/4.0/
 
 ## Introdução
-Obrigado por obter o _ASP.NET Core - Guia de bolso_! Eu escrevi esse resumido livro com intuito em ajudar desenvolvedores e pessoas interessadas em desenvolvimento web a aprender sobre ASP.NET Core, um novo framework para desenvolver aplicações web e APIs.
+Obrigado por obter o Little ASP.NET Core Book! Eu escrevi esse resumido livro com intuito em ajudar desenvolvedores e pessoas interessadas em desenvolvimento web a aprender sobre ASP.NET Core, um novo framework para desenvolver aplicações web e APIs.
 
-O _ASP.NET Core - Guia de bolso_ é organizado como um tutorial. Você vai desenvolver uma aplicação do início ao fim e aprender:
+O Little ASP.NET Core Book é organizado como um tutorial. Você vai desenvolver uma aplicação do início ao fim e aprender:
 
 * O básico sobre o padrão MVC (Model-View-Controller)
 * Como código front-end (HTML, CSS, Javascript) funciona em conjunto com código back-end
@@ -24,33 +24,33 @@ O _ASP.NET Core - Guia de bolso_ é organizado como um tutorial. Você vai desen
 
 Não se preocupe, você não precisa conhecer nada sobre ASP.NET Core (ou quaisquer um acima) para começar.
 
-## Before you begin
-
-The code for the finished version of the application you'll build is available on GitHub:
+## Antes de começar
+O código da versão final da aplicação que você irá desenvolver está disponível no GitHub:
 
 https://www.github.com/nbarbettini/little-aspnetcore-todo
 
-Feel free to download it if you want to see the finished product, or compare as you write your own code.
+Sinta-se livre em fazer o download se você quiser ver o projeto final ou comparar enquanto você trabalha em seu código.
 
-The book itself is updated frequently with bug fixes and new content. If you're reading a PDF, e-book, or print version, check the official website ([littleasp.net/book](http://www.littleasp.net/book)) to see if there's an updated version available. The very last page of the book contains version information and a changelog.
+O livro em si é atualizado frequentemente com correções de erros e novo conteúdo. Se você está lendo um PDF, e-book ou versão impressa, verifique o site oficial ([littleasp.net/book](http://www.littleasp.net/book)) para informa-se se existe uma versão atualizada disponível. Na última página do livro você encontra informações sobre versão e log das alterações.
 
-### Reading in your own language
-
-Thanks to some fantastic multilingual contributors, the Little ASP.NET Core Book has been translated into other languages:
+### Lendo na sua própria língua
+Graças a alguns fantásticos contribuidores multilíngues, o Little ASP.NET Core Book foi traduzido em outras línguas:
 
 * [**ASP.NET Core El Kitabı**](https://sahinyanlik.gitbooks.io/kisa-asp-net-core-kitabi/) (Turkish)
  	 
 * [**简明 ASP.NET Core 手册**](https://windsting.github.io/little-aspnetcore-book/book/) (Chinese)
 
+* **ASP.NET Core - Guia de bolso** (Brazilian Portuguese) (in-progress)
 
-## Who this book is for
-If you're new to programming, this book will introduce you to the patterns and concepts used to build modern web applications. You'll learn how to build a web app (and how the big pieces fit together) by building something from scratch! While this little book won't be able to cover absolutely everything you need to know about programming, it'll give you a starting point so you can learn more advanced topics.
 
-If you already code in a backend language like Node, Python, Ruby, Go, or Java, you'll notice a lot of familiar ideas like MVC, view templates, and dependency injection. The code will be in C#, but it won't look too different from what you already know.
+## Para quem é esse livro
+Se você é novo em programação, esse livro irá apresentar-lhe padrões e conceitos usados para criar aplicações web modernas. Você vai aprender como criar uma web app (e como todas as partes se integram) construindo uma do zero! Enquanto esse pequeno livro não será capaz de cobrir absolutamente tudo que você precisa saber sobre progração, ele oferecerá um ponto de início para que você possa aprofundar-se sobre tópicos mais avançados.
 
-If you're an ASP.NET MVC developer, you'll feel right at home! ASP.NET Core adds some new tools and reuses (and simplifies) the things you already know. I'll point out some of the differences below.
+Se você já programa em alguma linguagem back-end como Node, Python, Ruby, Go ou Java, você notará muitas idéias familiares como _MVC_, _view templates_ e _dependency injection_. O código será em C#, mas não será muito diferente do que você já conhece.
 
-No matter what your previous experience with web programming, this book will teach you everything you need to create a simple and useful web application in ASP.NET Core. You'll learn how to build functionality using backend and frontend code, how to interact with a database, and how to deploy the app to the world.
+Se você é um desenvolvedor ASP.NET, você vai se sentir em casa! ASP.NET Core adiciona novas ferramentas e re-utiliza (e simplifica) coisas que você já conhece. Abaixo você encontrará algumas das diferenças.
+
+Não importa sua experiência anterior com desenvolvimento web, esse livro vai ensinar-lhe tudo que você precisa para criar uma aplicação web simples e útil usando ASP.NET Core. Você aprenderá como criar funcionalidades usando código back-end e front-end, como interagir com um banco de dados e como publicar sua aplicação para o mundo todo acessar.
 
 ## What is ASP.NET Core?
 ASP.NET Core is a web framework created by Microsoft for building web applications, APIs, and microservices. It uses common patterns like MVC (Model-View-Controller), dependency injection, and a request pipeline comprised of middleware. It's open-source under the Apache 2.0 license, which means the source code is freely available, and the community is encouraged to contribute bug fixes and new features.
