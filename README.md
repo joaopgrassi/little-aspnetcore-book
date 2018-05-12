@@ -1,28 +1,28 @@
-# The Little ASP.NET Core Book
+# ASP.NET Core - Guia de bolso
 
 *by Nate Barbettini*
 
-Copyright &copy; 2018. All rights reserved.
+Copyright &copy; 2018. Todos os direitos reservados.
 
 ISBN: 978-1-387-75615-5
 
-Released under the Creative Commons Attribution 4.0 license. You are free to share, copy, and redistribute this book in any format, or remix and transform it for any purpose (even commercially). You must give appropriate credit and provide a link to the license.
+Publicado sobre a licença Creative Commons Attribution 4.0. Você é livre para compartilhar, copiar e redistribuir este livro em qualquer formato, ou remixar e transformá-lo para qualquer propósito (até mesmo comercial). Você deve forcener os créditos apropriados e disponiblizar um link para a licença
 
-For more information, visit https://creativecommons.org/licenses/by/4.0/
+Para mais informações, visite https://creativecommons.org/licenses/by/4.0/
 
-## Introduction
-Thanks for picking up The Little ASP.NET Core Book! I wrote this short book to help developers and people interested in web programming learn about ASP.NET Core, a new framework for building web applications and APIs.
+## Introdução
+Obrigado por obter o _ASP.NET Core - Guia de bolso_! Eu escrevi esse resumido livro com intuito em ajudar desenvolvedores e pessoas interessadas em desenvolvimento web a aprender sobre ASP.NET Core, um novo framework para desenvolver aplicações web e APIs.
 
-The Little ASP.NET Core Book is structured as a tutorial. You'll build an application from start to finish and learn:
+O _ASP.NET Core - Guia de bolso_ é organizado como um tutorial. Você vai desenvolver uma aplicação do início ao fim e aprender:
 
-* The basics of the MVC (Model-View-Controller) pattern
-* How front-end code (HTML, CSS, JavaScript) works together with back-end code
-* What dependency injection is and why it's useful
-* How to read and write data to a database
-* How to add log-in, registration, and security
-* How to deploy the application to the web
+* O básico sobre o padrão MVC (Model-View-Controller)
+* Como código front-end (HTML, CSS, Javascript) funciona em conjunto com código back-end
+* O que é _dependency injection_ e porque é útil
+* Como consultar e salvar dados em um banco de dados
+* Como adicionar log-in, registro de usuários e segurança
+* Como fazer deploy da aplicação na web
 
-Don't worry, you don't need to know anything about ASP.NET Core (or any of the above) to get started.
+Não se preocupe, você não precisa conhecer nada sobre ASP.NET Core (ou quaisquer um acima) para começar.
 
 ## Before you begin
 
