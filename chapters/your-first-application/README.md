@@ -1,10 +1,10 @@
-# Your first application
-Ready to build your first web app with ASP.NET Core? You'll need to gather a few things first:
+# A primeira aplicação
+Preparado para construir o seu primeiro web app utilizando ASP.NET Core? Antes de iniciar tenha em mãos:
 
-**Your favorite code editor.** You can use Atom, Sublime, Notepad, or whatever editor you prefer writing code in. If you don't have a favorite, give Visual Studio Code a try. It's a free, cross-platform code editor that has rich support for writing C#, JavaScript, HTML, and more. Just search for "download visual studio code" and follow the instructions.
+**Seu editor de código** Você pode utilizar Atom, Sublime, Notepad, ou qualquer editor de sua preferencia. Se você não tem nenhum editor favorito, tente utilizar o Visual Studio Code. É de graça, suporte a multi-plataforma com um poderoso suporte para escrever C#, JavaScript, HTML, e muito mais. Procure por "download visual studio code" em qualquer buscador e siga as instruções.
 
-If you're on Windows, you can also use Visual Studio to build ASP.NET Core applications. You'll need Visual Studio 2017 version 15.3 or later (the free Community Edition is fine). Visual Studio has great code completion and refactoring support for C#, although Visual Studio Code is close behind.
+Se você está utilizando Windows, voce pode também instalar o Visual Studio para construir aplicações ASP.NET Core. Você vai precisar do Visual Studio 2017 versão 15.3 ou a mais recente (a versão Community é gratis e funciona perfeitamente). O Visual Studio tem um ótimo auto complete e suporte a refatoração para o C#, apesar de que o Visual Studio Code está bem proximo.
 
-**The .NET Core SDK.** Regardless of the editor or platform you're using, you'll need to install the .NET Core SDK, which includes the runtime, base libraries, and command line tools you need for building ASP.NET Core applications. The SDK can be installed on Windows, Mac, or Linux.
+**O SDK do .NET Core** Independente de qual editor ou plataforma você está utilizando, você vai precisar instalar o SDK do .NET Core, que inclui o runtime, bibliotecas padrões, e ferramentas de linha de comando que você vai precisar para construir as aplicações ASP.NET Core. O SDK pode ser instalado no Windows, Mac ou Linux.
 
-Once you've decided on an editor, you'll need to get the SDK.
+Quando você decidir qual o editor, você vai precisar instalar o SDK.
