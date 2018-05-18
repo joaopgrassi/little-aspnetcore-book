@@ -1,5 +1,5 @@
-## Get the SDK
-Search for "download .net core" and follow the instructions on Microsoft's download page to get the .NET Core SDK. After the SDK has finished installing, open up the Terminal (or PowerShell on Windows) and use the `dotnet` command line tool (also called a **CLI**) to make sure everything is working:
+## Instalar o SDK
+Procure por "download .net core" e siga as instruções para download na página da Microsoft, para instalar o SDK do .NET Core. Quando o SDK estiver instalado, abra o seu terminal (ou PowerShell no Windows) e execute o comando `dotnet` (também conhecido como **CLI**) para garantir que tudo está funcionando:
 
 ```
 dotnet --version
@@ -7,7 +7,7 @@ dotnet --version
 2.1.104
 ```
 
-You can get more information about your platform with the `--info` flag:
+Você consegue obter maiores informações sobre a sua plataforma com a flag `--info`:
 
 ```
 dotnet --info
@@ -25,4 +25,4 @@ Runtime Environment:
 (more details...)
 ```
 
-If you see output like the above, you're ready to go!
+Se o seu terminal exibiu a informação igual a acima, você está pronto para seguir em frente!
