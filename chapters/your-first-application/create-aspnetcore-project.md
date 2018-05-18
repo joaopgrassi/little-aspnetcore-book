@@ -1,29 +1,29 @@
-## Create an ASP.NET Core project
-If you're still in the directory you created for the Hello World sample, move back up to your Documents or home directory:
+## Criar um projeto em ASP.NET Core
+Se voce ainda está no diretorio que criou para o exemplo Hello World, volte uma pasta acima para a sua pasta Documentos ou o diretório padrão:
 
 ```
 cd ..
 ```
 
-Next, create a new directory to store your entire project, and move into it:
+Em seguida, crie um novo diretorio para armazenar todo o seu projeto, e entre neste diretório:
 
 ```
 mkdir AspNetCoreTodo
 cd AspNetCoreTodo
 ```
 
-Next, create a new project with `dotnet new`, this time with some extra options:
+Em seguida, crie o seu projeto com o comando `dotnet new`, desta vez com algumas opções a mais:
 
 ```
 dotnet new mvc --auth Individual -o AspNetCoreTodo
 cd AspNetCoreTodo
 ```
 
-This creates a new project from the `mvc` template, and adds some additional authentication and security bits to the project. (I'll cover security in the *Security and identity* chapter.)
+Este comando vai criar um novo projeto com o template `mvc`, e adicionar a autenticação e segurança para o projeto. (Eu vou falar sobre segurança no capitulo *Segurança e identidade*.)
 
-> You might be wondering why you have a directory called `AspNetCoreTodo` inside another directory called `AspNetCoreTodo`. The top-level or "root" directory can contain one or more project directories. The root directory is sometimes called a **solution directory**. Later, you'll add more project directories side-by-side with the `AspNetCoreTodo` project directory, all within a single root solution directory.
+> Você deve estar se perguntando porque eu tenho um diretório chamado `AspNetCoreTodo` dentro de outro diretorio chamado `AspNetCoreTodo`. O diretório principal pode conter um ou mais diretorios de projetos, algumas vezes, ele é chamado de **diretório de solução **. Mais para frente, você vai adicionar mais diretorios de projetos, todos dentro de um diretório de soluções.
 
-You'll see quite a few files show up in the new project directory. Once you `cd` into the new directory, all you have to do is run the project:
+Você está vendo alguns arquivos dentro deste novo diretório do projeto. Tudo o que você precisa fazer para executar o projeto é:
 
 ```
 dotnet run
@@ -32,22 +32,22 @@ Now listening on: http://localhost:5000
 Application started. Press Ctrl+C to shut down.
 ```
 
-Instead of printing to the console and exiting, this program starts a web server and waits for requests on port 5000.
+Ao invés de imprimir no console e sair do programa, ele inicia um servidor web e aguarda as requisições na porta 5000.
 
-Open your web browser and navigate to `http://localhost:5000`. You'll see the default ASP.NET Core splash page, which means your project is working! When you're done, press Ctrl-C in the terminal window to stop the server.
+Abra o seu navegador e acesse a página `http://localhost:5000`. Voce vai ver a página padrão do ASP.NET Core, o que indica que o seu projeto está funcionando! Quando você finalizar, pressione Ctrl-C na janela do terminal e o servidor web será finalizado.
 
-### The parts of an ASP.NET Core project
-The `dotnet new mvc` template generates a number of files and directories for you. Here are the most important things you get out of the box:
+### As partes de um projeto ASP.NET Core
+O template `dotnet new mvc` inicializa todos os arquivos e diretorios para você. Aqui está algumas informações importantes que você vai precisar:
 
-* The **Program.cs** and **Startup.cs** files set up the web server and ASP.NET Core pipeline. The `Startup` class is where you can add middleware that handles and modifies incoming requests, and serves things like static content or error pages. It's also where you add your own services to the dependency injection container (more on this later).
+* Os arquivos **Program.cs** e **Startup.cs** são responsaveis por inicializar o webserver e o pipeline do ASP.NET Core. A classe `Startup` é onde você pode adicionar middleware que gerencia e modifica a chegada das requisições, e também provê os conteudos estaticos e as paginas de erros. É onde voce vai adicionar o seu próprio serviço para o conteiner de injeção de dependencia (vamos tratar sobre isso mais para frente).
 
-* The **Models**, **Views**, and **Controllers** directories contain the components of the Model-View-Controller (MVC) architecture. You'll explore all three in the next chapter.
+* O diretório **Models**, **Views**, e **Controllers** contém os componentes da arquitetura Model-View-Controller (MVC). Você vai conhecer os tres no próximo capitulo.
 
-* The **wwwroot** directory contains static assets like CSS, JavaScript, and image files. Files in `wwwroot` will be served as static content, and can be bundled and minified automatically.
+* O diretório **wwwroot** contém todos os arquivos estaticos, como CSS, JavaScript e as imagens. Arquivos dentro do `wwwroot` serão oferecidos como um conteudo estatico, e podem ser empacotados e minificados automaticamente.
 
-* The **appsettings.json** file contains configuration settings ASP.NET Core will load on startup. You can use this to store database connection strings or other things that you don't want to hard-code.
+* O arquivo **appsettings.json** contém todas as configurações do ASP.NET Core que serão carregadas na inicialização. Você pode utilizar para armazenar a sua string de conexão com a base de dados ou outras coisas que você não quer deixar hard-code no seu código.
 
-### Tips for Visual Studio Code
+### Dicas para o Visual Studio Code
 
 If you're using Visual Studio Code for the first time, here are a couple of helpful tips to get you started:
 
