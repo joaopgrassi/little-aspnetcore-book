@@ -1,4 +1,4 @@
-## Adicione uma classe de serviço
+## Adicionar uma classe de serviço
 Você criou um model, uma view, e um controller. Antes de usar o model e visualizar no controller, você também precisa escrever um código que irá obter os itens de tarefas do usuário de uma base de dados.
 
 Você pode escrever este código  de banco de dados diretamente no controller, mas é uma prática melhor manter seu código separado. Por que? Em uma grande aplicação do mundo real, você terá que lidar com muitas preocupações:
@@ -15,7 +15,7 @@ Para este projeto, você usará duas camadas de aplicação: a **camada de apres
 
 > A maioria dos grandes projetos usa uma arquitetura 3-tier: uma camada de apresentação, uma camada de lógica de serviço e uma camada de repositório de dados. Um **repositório** é uma classe focada apenas em código de banco de dados (sem regra de negócio). Nesta aplicação, você vai juntar estas em uma única camada de serviço, pela simplicidade, mas sinta-se livre para experimentar diferentes maneiras de arquitetar o código.
 
-### Crie uma interface
+### Criar uma interface
 
 A linguagem C# inclui o conceito de **interfaces**, onde a definição dos métodos e propriedades de um objeto é separada da classe que realmente contém o código para esses métodos e propriedades. Interfaces facilitam manter suas classes desacopladas e fáceis de testar, como você verá aqui (mais tarde no capítulo *Teste Automatizado*). Você usará uma interface para representar o serviço que pode interagir com itens de tarefas no banco de dados.
 
@@ -52,7 +52,7 @@ Como isso é uma interface, não existe de fato nenhum código aqui, apenas a de
 
 O tipo `Task` é semelhante a um future ou uma promise, e é utilizado aqui porque este método será **assíncrono**. Em outras palavras, o método pode não estar apto a retornar a lista de itens de tarefas imediatamente, pois é necessário ir conversar com o banco de dados primeiro. (Mais sobre isso depois.)
 
-### Crie a classe de serviço
+### Criar a classe de serviço
 
 Agora que a interface está definida, você está pronto para realmente criar a classe de serviço. Eu irei cobrir o código de banco de dados em profundidade no capítulo *Use um banco de dados*, então por enquanto você o simulará e sempre irá retornar dois itens implementados:
 
