@@ -1,5 +1,5 @@
 ## Criar models
-Existem duas classes model que precisam ser criadas: um model que represente um item de tarefa armazenado no banco de dados (as vezes chamado de **entity**), e o model que será associado à view (o **MV** no MVC) e enviado ao navegador do usuário. Porque ambos podem ser referidos como "models", eu irei me referir ao último como um **view model**.
+Existem duas classes model que precisam ser criadas: um model que represente um item da to-do list armazenado no banco de dados (as vezes chamado de **entity**), e o model que será associado à view (o **MV** no MVC) e enviado ao navegador do usuário. Porque ambos podem ser referidos como "models", eu irei me referir ao último como um **view model**.
 
 Primeiro, crie uma classe chamada `TodoItem` no diretório Models:
 
@@ -25,17 +25,17 @@ namespace AspNetCoreTodo.Models
 }
 ```
 
-Esta classe define o que o banco de dados precisará armazenar para cada item de tarefa: um ID, um title ou nome, se o item está completo, e qual é a data de vencimento. Cada linha define uma propriedade da classe:
+Esta classe define o que o banco de dados precisará armazenar para cada item da to-do list: um ID, um title ou nome, se o item está completo, e qual é a data de vencimento. Cada linha define uma propriedade da classe:
 
 * A propriedade **Id** é um guid, ou um **g**lobally **u**nique **id**entifier (identificador único global). Guids (ou GUIDs) são longas strings de letras e números, como `43ec09f2-7f70-4f4b-9559-65011d5781bb`. Porque guids são aleatórios e é extremamente improvável de serem acidentalmente duplicados, eles são comumente utilizados como IDs únicos. Você também pode usar um número (inteiro) como um ID de entidade no banco de dados, mas você precisaria configurar seu banco de dados para sempre incrementar o número quando novas linhas forem adicionadas ao banco. Guids são geradas aleatoriamente, então você não precisa se preocupar com auto-incremento.
 
 * A propriedade **IsDone** é um boolean (valores true/false). Por padrão, será `false` para todos os novos itens. Mais tarde você escreverá código para mudar essa propriedade para `true` quando o usuário clicar no checkbox de um item na view.
 
-* A propriedade **Title** é uma string (texto). Ela irá guardar o nome ou a descrição do item da tarefa. O atributo `[Required]` diz ao ASP.NET Core que essa string não pode ser nula ou vazia.
+* A propriedade **Title** é uma string (texto). Ela irá guardar o nome ou a descrição do item da to-do list. O atributo `[Required]` diz ao ASP.NET Core que essa string não pode ser nula ou vazia.
 
 * A propriedade **DueAt** é um `DateTimeOffset`, que é um tipo do C# que armazena um date/time stamp juntamente com um fuso horário UTC. Armazenar a data, hora, e fuso horário juntos facilita processar datas precisamente em sistemas com diferentes fusos horários.
 
-Observou o ponto de interrogação `?` depois do tipo `DateTimeOffset`? Isso marca a propriedade DueAt como **nullable**, ou opcional. Se a `?` não fosse incluída, todo item de tarefa precisaria ter uma data de vencimento. As propriedades `Id` e `IsDone` não são marcadas como nullable, então elas são obrigatórias e sempre terão um valor (ou um valor padrão).
+Observou o ponto de interrogação `?` depois do tipo `DateTimeOffset`? Isso marca a propriedade DueAt como **nullable**, ou opcional. Se a `?` não fosse incluída, todo item da to-do list precisaria ter uma data de vencimento. As propriedades `Id` e `IsDone` não são marcadas como nullable, então elas são obrigatórias e sempre terão um valor (ou um valor padrão).
 
 > Strings no C# são sempre nullable, então não há necessidade de marcar a propriedade Title como nullable. No C# strings podem ser nulas, vazias, ou conterem texto.
 
@@ -61,4 +61,4 @@ namespace AspNetCoreTodo.Models
 }
 ```
 
-Agora que você tem alguns models, é hora de criar uma view que irá pegar um `TodoViewModel` e renderizar o HTML correto para exibir ao usuário sua lista de tarefas.
+Agora que você tem alguns models, é hora de criar uma view que irá pegar um `TodoViewModel` e renderizar o HTML correto para exibir ao usuário sua to-do list.

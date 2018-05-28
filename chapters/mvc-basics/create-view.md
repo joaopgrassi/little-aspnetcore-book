@@ -1,9 +1,9 @@
 ## Criar uma view
-Views no ASP.NET Core são construídas utilizando a linguagem de template Razor, que combina HTML e código C#. (Se você já escreveu páginas usando Handlebars moustaches, ERB no Ruby on Rails, ou Thymeleaf no Java, você já tem a ideia básica.)
+Views no ASP.NET Core são criadas utilizando a linguagem de template Razor, que combina HTML e código C#. (Se você já escreveu páginas usando Handlebars moustaches, ERB no Ruby on Rails, ou Thymeleaf no Java, você já tem a ideia básica.)
 
 A maior parte do código da view é apenas HTML, com adições ocasionais de declarações C# para extrair dados do view model e transformá-los em texto ou HTML. As declarações C# são prefixadas com o símbolo `@`.
 
-A view renderizada pela action `Index` do `TodoController` precisa pegar os dados do view model (uma sequência de itens de tarefa) e exibi-los em uma tabela agradável para o usuário. Por convenção, views são colocadas no diretório `Views` em um subdiretório correspondente ao nome do controller. O nome do arquivo da view é o nome da action com uma extensão `.cshtml`.
+A view renderizada pela action `Index` do `TodoController` precisa pegar os dados do view model (uma sequência de itens da to-do list) e exibi-los em uma tabela agradável para o usuário. Por convenção, views são colocadas no diretório `Views` em um subdiretório correspondente ao nome do controller. O nome do arquivo da view é o nome da action com uma extensão `.cshtml`.
 
 Crie um diretório `Todo` dentro do diretório `Views`, e adicione este arquivo:
 
@@ -48,7 +48,7 @@ Crie um diretório `Todo` dentro do diretório `Views`, e adicione este arquivo:
 
 No começo do arquivo, a diretiva `@model` diz ao Razor qual model esperar que esta view seja ligada. O model é acessado através da propriedade `Model`.
 
-Assumindo que existam itens de tarefa em `Model.Items`, a declaração `foreach` irá iterar sobre cada item de tarefa e renderizar uma linha de tabela (elemento `<tr>`) contendo o nome do item e sua data de vencimento. O checkbox também é renderizado, o que irá permitir que o usuário marque o item como completo.
+Assumindo que existam itens da to-do list em `Model.Items`, a declaração `foreach` irá iterar sobre cada um e renderizar uma linha de tabela (elemento `<tr>`) contendo o nome do item e sua data de vencimento. O checkbox também é renderizado, o que irá permitir que o usuário marque o item como completo.
 
 ### O arquivo de layout
 Você deve estar se perguntando onde está o resto do HTML: o que aconteceu com a tag `<body>`, ou o cabeçalho e o rodapé da página? O ASP.NET Core usa uma layout view que define a estrutura básica onde todas as outras view's são renderizadas. Ela fica armazenada em `Views/Shared/_Layout.cshtml`.
