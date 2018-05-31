@@ -49,6 +49,6 @@ Agora as datas estão muito mais legíveis:
 
 Existem pacotes disponíveis no NuGet para tudo, desde realizar parse de XML à machine learning e até a postar no Twitter. O próprio ASP.NET Core não é nada mais do que uma coleção de pacotes NuGet adicionados ao seu projeto.
 
-> O arquivo de projeto criado com o mando `dotnet new mvc` inclui uma simples referência ao pacote `Microsoft.AspNetCore.All`, que é um conveniente "metapackage" que referencia todos os pacotes ASP.NET Core necessários para um projeto padrão nesta tecnologia. Desta maneira, não são necessárias grandes quantidades de referências a pacotes em seu arquivo de projeto.
+> O arquivo de projeto criado com o comando `dotnet new mvc` inclui uma simples referência ao pacote `Microsoft.AspNetCore.All`, que é um conveniente "metapackage" que referencia todos os pacotes ASP.NET Core necessários para um projeto padrão nesta tecnologia. Desta maneira, não são necessárias grandes quantidades de referências a pacotes em seu arquivo de projeto.
 
 No próximo capítulo, você utilizará outro pacote NuGet (chamado Entity Framework Core) para interagir com bancos de dados.
