@@ -20,4 +20,4 @@ services.AddDbContext<ApplicationDbContext>(options =>
 
 Este código adiciona o `ApplicationDbContext` ao service container e diz ao Entity Framework Core para utilizar o provedor de banco de dados SQLite com a connection string configurada no arquivo `appsettings.json`.
 
-Como você pode ver, o comando `dotnet new` cria uma série de coisas para você! O banco de dados está configurado e pronto para uso. No entanto, ele não possui nenhuma tabela para armazenar nossas tarefas a fazer. Para armazenar a entidade `TodoItem`, será necessário atualizar a classe de contexto e migrar (Entity Framework Migrations) nosso banco de dados.
+Como você pode ver, o comando `dotnet new` cria uma série de coisas para você! O banco de dados está configurado e pronto para uso. No entanto, ele não possui nenhuma tabela para armazenar nossas tarefas a fazer. Para armazenar a entidade `TodoItem` em nosso banco de dados, será necessário atualizar a classe de contexto e utilizar o Entity Framework Migrations.

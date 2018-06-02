@@ -40,6 +40,6 @@ Um `DbSet` representa uma tabela do banco de dados. Ao criar uma propriedade com
 
 Você atualizou a classe de contexto de banco de dados, mas ainda há um pequeno problema: o contexto e o banco de dados agora estão dessincronizados, pois ainda não há uma tabela chamada `Items` em nosso banco de dados. (Apenas atualizar o código da classe de contexto não altera o banco de dados em si.)
 
-Para atualizar o banco de dados refletindo as alterações que você acabou de fazer, você precisa utilizar um recurso chamado "migration".
+Para atualizar o banco de dados refletindo as alterações que você acabou de fazer, você precisa utilizar um recurso chamado Entity Framework Migrations.
 
 > Se você já tiver um banco de dados existente, procure na web pelo termo "scaffold-dbcontext existing database" e leia a documentação da Microsoft sobre como utilizar a ferramenta `Scaffold-DbContext` para fazer engenharia reversa automática de seu banco de dados nos respectivos `DbContext` e modelo de classes.
