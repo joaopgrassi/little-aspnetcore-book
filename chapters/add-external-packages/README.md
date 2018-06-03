@@ -1,32 +1,32 @@
-# Add external packages
-One of the big advantages of using a mature ecosystem like .NET is that the number of third-party packages and plugins is huge. Just like other package systems, you can download and install .NET packages that help with almost any task or problem you can imagine.
+# Adicionando Pacotes (Packages) Nuget
+Uma das grandes vantagens da utilização de um ecossistema maduro como o .NET é a ampla disponibilidade de plugins e pacotes de terceiros. Similar a outros sistemas de pacotes, você pode fazer download e instalar pacotes .NET que o ajudarão a resolver quaisquer problemas imagináveis.
 
-NuGet is both the package manager tool and the official package repository (at https://www.nuget.org). You can search for NuGet packages on the web, and install them from your local machine through the terminal (or the GUI, if you're using Visual Studio).
+O NuGet (https://www.nuget.org) é, ao mesmo tempo, o gerenciador e o repositório de pacotes oficial do .NET. Você pode pesquisar pacotes NuGet na web e instalá-los em sua máquina local através do terminal de seu sistema operacional (ou por GUI, se estiver utilizando o Visual Studio).
 
-## Install the Humanizer package
-At the end of the last chapter, the to-do application displayed to-do items like this:
+## Instalando o Pacote "Humanizer"
+No final do último capítulo, nossa aplicação exibe as tarefas a fazer no formato abaixo:
 
-![Dates in ISO 8601 format](iso8601.png)
+![Datas em formato ISO 8601](iso8601.png)
 
-The due date column is displaying dates in a format that's good for machines (called ISO 8601), but clunky for humans. Wouldn't it be nicer if it simply read "X days from now"?
+A coluna de datas de vencimento (due date) está em um formato excelente para máquinas (ISO 8601), porém péssimo para humanos. Não seria melhor se simplesmente exibirmos "X days from now"?
 
-You could write code yourself that converted an ISO 8601 date into a human-friendly string, but fortunately, there's a faster way.
+Você mesmo poderia escrever o código de conversão de datas no formato ISO 8601 para um formato mais amigável, porém existe um caminho mais rápido.
 
-The Humanizer package on NuGet solves this problem by providing methods that can "humanize" or rewrite almost anything: dates, times, durations, numbers, and so on. It's a fantastic and useful open-source project that's published under the permissive MIT license.
+O pacote NuGet Humanizer soluciona este problema disponibilizando métodos para humanizar praticamente qualquer coisa: datas, horas, durações, números etc. É um projeto open-source fantástico e útil publicado sob a licença MIT permissiva.
 
-To add it to your project, run this command in the terminal:
+Para adicioná-lo ao seu projeto, execute o comando abaixo em seu terminal:
 
 ```
 dotnet add package Humanizer
 ```
 
-If you peek at the `AspNetCoreTodo.csproj` project file, you'll see a new `PackageReference` line that references `Humanizer`.
+Se você olhar o arquivo de projeto `AspNetCoreTodo.csproj` após executar este comando, verá uma nova linha `PackageReference` que referencia o pacote NuGet `Humanizer`.
 
-## Use Humanizer in the view
+## Utilizando o Humanizer nas views
 
-To use a package in your code, you usually need to add a `using` statement that imports the package at the top of the file.
+Para utilizar um pacote NuGet em seu código, geralmente basta adicionar uma instrução `using` importando o pacote no início de seu arquivo fonte.
 
-Since Humanizer will be used to rewrite dates rendered in the view, you can use it directly in the view itself. First, add a `@using` statement at the top of the view:
+Como o Humanizer será utilizado para formatar datas nas views, você pode adicioná-lo diretamente nas próprias views. Primeira, adicione a instrução `@using` no topo da view:
 
 **Views/Todo/Index.cshtml**
 
@@ -37,18 +37,18 @@ Since Humanizer will be used to rewrite dates rendered in the view, you can use 
 // ...
 ```
 
-Then, update the line that writes the `DueAt` property to use Humanizer's `Humanize` method:
+Em seguida, atualize a linha que gera a propriedade `DueAt` para utilizar o método `Humanize` do pacote NuGet Humanizer:
 
 ```html
 <td>@item.DueAt.Humanize()</td>
 ```
 
-Now the dates are much more readable:
+Agora as datas estão muito mais legíveis:
 
-![Human-readable dates](friendly-dates.png)
+![Datas Legíveis para Humanos](friendly-dates.png)
 
-There are packages available on NuGet for everything from parsing XML to machine learning to posting to Twitter. ASP.NET Core itself, under the hood, is nothing more than a collection of NuGet packages that are added to your project.
+Existem pacotes disponíveis no NuGet para tudo, desde realizar parse de XML à machine learning e até a postar no Twitter. O próprio ASP.NET Core não é nada mais do que uma coleção de pacotes NuGet adicionados ao seu projeto.
 
-> The project file created by `dotnet new mvc` includes a single reference to the `Microsoft.AspNetCore.All` package, which is a convenient "metapackage" that references all of the other ASP.NET Core packages you need for a typical project. That way, you don't need to have hundreds of package references in your project file.
+> O arquivo de projeto criado com o comando `dotnet new mvc` inclui uma simples referência ao pacote `Microsoft.AspNetCore.All`, que é um conveniente "metapackage" que referencia todos os pacotes ASP.NET Core necessários para um projeto padrão nesta tecnologia. Desta maneira, não são necessárias grandes quantidades de referências a pacotes em seu arquivo de projeto.
 
-In the next chapter, you'll use another set of NuGet packages (a system called Entity Framework Core) to write code that interacts with a database.
+No próximo capítulo, você utilizará outro pacote NuGet (chamado Entity Framework Core) para interagir com bancos de dados.
