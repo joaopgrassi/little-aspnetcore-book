@@ -34,7 +34,7 @@ A linha `public TodoController(ITodoItemService todoItemService)` define um **co
 
 > Interfaces são incríveis porque ajudam a desacoplar (separar) a lógica da sua aplicação. Como o controller depende da interface `ITodoItemService`, e não de uma classe *específica*, ele não sabe ou se importa com qual classe realmente será recebida. Poderia ser a `FakeTodoItemService`, uma diferente que se comunique com um banco de dados, ou alguma outra! Contanto que implemente a interface, o controller pode usá-la. Isso torna realmente fácil testar partes da sua aplicação separadamente. Falarei sobre testes em detalhes no capítulo *Teste Automatizado*.
 
-Agora você pode finalmente usar o `ITodoItemService` (através da variável privada que você declarou) no seu método action para obter itens de tarefa da sua camada service:
+Agora você pode finalmente usar o `ITodoItemService` (através da variável privada que você declarou) no seu método action para obter itens da to-do list da sua camada service:
 
 ```csharp
 public IActionResult Index()

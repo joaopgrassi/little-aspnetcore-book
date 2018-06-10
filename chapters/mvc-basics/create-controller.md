@@ -2,7 +2,7 @@
 
 Já existem alguns controllers no diretório Controllers do projeto, incluindo o `HomeController` que renderiza a tela padrão de boas-vindas que você vê quando visita `http://localhost:5000`. Você pode ignorar esse controllers por enquanto.
 
-Crie um novo controller para a funcionalidade de lista de tarefas, chamado `TodoController` e adicione o code seguinte:
+Crie um novo controller para a funcionalidade de to-do list, chamado `TodoController` e adicione o code seguinte:
 
 **Controllers/TodoController.cs**
 
@@ -50,6 +50,6 @@ public class TodoController : Controller
 
 Métodos action podem retornar views, dados JSON, ou códigos de estado HTTP como `200 OK` e `404 Not Found`. O tipo de retorno `IActionResult` lhe dá a flexibilidade de retornar qualquer um desses a partir do action.
 
-É uma prática recomendada manter os controllers tão leves quanto possível. Neste caso, o controller será responsável por obter os itens de tarefas do banco de dados, colocar esses itens em um model que a view consiga entender e enviar a view de volta para o navegador do usuário.
+É uma prática recomendada manter os controllers tão leves quanto possível. Neste caso, o controller será responsável por obter os itens da to-do list do banco de dados, colocar esses itens em um model que a view consiga entender e enviar a view de volta para o navegador do usuário.
 
 Antes de escrever o restante do código do controller, você precisa criar um model e uma view.

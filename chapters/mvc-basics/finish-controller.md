@@ -1,5 +1,5 @@
 ## Finalizar o controller
-O último passo é finalizar o código do controller. O controller agora tem uma lista de itens de tarefa da camada service, e é preciso colocar esses itens em um `TodoViewModel` e vincular esse model à view que você criou mais cedo:
+O último passo é finalizar o código do controller. O controller agora tem uma to-do list da camada service, e é preciso colocar esses itens em um `TodoViewModel` e vincular esse model à view que você criou mais cedo:
 
 **Controllers/TodoController.cs**
 
