@@ -5,7 +5,7 @@ Se voce ainda está no diretorio que criou para o exemplo Hello World, volte uma
 cd ..
 ```
 
-Em seguida, crie um novo diretorio para armazenar todo o seu projeto, e entre neste diretório:
+Em seguida, crie um novo diretorio para armazenar o seu projeto "TODO", e entre neste diretório:
 
 ```
 mkdir AspNetCoreTodo
@@ -21,7 +21,7 @@ cd AspNetCoreTodo
 
 Este comando vai criar um novo projeto com o template `mvc`, e adicionar a autenticação e segurança para o projeto. (Eu vou falar sobre segurança no capitulo *Segurança e identidade*.)
 
-> Você deve estar se perguntando porque eu tenho um diretório chamado `AspNetCoreTodo` dentro de outro diretorio chamado `AspNetCoreTodo`. O diretório principal pode conter um ou mais diretorios de projetos, algumas vezes, ele é chamado de **diretório de solução **. Mais para frente, você vai adicionar mais diretorios de projetos, todos dentro de um diretório de soluções.
+> Você deve estar se perguntando porque eu tenho um diretório chamado `AspNetCoreTodo` dentro de outro diretorio chamado `AspNetCoreTodo`. O diretório principal pode conter um ou mais diretorios de projetos, algumas vezes, ele é chamado de **diretório de solução**. Mais para frente, você vai adicionar mais diretorios de projetos, todos dentro de um diretório de soluções.
 
 Você está vendo alguns arquivos dentro deste novo diretório do projeto. Tudo o que você precisa fazer para executar o projeto é:
 
@@ -34,12 +34,12 @@ Application started. Press Ctrl+C to shut down.
 
 Ao invés de imprimir no console e sair do programa, ele inicia um servidor web e aguarda as requisições na porta 5000.
 
-Abra o seu navegador e acesse a página `http://localhost:5000`. Voce vai ver a página padrão do ASP.NET Core, o que indica que o seu projeto está funcionando! Quando você finalizar, pressione Ctrl-C na janela do terminal e o servidor web será finalizado.
+Abra o seu navegador e acesse a página `http://localhost:5000`. Voce vai ver a página padrão do ASP.NET Core, o que indica que o seu projeto está funcionando! Quando você quiser finalizar o servidor, pressione Ctrl-C na janela do terminal e o servidor web será finalizado.
 
 ### As partes de um projeto ASP.NET Core
 O template `dotnet new mvc` inicializa todos os arquivos e diretorios para você. Aqui está algumas informações importantes que você vai precisar:
 
-* Os arquivos **Program.cs** e **Startup.cs** são responsaveis por inicializar o webserver e o pipeline do ASP.NET Core. A classe `Startup` é onde você pode adicionar middleware que gerencia e modifica a chegada das requisições, e também provê os conteudos estaticos e as paginas de erros. É onde voce vai adicionar o seu próprio serviço para o conteiner de injeção de dependencia (vamos tratar sobre isso mais para frente).
+* Os arquivos **Program.cs** e **Startup.cs** são responsaveis por inicializar o webserver e o pipeline do ASP.NET Core. A classe `Startup` é onde você pode adicionar o middleware que gerencia e modifica a chegada das requisições, e também provê os conteudos estaticos e as paginas de erros. É onde voce vai adicionar o seu próprio serviço para o conteiner de injeção de dependencia (vamos tratar sobre isso mais para frente).
 
 * O diretório **Models**, **Views**, e **Controllers** contém os componentes da arquitetura Model-View-Controller (MVC). Você vai conhecer os tres no próximo capitulo.
 
@@ -49,31 +49,31 @@ O template `dotnet new mvc` inicializa todos os arquivos e diretorios para você
 
 ### Dicas para o Visual Studio Code
 
-If you're using Visual Studio Code for the first time, here are a couple of helpful tips to get you started:
+Se você está utiliznado o Visual Studio Code pela primeira vez, aqui vão algumas dicas para te ajudar neste inicio:
 
-* **Open the project root folder**: In Visual Studio Code, choose File - Open or File - Open Folder. Open the `AspNetCoreTodo` folder (the root directory), not the inner project directory. If Visual Studio Code prompts you to install missing files, click Yes to add them.
+* **Abra a pasta raiz do projeto**: No Visual Studio Code, selecione Arquivo - Abrir ou Arquivo - Abrir Pasta. Abra a pasta `AspNetCoreTodo` (a pasta raiz), e não a pasta de dentro do projeto. Se o Visual Studio Code exibir uma mensagem para você instalar alguns arquivos que estão faltando, clique em Sim e adicione eles.
 
-* **F5 to run (and debug breakpoints)**: With your project open, press F5 to run the project in debug mode. This is the same as `dotnet run` on the command line, but you have the benefit of setting breakpoints in your code by clicking on the left margin:
+* **F5 para executar (e debugar os breakpoints)**: Com o seu projeto aberto, pressione F5 para executar o seu projeto em modo debug. Isso é o mesmo que `dotnet run` na linha de comando, mas você tem o beneficio de configurar os breakpoints no seu codigo clicando na margem da esquerda:
 
-![Breakpoint in Visual Studio Code](breakpoint.png)
+![Breakpoint no Visual Studio Code](breakpoint.png)
 
-* **Lightbulb to fix problems**: If your code contains red squiggles (compiler errors), put your cursor on the code that's red and look for the lightbulb icon on the left margin. The lightbulb menu will suggest common fixes, like adding a missing `using` statement to your code:
+* **Lampada para resolver os problemas**: Se o seu código contem linhas vermelhas (erros de compilação), coloque o cursor no código que está com a linha vermelha e mova o mouse para o icone de lampada na margem da esquerda. O menu vai sugerir algumas correções, como adicionar uma declaração `using` que está faltando no seu código:
 
-![Lightbulb suggestions](lightbulb.png)
+![Sugestões da Lampada](lightbulb.png)
 
-* **Compile quickly**: Use the shortcut `Command-Shift-B` or `Control-Shift-B` to run the Build task, which does the same thing as `dotnet build`.
+* **Compilar rapidamente**: Use as teclas de atalho `Command-Shift-B` ou `Control-Shift-B` para executar a tarefa de Build, isso é o mesmo que `dotnet build`.
 
-> These tips apply to Visual Studio (not Code) on Windows too. If you're using Visual Studio, you'll need to open the `.csproj` project file directly. Visual Studio will later prompt you to save the Solution file, which you should save in the root directory (the first `AspNetCoreTodo` folder). You can also create an ASP.NET Core project directly within Visual Studio using the templates in File - New Project.
+> Estas dicas aplicam também para o Visual Studio no Windows também. Se você está utilizando o Visual Studio, voce pode abrir o arquivo `.csproj` diretamente. O Visual Studio vai te perguntar para salvar o arquivo de Solução do projeto, que voce deve salvar da pasta raiz do projeto (A primeira pasta `AspNetCoreTodo`). Você pode criar um projeto ASP.NET Core diretamente do Visual Studio usando os templates que estão em Arquivo - Novo Projeto (File - New Project).
 
-### A note about Git
+### Uma nota sobre o Git
 
-If you use Git or GitHub to manage your source code, now is a good time to do `git init` and initialize a Git repository in the project root directory:
+Se voce utiliza Gi ou GitHub para gerenciar o seu código fonte, agora é uma boa hora para realizar um `git init` e inicializar o seu repositorio Git na pasta raiz do seu projeto:
 
 ```
 cd ..
 git init
 ```
 
-Make sure you add a `.gitignore` file that ignores the `bin` and `obj` directories. The Visual Studio template on GitHub's gitignore template repo (https://github.com/github/gitignore) works great.
+Não se esqueca de adicionar o arquivo `.gitignore` para não considerar as pastas `bin` e `obj`. O template do gitignore, no repositorio do Visual Studio, no GitHub(https://github.com/github/gitignore) atende perfeitamente.
 
-There's plenty more to explore, so let's dive in and start building an application!
+Há muito mais para explorar, então vamos mergulhar de cabeça e iniciar uma nova aplicação!

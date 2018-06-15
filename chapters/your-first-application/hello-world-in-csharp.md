@@ -1,7 +1,7 @@
 ## Hello World em C# #
-Antes de aprofundarmos no ASP.NET Core, tente criar e executar uma aplicação C# simples.
+Antes de aprofundarmos no ASP.NET Core, tente criar e executar uma simples aplicação C#.
 
-Você pode executar todos os passos a seguir através da linha de comando. Primeiro, abra o Terminal (ou PowerShell no WIndows). Navegue até a pasta que você quer armazenar os projetos, como o seu diretorio de Documentos:
+Você pode executar todos os passos a seguir através da linha de comando. Primeiro, abra o Terminal (ou PowerShell no Windows). Navegue até a pasta que você quer armazenar os projetos, por exemplo, o seu diretorio de Documentos:
 
 ```
 cd Documents
@@ -13,7 +13,7 @@ Utilize o comando `dotnet` para criar um novo projeto:
 dotnet new console -o CsharpHelloWorld
 ```
 
-O comando `dotnet new` cria um novo projeto .NET em C# como padrão. O parâmetro `console` seleciona o template para um console application (um programa que exibe textos no seu terminal). O parâmetro `-o CsharpHelloWorld` diz ao comando `dotnet net` para criar um novo diretorio chamado `CsharpHelloWorld` com todos os arquivos do projeto. Entre neste diretório:
+O comando `dotnet new` cria um novo projeto .NET em C# como padrão. O parâmetro `console` seleciona o template para um console application (um programa que exibe textos no seu terminal). O parâmetro `-o CsharpHelloWorld` diz ao comando `dotnet new` para criar um novo diretorio chamado `CsharpHelloWorld` com todos os arquivos do projeto. Entre neste diretório:
 
 ```
 cd CsharpHelloWorld
@@ -53,7 +53,7 @@ namespace CsharpHelloWorld
 }
 ```
 
-`static void Main` é o ponto de entrada de um programa C#, e por convenção ele é inserido em uma classe (um tipo de estrutura do codigo ou modulo) chamado `Program`. A declaração `using` no inicio é para importar a classe 'System' e disponibilizar para o seu código na sua classe.
+`static void Main` é o ponto de entrada de um programa C#, e por convenção ele é inserido em uma classe (um tipo de estrutura do codigo ou modulo) chamado `Program`. A declaração `using` no inicio é para importar a classe 'System' e disponibilizar para o código da sua classe.
 
 Dentro do diretorio do seu projeto, execute o comando `dotnet run` para executar o seu programa. Você vai ver escrito no seu console após a execução do programa:
 

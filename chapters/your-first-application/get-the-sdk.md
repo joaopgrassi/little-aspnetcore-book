@@ -1,5 +1,5 @@
 ## Instalar o SDK
-Procure por "download .net core" e siga as instruções para download na página da Microsoft, para instalar o SDK do .NET Core. Quando o SDK estiver instalado, abra o seu terminal (ou PowerShell no Windows) e execute o comando `dotnet` (também conhecido como **CLI**) para garantir que tudo está funcionando:
+Procure por "download .net core" e siga as instruções para download e instalação do SDK do .NET Core na página da Microsoft. Quando o SDK estiver instalado, abra o seu terminal (ou PowerShell no Windows) e execute o comando `dotnet` (também conhecido como **CLI**) para garantir que tudo está funcionando:
 
 ```
 dotnet --version
@@ -7,7 +7,7 @@ dotnet --version
 2.1.104
 ```
 
-Você consegue obter maiores informações sobre a sua plataforma com a flag `--info`:
+Você consegue obter maiores informações sobre a sua plataforma, utilizando a flag `--info`:
 
 ```
 dotnet --info
