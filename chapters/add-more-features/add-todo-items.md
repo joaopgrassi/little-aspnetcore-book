@@ -1,18 +1,18 @@
-## Add new to-do items
+## Adicionando novas tarefas a fazer
 
-The user will add new to-do items with a simple form below the list:
+O usuário adicionará novas tarefas a fazer com um form (formulário) simples como o abaixo:
 
-![Final form](final-form.png)
+![Form final](final-form.png)
 
-Adding this feature requires a few steps:
+Implementar esta funcionalidade requer alguns passos:
 
-* Adding a form to the view
-* Creating a new action on the controller to handle the form
-* Adding code to the service layer to update the database
+* Adicionar um form na view
+* Cria nova action no controller para manipular o form
+* Adicionar código na camada de serviço para atualizar o banco de dados
 
-### Add a form
+### Adicionando o form
 
-The `Views/Todo/Index.cshtml` view has a placeholder for the Add Item form:
+A view `Views/Todo/Index.cshtml` possui um placeholder para o form de inclusão de itens:
 
 ```html
 <div class="panel-footer add-item-form">
