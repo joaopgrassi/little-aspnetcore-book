@@ -30,7 +30,7 @@ localhost:5000/Home/About   -> About()
 localhost:5000/Home/Contact -> Contact()
 ```
 
-Existe um número de convenções (padrões comuns) usados pelo ASP.NET Core, tal como o padrão que `FooController` se torna `/Foo`, e o nome do action `Index` pode ser deixado de fora da URL. Você pode customizar esse comportamento se quiser, mas por enquanto vamos seguir as convenções padrão.
+Existe um número de convenções (padrões comuns) usados pelo ASP.NET Core, tal como o padrão que `FooController` se torna `/Foo`, e o nome do action `Index` pode ser deixado de fora da URL. Você pode customizar esse comportamento se quiser, mas por enquanto vamos seguir a convenção padrão.
 
 Adicione um novo action chamado `Index` ao `TodoController`, substituindo o comentário `// Actions go here`:
 

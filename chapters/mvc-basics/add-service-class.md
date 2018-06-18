@@ -9,11 +9,11 @@ Você pode escrever este código  de banco de dados diretamente no controller, m
 
 Novamente, é possível fazer todas essas coisas em um único e grande controller, mas isso rapidamente se torna muito difícil de gerenciar e testar. Ao invés disso, é comum ver aplicações separadas em duas, três, ou mais "camadas" ou níveis onde cada camada lida com um (e apenas um) interesse. Isso ajuda a manter os controllers tão simples quanto possível, e facilita a realização de testes e alterações na regra de negócio e código de banco de dados mais tarde.
 
-Separar sua aplicação dessa forma é, às vezes, chamado de **multi-tier** ou **arquiterura n-tier**. Em alguns casos, os níveis (camadas) são isolados em projetos completamente separados, mas em outros casos apenas se refere a como as classes são organizadas e usadas. O importante é pensar sobre como dividir sua aplicação em pedaços gerenciáveis, e evitar ter controllers ou classes inchadas que tentam fazer todas as coisas.
+Separar sua aplicação dessa forma é, às vezes, chamado de **multi camadas** ou **arquiterura N-camadas**. Em alguns casos, os níveis (camadas) são isolados em projetos completamente separados, mas em outros casos apenas se refere a como as classes são organizadas e usadas. O importante é pensar sobre como dividir sua aplicação em pedaços gerenciáveis, e evitar ter controllers ou classes inchadas que tentam fazer todas as coisas.
 
 Para este projeto, você usará duas camadas de aplicação: a **camada de apresentação** composta pelos controllers e views que interagem com o usuário, e a **camada de serviço** que contém regras de negócio e código de banco de dados. A camada de apresentação já existe, então o próximo passo é criar um serviço que manipule regras de negócio da to-do list e salve seus itens no banco de dados.
 
-> A maioria dos grandes projetos usa uma arquitetura 3-tier: uma camada de apresentação, uma camada de lógica de serviço e uma camada de repositório de dados. Um **repositório** é uma classe focada apenas em código de banco de dados (sem regra de negócio). Nesta aplicação, você vai juntar estas em uma única camada de serviço, pela simplicidade, mas sinta-se livre para experimentar diferentes maneiras de arquitetar o código.
+> A maioria dos grandes projetos usa uma arquitetura 3-camadas: uma camada de apresentação, uma camada de lógica de serviço e uma camada de repositório de dados. Um **repositório** é uma classe focada apenas em código de banco de dados (sem regra de negócio). Nesta aplicação, você vai juntar estas em uma única camada de serviço, pela simplicidade, mas sinta-se livre para experimentar diferentes maneiras de arquitetar o código.
 
 ### Criar uma interface
 
@@ -50,7 +50,7 @@ Como isso é uma interface, não existe de fato nenhum código aqui, apenas a de
 
 > Se essa sintaxe parecer confusa, pense: "uma Task que contém array de TodoItems".
 
-O tipo `Task` é semelhante a um future ou uma promise, e é utilizado aqui porque este método será **assíncrono**. Em outras palavras, o método pode não estar apto a retornar a to-do list imediatamente, pois é necessário ir conversar com o banco de dados primeiro. (Mais sobre isso depois.)
+O tipo `Task` é semelhante a um future ou uma promise, e é utilizado aqui porque este método será **assíncrono**. Em outras palavras, o método pode não estar apto a retornar a to-do list imediatamente, pois é necessário ir conversar com o banco de dados primeiro. (Você vai ver mais sobre isso depois.)
 
 ### Criar a classe de serviço
 

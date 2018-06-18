@@ -1,5 +1,5 @@
 ## Criar models
-Existem duas classes model que precisam ser criadas: um model que represente um item da to-do list armazenado no banco de dados (as vezes chamado de **entity**), e o model que será associado à view (o **MV** no MVC) e enviado ao navegador do usuário. Porque ambos podem ser referidos como "models", eu irei me referir ao último como um **view model**.
+Existem duas classes model que precisam ser criadas: um model que represente um item da to-do list armazenado no banco de dados (as vezes chamado de **entidade**), e o model que será associado à view (o **MV** no MVC) e enviado ao navegador do usuário. Porque ambos podem ser referidos como "models", eu irei me referir ao último como um **view model**.
 
 Primeiro, crie uma classe chamada `TodoItem` no diretório Models:
 
