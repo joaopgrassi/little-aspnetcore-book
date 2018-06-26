@@ -1,17 +1,16 @@
-## Complete items with a checkbox
+## Finalizando tarefas com um checkbox
 
-Adding items to your to-do list is great, but eventually you'll need to get things done, too. In the `Views/Todo/Index.cshtml` view, a checkbox is rendered for each to-do item:
+Adicionar tarefas à sua lista de tarefas a fazer é ótimo, mas eventualmente você precisará concluí-las também. Na view `Views/Todo/Index.cshtml`, um checkbox é renderizado para cada tarefa a fazer:
 
 ```html
 <input type="checkbox" class="done-checkbox">
 ```
 
-Clicking the checkbox doesn't do anything (yet). Just like the last chapter, you'll add this behavior using forms and actions. In this case, you'll also need a tiny bit of JavaScript code.
+Clicar no checkbox não faz nada (ainda). Assim como no último capítulo, você adicionará esse comportamento usando forms e actions. Nesse caso, você também precisará de um pequeno trecho de código JavaScript.
 
+### Adicionando elementos de form à view
 
-### Add form elements to the view
-
-First, update the view and wrap each checkbox with a `<form>` element. Then, add a hidden element containing the item's ID:
+Primeiro, atualize a view e coloque cada checkbox entre um elemento `<form>`. Em seguida, adicione um elemento oculto (hidden) contendo o ID do item:
 
 **Views/Todo/Index.cshtml**
 
@@ -24,14 +23,13 @@ First, update the view and wrap each checkbox with a `<form>` element. Then, add
 </td>
 ```
 
-When the `foreach` loop runs in the view and prints a row for each to-do item, a copy of this form will exist in each row. The hidden input containing the to-do item's ID makes it possible for your controller code to tell which box was checked. (Without it, you'd be able to tell that *some* box was checked, but not which one.)
+Quando o loop `foreach` é executado na view e imprime uma linha para cada tarefa a fazer, uma cópia deste form existirá em cada linha. O campo hidden que contém o ID dtarefa permite que o código do controller indique qual checkbox foi marcado. (Sem isso, você seria capaz de dizer que *alguns* checkboxes foram marcadas, mas não quais.)
 
-If you run your application right now, the checkboxes still won't do anything, because there's no submit button to tell the browser to create a POST request with the form's data. You could add a submit button under each checkbox, but that would be a silly user experience. Ideally, clicking the checkbox should automatically submit the form. You can achieve that by adding some JavaScript.
+Se você executar sua aplicação agora, os checkboxes ainda não farão nada, porque não há nenhum botão de envio (submit) para dizer ao navegador para criar uma solicitação POST com os dados do form. Você poderia adicionar um botão de envio em cada checkbox, mas isso seria uma experiência ruim para o usuário. O idela é que ao clicar no checkbox o form seja enviado automaticamente. Você pode implementar este recurso utilizando JavaScript.
 
+### Adicionando código JavaScript
 
-### Add JavaScript code
-
-Find the `site.js` file in the `wwwroot/js` directory and add this code: 
+Encontre o arquivo `site.js` no diretório` wwwroot/js` e adicione este código:
 
 **wwwroot/js/site.js**
 
@@ -55,19 +53,18 @@ function markCompleted(checkbox) {
 }
 ```
 
-This code first uses jQuery (a JavaScript helper library) to attach some code to the `click` even of all the checkboxes on the page with the CSS class `done-checkbox`. When a checkbox is clicked, the `markCompleted()` function is run.
+Este código utiliza jQuery (uma biblioteca JavaScript) para anexar código ao `click` de todos os checkboxes na página com a classe CSS `done-checkbox`. Quando um checkbox é clicado, o método `markCompleted()` é executado.
 
-The `markCompleted()` function does a few things:
-* Adds the `disabled` attribute to the checkbox so it can't be clicked again
-* Adds the `done` CSS class to the parent row that contains the checkbox, which changes the way the row looks based on the CSS rules in `style.css`
-* Submits the form
+O método `markCompleted()` faz o seguinte:
+* Adiciona o atributo `disabled` ao checkbox para que ele não seja clicado novamente
+* Adiciona a classe CSS `done` à linha pai que contém o checkbox, que muda a aparência da linha com base nas regras CSS em `style.css`
+* Envia (submete) o formulário para o servidor
 
-That takes care of the view and frontend code. Now it's time to add a new action!
+Isso cuida da view e do código de frontend. Agora vamos adicionar uma nova action!
 
+### Adicionando uma action ao controller
 
-### Add an action to the controller
-
-As you've probably guessed, you need to add an action called `MarkDone` in the `TodoController`:
+Como você imaginou, você precisa adicionar uma action chamada `MarkDone` no` TodoController`:
 
 ```csharp
 [ValidateAntiForgeryToken]
@@ -106,7 +103,7 @@ Finally, if everything looks good, the browser is redirected to the `/Todo/Index
 
 With the view and controller updated, all that's left is adding the missing service method.
 
-### Add a service method
+### Adicionando um método de serviço (service method)
 
 First, add `MarkDoneAsync` to the interface definition:
 
@@ -146,7 +143,7 @@ item.IsDone = true;
 
 Changing the property only affects the local copy of the item until `SaveChangesAsync()` is called to persist the change back to the database. `SaveChangesAsync()` returns a number that indicates how many entities were updated during the save operation. In this case, it'll either be 1 (the item was updated) or 0 (something went wrong).
 
-### Try it out
+### Experimente
 
 Run the application and try checking some items off the list. Refresh the page and they'll disappear completely, because of the `Where()` filter in the `GetIncompleteItemsAsync()` method.
 
