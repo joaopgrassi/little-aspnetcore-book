@@ -85,11 +85,11 @@ public async Task<IActionResult> MarkDone(Guid id)
 }
 ```
 
-Let's step through each line of this action method. First, the method accepts a `Guid` parameter called `id` in the method signature. Unlike the `AddItem` action, which used a model and model binding/validation, the `id` parameter is very simple. If the incoming request data includes a field called `id`, ASP.NET Core will try to parse it as a guid. This works because the hidden element you added to the checkbox form is named `id`.
+Vamos percorrer cada linha desse action method. Primeiro, o método aceita um parâmetro `Guid` chamado `id` na assinatura do método. Ao contrário da action `AddItem`, que usou um model e um model binding/validation, o parâmetro `id` é muito simples. Se os dados do request de entrada incluírem um campo chamado `id`, o ASP.NET Core tentará analisá-lo como um guid. Isso funciona porque o elemento hidden que você adicionou ao checkbox do form é chamado `id`.
 
-Since you aren't using model binding, there's no `ModelState` to check for validity. Instead, you can check the guid value directly to make sure it's valid. If for some reason the `id` parameter in the request was missing or couldn't be parsed as a guid, `id` will have a value of `Guid.Empty`. If that's the case, the action tells the browser to redirect to `/Todo/Index` and refresh the page.
+Como você não está usando model binding, não há 'ModelState` para verificar a validade. Em vez disso, você pode verificar o guid diretamente para certificar-se de que é válido. Se por alguma razão o parâmetro `id` estiver faltando no request ou não puder ser analisado como um guid, o `id` terá um valor de `Guid.Empty`. Se for esse o caso, a action diz ao navegador para redirecionar para `/Todo/Index` e atualizar a página.
 
-Next, the controller needs to call the service layer to update the database. This will be handled by a new method called `MarkDoneAsync` on the `ITodoItemService` interface, which will return true or false depending on whether the update succeeded:
+Em seguida, o controller precisa chamar a camada de serviço para atualizar o banco de dados. Isso será tratado por um novo método chamado `MarkDoneAsync` na interface `ITodoItemService`, que retornará verdadeiro ou falso dependendo se a atualização foi bem-sucedida:
 
 ```csharp
 var successful = await _todoItemService.MarkDoneAsync(id);
@@ -99,13 +99,13 @@ if (!successful)
 }
 ```
 
-Finally, if everything looks good, the browser is redirected to the `/Todo/Index` action and the page is refreshed.
+Finalmente, se tudo correr bem, o navegador será redirecionado para a action `/Todo/Index` e a página é atualizada.
 
-With the view and controller updated, all that's left is adding the missing service method.
+Com a view e o controller atualizados, tudo o que resta é adicionar o service method.
 
 ### Adicionando um método de serviço (service method)
 
-First, add `MarkDoneAsync` to the interface definition:
+Primeiro, adicione `MarkDoneAsync` à definição da interface:
 
 **Services/ITodoItemService.cs**
 
@@ -113,7 +113,7 @@ First, add `MarkDoneAsync` to the interface definition:
 Task<bool> MarkDoneAsync(Guid id);
 ```
 
-Then, add the concrete implementation to the `TodoItemService`:
+Depois, adicione a implementação concreta ao `TodoItemService`:
 
 **Services/TodoItemService.cs**
 
@@ -133,18 +133,18 @@ public async Task<bool> MarkDoneAsync(Guid id)
 }
 ```
 
-This method uses Entity Framework Core and `Where()` to find an item by ID in the database. The `SingleOrDefaultAsync()` method will either return the item or `null` if it couldn't be found.
+Esse método usa o Entity Framework Core e `Where()` para localizar uma tarefa por ID no banco de dados. O método `SingleOrDefaultAsync()` retornará a tarefa ou `null` se não puder ser encontrada.
 
-Once you're sure that `item` isn't null, it's a simple matter of setting the `IsDone` property:
+Uma vez que você tenha certeza de que `item` não é nulo, é uma simples questão de configurar a propriedade `IsDone`:
 
 ```csharp
 item.IsDone = true;
 ```
 
-Changing the property only affects the local copy of the item until `SaveChangesAsync()` is called to persist the change back to the database. `SaveChangesAsync()` returns a number that indicates how many entities were updated during the save operation. In this case, it'll either be 1 (the item was updated) or 0 (something went wrong).
+A alteração da propriedade afeta somente a cópia local da tarefa até que `SaveChangesAsync()` seja chamado para persistir a alteração no banco de dados. `SaveChangesAsync()` retorna um número que indica quantas entidades foram atualizadas durante a execução do método de salvar no banco de dados. Nesse caso, será 1 (a tarefa foi atualizada) ou 0 (algo deu errado).
 
 ### Experimente
 
-Run the application and try checking some items off the list. Refresh the page and they'll disappear completely, because of the `Where()` filter in the `GetIncompleteItemsAsync()` method.
+Execute a aplicação e tente concluir algumas tarefas da lista. Atualize a página e elas desaparecerão completamente por causa do filtro `Where()` no método `GetIncompleteItemsAsync()`.
 
-Right now, the application contains a single, shared to-do list. It'd be even more useful if it kept track of individual to-do lists for each user. In the next chapter, you'll add login and security features to the project.
+No momento, a aplicação contém uma única lista de tarefas compartilhada. Seria ainda mais útil ainda se pudéssemos ter o controle de listas de tarefas individuais para cada usuário. No próximo capítulo, você adicionará recursos de login e segurança ao projeto.
