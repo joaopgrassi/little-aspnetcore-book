@@ -1,15 +1,15 @@
-## More resources
+## Mais recursos
 
-ASP.NET Core Identity helps you add security and identity features like login and registration to your application. The `dotnet new` templates give you pre-built views and controllers that handle these common scenarios so you can get up and running quickly.
+ASP.NET Core Identity ajuda você a adicionar recursos de segurança e identity, como login e registro em sua aplicação. Os templates `dotnet new` oferecem templates de views e controllers que lidam com esses cenários comuns para que você possa começar a trabalhar rapidamente.
 
-There's much more that ASP.NET Core Identity can do, such as password reset and social login. The documentation available at http://docs.asp.net is a fantastic resource for learning how to add these features.
+Há muito mais que o ASP.NET Core Identity pode fazer, como redefinição de senha e login social. A documentação disponível em http://docs.asp.net é um recurso fantástico para aprender como adicionar esses recursos.
 
-### Alternatives to ASP.NET Core Identity
+### Alternativas ao ASP.NET Core Identity
 
-ASP.NET Core Identity isn't the only way to add identity functionality. Another approach is to use a cloud-hosted identity service like Azure Active Directory B2C or Okta to handle identity for your application. You can think of these options as part of a progression:
+ASP.NET Core Identity não é a única maneira de adicionar funcionalidade de identity. Outra abordagem é usar um serviço de identity hospedado na nuvem, como o Azure Active Directory B2C ou o Okta, para manipular as identidades de sua aplicação. Você pode pensar nessas opções como parte de uma progressão:
 
-* **Do-it-yourself security**: Not recommended, unless you are a security expert!
-* **ASP.NET Core Identity**: You get a lot of code for free with the templates, which makes it pretty easy to get started. You'll still need to write some code for more advanced scenarios, and maintain a database to store user information.
-* **Cloud-hosted identity services**. The service handles both simple and advanced scenarios (multi-factor authentication, account recovery, federation), and significantly reduces the amount of code you need to write and maintain in your application. Plus, sensitive user data isn't stored in your own database.
+* **Faça você mesmo**: Não recomendado, a menos que você seja um especialista em segurança!
+* **ASP.NET Core Identity**: você obtém muito código de graça com os templates, o que torna muito fácil o início da codificação de sua aplicação. Você ainda precisará escrever algum código para cenários mais avançados e manter um banco de dados para armazenar informações do usuário.
+* **Serviços de identidade hospedados em nuvem**. Estes serviços lidam com cenários simples e avançados (autenticação de múltiplos fatores, recuperação de contas, federation) e reduz significativamente a quantidade de código que você precisa escrever para sua aplicação. Além disso, os dados confidenciais do usuário não são armazenados em seu próprio banco de dados.
 
-For this project, ASP.NET Core Identity is a great fit. For more complex projects, I'd recommend doing some research and experimenting with both options to understand which is best for your use case.
+Para este projeto, o ASP.NET Core Identity cai muito bem. Para projetos mais complexos, recomendo fazer algumas pesquisas e experimentar as duas opções para entender qual é o melhor para o seu caso de uso.
