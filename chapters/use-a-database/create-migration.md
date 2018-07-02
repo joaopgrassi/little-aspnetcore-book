@@ -1,26 +1,26 @@
-## Create a migration
+## Utilizando Entity Framework Migrations
 
-Migrations keep track of changes to the database structure over time. They make it possible to undo (roll back) a set of changes, or create a second database with the same structure as the first. With migrations, you have a full history of modifications like adding or removing columns (and entire tables).
+O Entity Framework Migrations monitora as alterações na estrutura do banco de dados ao longo do tempo. Com ele é possível desfazer (rollback) mudanças no banco de dados ou criar um novo banco de dados com base na estrutura de outro banco de dados já existente. Com o Migrations você tem um log completo de modificações no seu banco de dados, como inclusão e remoção de colunas e tabelas, por exemplo.
 
-In the previous chapter, you added an `Items` set to the context. Since the context now includes a set (or table) that doesn't exist in the database, you need to create a migration to update the database:
+No capítulo anterior você adicionou a tabela `Items` ao `DbContext`. Como agora o `DbContext` manipula uma tabela que não existe no banco de dados, você precisar criar o Migrations para atualizar o banco de dados:
 
 ```
 dotnet ef migrations add AddItems
 ```
 
-This creates a new migration called `AddItems` by examining any changes you've made to the context.
+O comando acima cria um Migrations chamado `AddItems` analisando todas as alterações que você fez no `DbContext`.
 
-> If you get an error like `No executable found matching command "dotnet-ef"`, make sure you're in the right directory. These commands must be run from the project root directory (where the `Program.cs` file is).
+> Se por acaso ocorrer o erro `No executable found matching command "dotnet-ef"`, verifique se você está no diretório correto. O comando acima precisa ser executado no diretório raiz do projeto (o diretório no qual o arquivo `Program.cs` está).
 
-If you open up the `Data/Migrations` directory, you'll see a few files:
+Agora verifique o diretório `Data/Migrations` e você verá uma série de novos arquivos criados:
 
-![Multiple migrations](migrations.png)
+![Migrations Criadas](migrations.png)
 
-The first migration file (with a name like `00_CreateIdentitySchema.cs`) was created and applied for you way back when you ran `dotnet new`. Your new `AddItem` migration is prefixed with a timestamp when you create it.
+O primeiro arquivo Migrations (com nome `00_CreateIdentitySchema.cs`) foi criado e aplicado com o comando `dotnet new`. Seu novo Migrations `AddItem` está com a data/hora de criação no nome do arquivo.
 
-> You can see a list of migrations with `dotnet ef migrations list`.
+> Você pode ver a lista de Migrations criados com o comando `dotnet ef migrations list`.
 
-If you open your migration file, you'll see two methods called `Up` and `Down`:
+Se você abrir seu arquivo Migrations, verá dois métodos chamados `Up` e `Down`:
 
 **Data/Migrations/<date>_AddItems.cs**
 
@@ -57,33 +57,33 @@ protected override void Down(MigrationBuilder migrationBuilder)
 }
 ```
 
-The `Up` method runs when you apply the migration to the database. Since you added a `DbSet<TodoItem>` to the database context, Entity Framework Core will create an `Items` table (with columns that match a `TodoItem`) when you apply the migration.
+O método `Up` é executado quando você aplica o Migrations no banco de dados. Como você incluiu um `DbSet<TodoItem>` ao `DbContext`, o Entity Framework Core criará uma tabela `Items` (com colunas equivalentes às propriedades da entidade `TodoItem`) quando você aplicar este Migrations.
 
-The `Down` method does the opposite: if you need to undo (roll back) the migration, the `Items` table will be dropped.
+O método `Down` faz o contrário: se você precisar desfazer (rollback) o Migrations, a tabela `Items` será apagada.
 
-### Workaround for SQLite limitations
+### Solução Alternativa (Workaround) para as Limitações do SQLite
 
-There are some limitations of SQLite that get in the way if you try to run the migration as-is. Until this problem is fixed, use this workaround:
+O SQLite possui algumas limitações com o Migrations. Até que estas limitações sejam solucionadas, utilize a solução alternativa abaixo:
 
-* Comment out or remove the `migrationBuilder.AddForeignKey` lines in the `Up` method.
-* Comment out or remove any `migrationBuilder.DropForeignKey` lines in the `Down` method.
+* Comente ou remova as linhas com o comando `migrationBuilder.AddForeignKey` no método `Up`.
+* Comente ou remova quaisquer linhas com o comando `migrationBuilder.DropForeignKey` no método `Down`.
 
-If you use a full-fledged SQL database, like SQL Server or MySQL, this won't be an issue and you won't need to do this (admittedly hackish) workaround.
+Se você utilizar um banco de dados relacional completo, como o SQL Server ou o MySQL, esta solução alternativa (vulgo "hack") não é necessária.
 
-### Apply the migration
+### Aplicando o Migrations
 
-The final step after creating one (or more) migrations is to actually apply them to the database:
+O último passo para criar Migrations é efetivamente aplicá-los ao banco de dados:
 
 ```
 dotnet ef database update
 ```
 
-This command will cause Entity Framework Core to create the `Items` table in the database.
+O comando acima fará com que o Entity Framework Core de fato crie a tabela `Items` no banco de dados.
 
-> If you want to roll back the database, you can provide the name of the *previous* migration:
+> Se você precisar efetuar rollback do banco de dados, você terá de fornecer o nome do Migrations anterior:
 > `dotnet ef database update CreateIdentitySchema`
-> This will run the `Down` methods of any migrations newer than the migration you specify.
+> Este comando executará os métodos `Down` de todos os Migrations mais recentes do que o Migrations que você especificou.
 
-> If you need to completely erase the database and start over, run `dotnet ef database drop` followed by `dotnet ef database update` to re-scaffold the database and bring it up to the current migration.
+> Se você precisar apagar o banco de dados por completo para iniciar do zero no Migrations atual, utilize o comando `dotnet ef database drop` seguido pelo comando `dotnet ef database update`.
 
-That's it! Both the database and the context are ready to go. Next, you'll use the context in your service layer.
+Pronto! Agora o banco de dados e o `DbContext` estão preparados para uso. A seguir, você utilizará o `DbContext` na camada de serviço.
