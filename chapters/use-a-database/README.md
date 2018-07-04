@@ -1,9 +1,9 @@
-# Use a database
+# Utilizando banco de dados
 
-Writing database code can be tricky. Unless you really know what you're doing, it's a bad idea to paste raw SQL query strings into your application code. An **object-relational mapper** (ORM) makes it easier to write code that interacts with a database by adding a layer of abstraction between your code and the database itself. Hibernate in Java and ActiveRecord in Ruby are two well-known ORMs.
+Escrever código de banco de dados pode ser um problema. A não ser que você realmente saiba o que está fazendo, incluir SQL "hardcoded" em sua aplicação é uma péssima ideia. Um **ORM** (object-relational mapper) torna muito mais fácil a escrita de código para interação com banco de dados adicionando uma camada de abstração entre seu código fonte e o banco de dados em si. O Hibernate do Java e o ActiveRecord do Ruby são exemplos de ORMs bem conhecidos.
 
-There are a number of ORMs for .NET, including one built by Microsoft and included in ASP.NET Core by default: Entity Framework Core. Entity Framework Core makes it easy to connect to a number of different database types, and lets you use C# code to create database queries that are mapped back into C# models (POCOs).
+Existem muitos ORMs para .NET, incluindo um criado pela Microsoft e incluso com o ASP.NET Core por padrão: o Entity Framework Core. O Entity Framework Core torna fácil se conectar com diversos tipos de bancos de dados, e permite que você crie queries com C# que podem ser mapeadas para classes POCO.
 
-> Remember how creating a service interface decoupled the controller code from the actual service class? Entity Framework Core is like a big interface over your database. Your C# code can stay database-agnostic, and you can swap out different providers depending on the underlying database technology.
+> Lembra-se de como criamos uma interface de serviço para desacoplar o código do controller da classe de serviço concreta? O Entity Framework Core é como uma grande interface de seu banco de dados. Seu código C# torna-se agnóstico ao banco de dados e você pode mudar para diferentes tipos de bancos de dados sem afetar o código de sua aplicação.
 
-Entity Framework Core can connect to relational databases like SQL Server, PostgreSQL, and MySQL, and also works with NoSQL (document) databases like Mongo. During development, you'll use SQLite in this project to make things easy to set up.
+Entity Framework Core permite conexões com bancos de dados relacionais como SQL Server, PostgreSQL, MySQL e também com bancos de dados NoSQL, como Mongo. Durante o desenvolvimento de nossa aplicação, utilizaremos o SQLite por ser fácil de configurar.
