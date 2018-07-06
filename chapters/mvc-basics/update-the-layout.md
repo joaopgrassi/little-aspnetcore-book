@@ -1,8 +1,8 @@
-## Update the layout
+## Atualizar o layout
 
-The layout file at `Views/Shared/_Layout.cshtml` contains the "base" HTML for each view. This includes the navbar, which is rendered at the top of each page.
+O arquivo de layout em `Views/Shared/_Layout.cshtml` contém o HTML "base" para cada view. Isso inclui a navbar, que é renderizado no topo de cada página.
 
-To add a new item to the navbar, find the HTML code for the existing navbar items:
+Para adicionar um novo item na navbar, encontre o código HTML para os itens existentes:
 
 **Views/Shared/_Layout.cshtml**
 
@@ -20,7 +20,7 @@ To add a new item to the navbar, find the HTML code for the existing navbar item
 </ul>
 ```
 
-Add your own item that points to the `Todo` controller instead of `Home`:
+Adicione o seu item que apontará para o controler `Todo` ao invés de `Home`:
 
 ```html
 <li>
@@ -28,6 +28,6 @@ Add your own item that points to the `Todo` controller instead of `Home`:
 </li>
 ```
 
-The `asp-controller` and `asp-action` attributes on the `<a>` element are called **tag helpers**. Before the view is rendered, ASP.NET Core replaces these tag helpers with real HTML attributes. In this case, a URL to the `/Todo/Index` route is generated and added to the `<a>` element as an `href` attribute. This means you don't have to hard-code the route to the `TodoController`. Instead, ASP.NET Core generates it for you automatically.
+Os atributos `asp-controller` e `asp-action` no elemento `<a>` são chamados de **tag helpers**. Antes de a view ser renderizada, o ASP.NET Core substitui esses tag helpers por atributos HTML reais. Neste caso, uma URL para a rota `/Todo/Index` é gerada e adicionada ao elemento `<a>` como um atributo `href`. Isso significa que você não precisa implementar a rota para o `TodoController`. Ao invés disso, o ASP.NET Core a gera automaticamente para você.
 
-> If you've used Razor in ASP.NET 4.x, you'll notice some syntax changes. Instead of using `@Html.ActionLink()` to generate a link to an action, tag helpers are now the recommended way to create links in your views. Tag helpers are useful for forms, too (you'll see why in a later chapter). You can learn about other tag helpers in the documentation at https://docs.asp.net.
+> Se você já usou Razor no ASP.NET 4.x, você notará algumas mudanças de sintaxe. Em vez de usar `@Html.ActionLink()` para gerar um link para um action, tag helpers agora são a forma recomendada de criar links nas suas views. Tag helpers são úteis para forms, também (você verá porque em um capítulo posterior). Você pode aprender sobre outras tag helpers na documentação em https://docs.asp.net.

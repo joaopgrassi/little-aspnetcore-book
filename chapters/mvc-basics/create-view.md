@@ -1,11 +1,11 @@
-## Create a view
-Views in ASP.NET Core are built using the Razor templating language, which combines HTML and C# code. (If you've written pages using Handlebars moustaches, ERB in Ruby on Rails, or Thymeleaf in Java, you've already got the basic idea.)
+## Criar uma view
+Views no ASP.NET Core são criadas utilizando a linguagem de template Razor, que combina HTML e código C#. (Se você já escreveu páginas usando Handlebars moustaches, ERB no Ruby on Rails, ou Thymeleaf no Java, você já tem a ideia básica.)
 
-Most view code is just HTML, with the occasional C# statement added in to pull data out of the view model and turn it into text or HTML. The C# statements are prefixed with the `@` symbol.
+A maior parte do código da view é apenas HTML, com adições ocasionais de declarações C# para extrair dados do view model e transformá-los em texto ou HTML. As declarações C# são prefixadas com o símbolo `@`.
 
-The view rendered by the `Index` action of the `TodoController` needs to take the data in the view model (a sequence of to-do items) and display it in a nice table for the user. By convention, views are placed in the `Views` directory, in a subdirectory corresponding to the controller name. The file name of the view is the name of the action with a `.cshtml` extension.
+A view renderizada pela action `Index` do `TodoController` precisa pegar os dados do view model (uma sequência de itens da to-do list) e exibi-los em uma tabela agradável para o usuário. Por convenção, views são colocadas no diretório `Views` em um subdiretório correspondente ao nome do controller. O nome do arquivo da view é o nome da action com uma extensão `.cshtml`.
 
-Create a `Todo` directory inside the `Views` directory, and add this file:
+Crie um diretório `Todo` dentro do diretório `Views`, e adicione este arquivo:
 
 **Views/Todo/Index.cshtml**
 
@@ -46,18 +46,18 @@ Create a `Todo` directory inside the `Views` directory, and add this file:
 </div>
 ```
 
-At the very top of the file, the `@model` directive tells Razor which model to expect this view to be bound to. The model is accessed through the `Model` property.
+No começo do arquivo, a diretiva `@model` diz ao Razor qual model esperar que esta view seja ligada. O model é acessado através da propriedade `Model`.
 
-Assuming there are any to-do items in `Model.Items`, the `foreach` statement will loop over each to-do item and render a table row (`<tr>` element) containing the item's name and due date. A checkbox is also rendered that will let the user mark the item as complete.
+Assumindo que existam itens da to-do list em `Model.Items`, a declaração `foreach` irá iterar sobre cada um e renderizar uma linha de tabela (elemento `<tr>`) contendo o nome do item e sua data de vencimento. O checkbox também é renderizado, o que irá permitir que o usuário marque o item como completo.
 
-### The layout file
-You might be wondering where the rest of the HTML is: what about the `<body>` tag, or the header and footer of the page? ASP.NET Core uses a layout view that defines the base structure that every other view is rendered inside of. It's stored in `Views/Shared/_Layout.cshtml`.
+### O arquivo de layout
+Você deve estar se perguntando onde está o resto do HTML: o que aconteceu com a tag `<body>`, ou o cabeçalho e o rodapé da página? O ASP.NET Core usa uma layout view que define a estrutura básica onde todas as outras view's são renderizadas. Ela fica armazenada em `Views/Shared/_Layout.cshtml`.
 
-The default ASP.NET Core template includes Bootstrap and jQuery in this layout file, so you can quickly create a web application. Of course, you can use your own CSS and JavaScript libraries if you'd like.
+O template padrão do ASP.NET Core inclui Bootstrap e jQuery neste arquivo de layout, então você pode criar rapidamente uma aplicação web. Naturalmente, você pode usar suas próprias bibliotecas CSS e JavaScript se assim quiser.
 
-### Customizing the stylesheet
+### Personalizando o stylesheet
 
-The default template also includes a stylesheet with some basic CSS rules. The stylesheet is stored in the `wwwroot/css` directory. Add a few new CSS style rules to the bottom of the `site.css` file:
+O template padrão também inclui um stylesheet com algumas regras CSS básicas. O stylesheet é armazenado no diretório `wwwroot/css`. Adicione algumas novas regras de estilo CSS no fim do arquivo `site.css`:
 
 **wwwroot/css/site.css**
 
@@ -72,6 +72,6 @@ table tr.done {
 }
 ```
 
-You can use CSS rules like these to completely customize how your pages look and feel.
+Você pode usar regras CSS como estas para modificar completamente a aparência das suas páginas.
 
-ASP.NET Core and Razor can do much more, such as partial views and server-rendered view components, but a simple layout and view is all you need for now. The official ASP.NET Core documentation (at https://docs.asp.net) contains a number of examples if you'd like to learn more.
+ASP.NET Core e Razor podem fazer muito mais, como partial views e server-rendered view components, mas um simples layout e view são tudo que você precisa por enquanto. A documentação oficial do ASP.NET Core (em https://docs.asp.net) contém vários exemplos se você quiser aprender mais.
