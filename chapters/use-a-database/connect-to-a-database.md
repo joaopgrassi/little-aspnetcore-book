@@ -1,16 +1,16 @@
-## Connect to a database
+## Conectando-se a um banco de dados
 
-There are a few things you need to use Entity Framework Core to connect to a database. Since you used `dotnet new` and the MVC + Individual Auth template to set your project, you've already got them:
+Existem algumas coisas que você precisa para utilizar o Entity Framework Core para se conectar a um banco de dados. Desde quando você utilizou o comando `dotnet new` e o modelo MVC + Individual Auth para definir seu projeto, você os já tem:
 
-* **The Entity Framework Core packages**. These are included by default in all ASP.NET Core projects.
+* **O pacote NuGet Entity Framework Core**. Este pacote já está incluso por padrão em todos os projetos ASP.NET Core.
 
-* **A database** (naturally). The `app.db` file in the project root directory is a small SQLite database created for you by `dotnet new`. SQLite is a lightweight database engine that can run without requiring you to install any extra tools on your machine, so it's easy and quick to use in development.
+* **Um banco de dados** (naturalmente). O arquivo `app.db` no diretório raiz do projeto é um pequeno banco de dados SQLite criado para você através do comando `dotnet new`. O SQLite é um motor de banco de dados leve que é executado sem a necessidade de instalar ferramentas extras em seu computador, possibilitando um desenvolvimento fácil e rápido.
 
-* **A database context class**. The database context is a C# class that provides an entry point into the database. It's how your code will interact with the database to read and save items. A basic context class already exists in the `Data/ApplicationDbContext.cs` file.
+* **Uma classe de contexto de banco de dados (database context class ou `DbContext`)**. Uma classe de contexto de banco de dados é uma classe C# de interface com seu banco de dados. É ela que possui o código para interagir com um banco de dados para ler e salvar informações. Uma classe de contexto já existe no arquivo `Data/ApplicationDbContext.cs`.
 
-* **A connection string**. Whether you are connecting to a local file database (like SQLite) or a database hosted elsewhere, you'll define a string that contains the name or address of the database to connect to. This is already set up for you in the `appsettings.json` file: the connection string for the SQLite database is `DataSource=app.db`.
+* **Uma connection string (string de conexão)**. Independentemente de você estar se conectando a um banco de dados local em arquivo (como o SQLite) ou a um banco de dados remoto, você definirá uma connection string com o nome ou endereço do banco de dados que deseja se conectar. Isto já está configurado para você no arquivo `appsettings.json`: a connection string para o banco de dados SQLite de nosso projeto é `DataSource=app.db`.
 
-Entity Framework Core uses the database context, together with the connection string, to establish a connection to the database. You need to tell Entity Framework Core which context, connection string, and database provider to use in the `ConfigureServices` method of the `Startup` class. Here's what's defined for you, thanks to the template:
+O Entity Framework Core utiliza a classe de contexto de banco de dados em conjunto com a connection string para estabelecer uma conexão com um banco de dados. Você precisa dizer ao Entity Framework Core qual contexto, qual connection string e qual provedor de banco de dados utilizar no método `ConfigureServices` da classe `Startup`. Aqui está o que foi definido para você, graças ao template que utilizamos:
 
 ```csharp
 services.AddDbContext<ApplicationDbContext>(options =>
@@ -18,6 +18,6 @@ services.AddDbContext<ApplicationDbContext>(options =>
         Configuration.GetConnectionString("DefaultConnection")));
 ```
 
-This code adds the `ApplicationDbContext` to the service container, and tells Entity Framework Core to use the SQLite database provider, with the connection string from configuration (`appsettings.json`).
+Este código adiciona o `ApplicationDbContext` ao service container e diz ao Entity Framework Core para utilizar o provedor de banco de dados SQLite com a connection string configurada no arquivo `appsettings.json`.
 
-As you can see, `dotnet new` creates a lot of stuff for you! The database is set up and ready to be used. However, it doesn't have any tables for storing to-do items. In order to store your `TodoItem` entities, you'll need to update the context and migrate the database.
+Como você pode ver, o comando `dotnet new` cria uma série de coisas para você! O banco de dados está configurado e pronto para uso. No entanto, ele não possui nenhuma tabela para armazenar nossas tarefas a fazer. Para armazenar a entidade `TodoItem` em nosso banco de dados, será necessário atualizar a classe de contexto e utilizar o Entity Framework Migrations.

@@ -1,25 +1,25 @@
-## Add a service class
-You've created a model, a view, and a controller. Before you use the model and view in the controller, you also need to write code that will get the user's to-do items from a database.
+## Adicionar uma classe de serviço
+Você criou um model, uma view, e um controller. Antes de usar o model e visualizar no controller, você também precisa escrever um código que irá obter a to-do list do usuário de uma base de dados.
 
-You could write this database code directly in the controller, but it's a better practice to keep your code separate. Why? In a big, real-world application, you'll have to juggle many concerns:
+Você pode escrever este código  de banco de dados diretamente no controller, mas é uma prática melhor manter seu código separado. Por que? Em uma grande aplicação do mundo real, você terá que lidar com muitas preocupações:
 
-* **Rendering views** and handling incoming data: this is what your controller already does.
-* **Performing business logic**, or code and logic that's related to the purpose and "business" of your application. In a to-do list application, business logic means decisions like setting a default due date on new tasks, or only displaying tasks that are incomplete. Other examples of business logic include calculating a total cost based on product prices and tax rates, or checking whether a player has enough points to level up in a game.
-* **Saving and retrieving** items from a database.
+* **Renderizar views** e manipular dados recebidos: isso é o que seu controller já faz.
+* **Executar regra de negócio**, ou código e lógica relacionados ao propósito e "negócio" da sua aplicação. Em uma aplicação to-do list, regras de negócio significam decisões como definir uma data de vencimento padrão para novas atividades, ou apenas exibir tarefas que estão incompletas. Outros exemplos de regras de negócio incluem calcular o custo total baseado no preço do produto e taxas de imposto, ou checar se um jogador tem pontos suficientes para subir de nível em um jogo.
+* **Salvar e recuperar** itens de um banco de dados.
 
-Again, it's possible to do all of these things in a single, massive controller, but that quickly becomes too hard to manage and test. Instead, it's common to see applications split up into two, three, or more "layers" or tiers that each handle one (and only one) concern. This helps keep the controllers as simple as possible, and makes it easier to test and change the business logic and database code later.
+Novamente, é possível fazer todas essas coisas em um único e grande controller, mas isso rapidamente se torna muito difícil de gerenciar e testar. Ao invés disso, é comum ver aplicações separadas em duas, três, ou mais "camadas" ou níveis onde cada camada lida com um (e apenas um) interesse. Isso ajuda a manter os controllers tão simples quanto possível, e facilita a realização de testes e alterações na regra de negócio e código de banco de dados mais tarde.
 
-Separating your application this way is sometimes called a **multi-tier** or **n-tier architecture**. In some cases, the tiers (layers) are isolated in completely separate projects, but other times it just refers to how the classes are organized and used. The important thing is thinking about how to split your application into manageable pieces, and avoid having controllers or bloated classes that try to do everything.
+Separar sua aplicação dessa forma é, às vezes, chamado de **multi camadas** ou **arquiterura N-camadas**. Em alguns casos, os níveis (camadas) são isolados em projetos completamente separados, mas em outros casos apenas se refere a como as classes são organizadas e usadas. O importante é pensar sobre como dividir sua aplicação em pedaços gerenciáveis, e evitar ter controllers ou classes inchadas que tentam fazer todas as coisas.
 
-For this project, you'll use two application layers: a **presentation layer** made up of the controllers and views that interact with the user, and a **service layer** that contains business logic and database code. The presentation layer already exists, so the next step is to build a service that handles to-do business logic and saves to-do items to a database.
+Para este projeto, você usará duas camadas de aplicação: a **camada de apresentação** composta pelos controllers e views que interagem com o usuário, e a **camada de serviço** que contém regras de negócio e código de banco de dados. A camada de apresentação já existe, então o próximo passo é criar um serviço que manipule regras de negócio da to-do list e salve seus itens no banco de dados.
 
-> Most larger projects use a 3-tier architecture: a presentation layer, a service logic layer, and a data repository layer. A **repository** is a class that's only focused on database code (no business logic). In this application, you'll combine these into a single service layer for simplicity, but feel free to experiment with different ways of architecting the code.
+> A maioria dos grandes projetos usa uma arquitetura 3-camadas: uma camada de apresentação, uma camada de lógica de serviço e uma camada de repositório de dados. Um **repositório** é uma classe focada apenas em código de banco de dados (sem regra de negócio). Nesta aplicação, você vai juntar estas em uma única camada de serviço, pela simplicidade, mas sinta-se livre para experimentar diferentes maneiras de arquitetar o código.
 
-### Create an interface
+### Criar uma interface
 
-The C# language includes the concept of **interfaces**, where the definition of an object's methods and properties is separate from the class that actually contains the code for those methods and properties. Interfaces make it easy to keep your classes decoupled and easy to test, as you'll see here (and later in the *Automated testing* chapter). You'll use an interface to represent the service that can interact with to-do items in the database.
+A linguagem C# inclui o conceito de **interfaces**, onde a definição dos métodos e propriedades de um objeto é separada da classe que realmente contém o código para esses métodos e propriedades. Interfaces facilitam manter suas classes desacopladas e fáceis de testar, como você verá aqui (mais tarde no capítulo *Teste Automatizado*). Você usará uma interface para representar o serviço que pode interagir com itens da to-do list no banco de dados.
 
-By convention, interfaces are prefixed with "I". Create a new file in the Services directory:
+Por convenção, interfaces são prefixadas com "I". Crie um novo arquivo no diretório Services:
 
 **Services/ITodoItemService.cs**
 
@@ -38,23 +38,23 @@ namespace AspNetCoreTodo.Services
 }
 ```
 
-Note that the namespace of this file is `AspNetCoreTodo.Services`. Namespaces are a way to organize .NET code files, and it's customary for the namespace to follow the directory the file is stored in (`AspNetCoreTodo.Services` for files in the `Services` directory, and so on).
+Observe que o namespace desse aquivo é `AspNetCoreTodo.Services`. Namespaces são maneiras de organizar arquivos de código .NET, e é costume para o namespace seguir o diretório em que o arquivo está armazenado (`AspNetCoreTodo.Services` para arquivos no diretório `Services`, e assim por diante).
 
-Because this file (in the `AspNetCoreTodo.Services` namespace) references the `TodoItem` class (in the `AspNetCoreTodo.Models` namespace), it needs to include a `using` statement at the top of the file to import that namespace. Without the `using` statement, you'll see an error like:
+Porque esse arquivo (no namespace `AspNetCoreTodo.Services`) referencia a classe `TodoItem` (no namespace `AspNetCoreTodo.Models`), é necessário incluir uma declaração `using` no começo do arquivo para importar aquele namespace. Sem a declaração `using`, você verá um erro como:
 
 ```
 The type or namespace name 'TodoItem' could not be found (are you missing a using directive or an assembly reference?)
 ```
 
-Since this is an interface, there isn't any actual code here, just the definition (or **method signature**) of the `GetIncompleteItemsAsync` method. This method requires no parameters and returns a `Task<TodoItem[]>`.
+Como isso é uma interface, não existe de fato nenhum código aqui, apenas a definição (ou **assinatura de método**) do método `GetIncompleteItemsAsync`. Este método não exige parâmetros e retorna um `Task<TodoItem[]>`.
 
-> If this syntax looks confusing, think: "a Task that contains an array of TodoItems".
+> Se essa sintaxe parecer confusa, pense: "uma Task que contém array de TodoItems".
 
-The `Task` type is similar to a future or a promise, and it's used here because this method will be **asynchronous**. In other words, the method may not be able to return the list of to-do items right away because it needs to go talk to the database first. (More on this later.)
+O tipo `Task` é semelhante a um future ou uma promise, e é utilizado aqui porque este método será **assíncrono**. Em outras palavras, o método pode não estar apto a retornar a to-do list imediatamente, pois é necessário ir conversar com o banco de dados primeiro. (Você vai ver mais sobre isso depois.)
 
-### Create the service class
+### Criar a classe de serviço
 
-Now that the interface is defined, you're ready to create the actual service class. I'll cover database code in depth in the *Use a database* chapter, so for now you'll just fake it and always return two hard-coded items:
+Agora que a interface está definida, você está pronto para realmente criar a classe de serviço. Eu irei falar sobre o código de banco de dados em profundidade no capítulo *Use um banco de dados*, então por enquanto você o simulará e sempre irá retornar dois itens implementados:
 
 **Services/FakeTodoItemService.cs**
 
@@ -88,4 +88,4 @@ namespace AspNetCoreTodo.Services
 }
 ```
 
-This `FakeTodoItemService` implements the `ITodoItemService` interface but always returns the same array of two `TodoItem`s. You'll use this to test the controller and view, and then add real database code in *Use a database*.
+Este `FakeTodoItemService` implementa a interface `ITodoItemService`, mas sempre retorna o mesmo array com dois `TodoItem`s. Você usará isso para testar o controller e a view, e então adicionar código de banco de dados real em *Use um banco de dados*.
