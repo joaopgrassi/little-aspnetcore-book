@@ -1,4 +1,4 @@
-## Adicionando novas tarefas a fazer
+## Adicionando novos items na lista de to-do
 
 O usuário adicionará novas tarefas a fazer com um form (formulário) simples como o abaixo:
 
@@ -7,7 +7,7 @@ O usuário adicionará novas tarefas a fazer com um form (formulário) simples c
 Implementar esta funcionalidade requer alguns passos:
 
 * Adicionar um form na view
-* Cria nova action no controller para manipular o form
+* Criar uma nova action no controller para manipular o form
 * Adicionar código na camada de serviço para atualizar o banco de dados
 
 ### Adicionando o form
@@ -79,7 +79,7 @@ public async Task<IActionResult> AddItem(TodoItem newItem)
 }
 ```
 
-Viu como a nova action `AddItem` aceita um parâmetro `TodoItem`? Este é o mesmo modelo `TodoItem` que você criou no capítulo _MVC basics_ para armazenar informações sobre um item de tarefa a fazer. Quando usado aqui como um parâmetro action, o ASP.NET Core executará automaticamente um processo chamado **model binding** (binding de modelo).
+Viu como a nova action `AddItem` aceita um parâmetro `TodoItem`? Este é o mesmo modelo `TodoItem` que você criou no capítulo _MVC basics_ para armazenar informações sobre um item de tarefa a fazer. Quando usado aqui como um parâmetro na action, o ASP.NET Core executará automaticamente um processo chamado **model binding** (binding de modelo).
 
 Model binding examina os dados em uma solicitação e tenta corresponder de maneira inteligente os campos de entrada com propriedades no model. Em outras palavras, quando o usuário envia este form e seus POSTs de navegador para essa action, o ASP.NET Core irá capturar as informações do form e colocá-las na variável `newItem`.
 
@@ -87,11 +87,11 @@ O atributo `[ValidateAntiForgeryToken]` antes da action diz ao ASP.NET Core que 
 
 Dê uma olhada na view `AddItemPartial.cshtml` mais uma vez. A linha `@model TodoItem` na parte superior do arquivo informa ao ASP.NET Core que a visualização deve estar emparelhada com o modelo `TodoItem`. Isto torna possível usar `asp-for="Title"` na tag `<input>` para que o ASP.NET Core saiba que este elemento de entrada é para a propriedade `Title`.
 
-Por causa da linha `@ model`, a partial view esperará passar um objeto` TodoItem` quando for renderizada. Passar um `new TodoItem` através de `Html.PartialAsync` inicializa o form com um item vazio. (Tente passar junto `{ Title = "hello" }` e veja o que acontece!)
+Por causa da linha `@ model`, a partial view esperará receber um objeto` TodoItem` quando for renderizada. Passar um `new TodoItem` através de `Html.PartialAsync` inicializa o form com um item vazio. (Tente passar junto `{ Title = "hello" }` e veja o que acontece!)
 
 Durante o model binding, todas as propriedades de modelo que não podem ser correspondidas com campos no request são ignoradas. Como o form inclui apenas o elemento de entrada `Title`, você pode esperar que as outras propriedades em `TodoItem` (o flag `IsDone`, a data de` DueAt`) estarão vazias ou conterão valores default (padrão).
 
-> Em vez de reutilizar o model `TodoItem`, outra abordagem seria criar um model separado (como `NewTodoItem`) que é usado apenas para esta action e possui apenas as propriedades específicas (Title) necessárias para adicionar uma novoa tarefa a fazer. Model binding ainda é usado, mas dessa forma você separou o model usado para armazenar um item de tarefa a fazer no banco de dados a partir do model usado para vincular dados de request de entrada. Às vezes, isso é chamado de **binding model** ou **data transfer object** (DTO). Esse padrão de projetos (design pattern) é comum em projetos maiores e mais complexos.
+> Em vez de reutilizar o model `TodoItem`, outra abordagem seria criar um model separado (como `NewTodoItem`) que é usado apenas para esta action e possui apenas as propriedades específicas (Title) necessárias para adicionar uma novoa tarefa a fazer. Model binding ainda é usado, mas dessa forma você separou o model usado para salvar itens no banco de dados do model usado na requisicao. Às vezes, isso é chamado de **binding model** ou **data transfer object** (DTO). Esse padrão de projetos (design pattern) é comum em projetos maiores e mais complexos.
 
 
 Depois de vincular os dados do request ao model, o ASP.NET Core também realiza **validação de modelo** (model validation). A validação verifica se os dados ligados ao model do request recebido fazem sentido ou são válidos. Você pode adicionar atributos ao model para informar ao ASP.NET Core como ele deve ser validado.
@@ -123,7 +123,7 @@ Finalmente, se tudo for concluído sem erros, a action redireciona o navegador p
 
 ### Adicionando um método de serviço (service method)
 
-Se você estiver usando um editor de código que entenda C#, você verá linhas rabiscadas em `AddItemAsync` porque o método ainda não existe.
+Se você estiver usando um editor de código que entenda C#, você verá o método 'AddItemAsync' sublinhado de vermelho porque o método ainda não existe.
 
 Como último passo, você precisa adicionar um método ao service layer. Primeiro, adicione-o à definição da interface em `ITodoItemService`:
 
@@ -136,7 +136,7 @@ public interface ITodoItemService
 }
 ```
 
-Depois, a implementação real em `TodoItemService`:
+Depois, a implementação em `TodoItemService`:
 
 ```csharp
 public async Task<bool> AddItemAsync(TodoItem newItem)
@@ -152,7 +152,7 @@ public async Task<bool> AddItemAsync(TodoItem newItem)
 }
 ```
 
-A propriedade `newItem.Title` já foi definida pelo model binder do ASP.NET Core, portanto, este método só precisa atribuir um ID e definir os valores padrão para as outras propriedades. Em seguida, a nova tarefa é adicionada ao contexto do banco de dados. Na verdade, ela não é salvo até que você chame `SaveChangesAsync()`. Se a operação for bem sucedida, o método `SaveChangesAsync()` retornará 1.
+A propriedade `newItem.Title` já foi definida pelo model binder do ASP.NET Core, portanto, este método só precisa atribuir um ID e definir os valores padrão para as outras propriedades. Em seguida, a nova tarefa é adicionada ao contexto do banco de dados. Na verdade, ela não é salva até que você chame `SaveChangesAsync()`. Se a operação for bem sucedida, o método `SaveChangesAsync()` retornará 1.
 
 ### Experimente
 

@@ -23,7 +23,7 @@ Primeiro, atualize a view e coloque cada checkbox entre um elemento `<form>`. Em
 </td>
 ```
 
-Quando o loop `foreach` é executado na view e imprime uma linha para cada tarefa a fazer, uma cópia deste form existirá em cada linha. O campo hidden que contém o ID dtarefa permite que o código do controller indique qual checkbox foi marcado. (Sem isso, você seria capaz de dizer que *alguns* checkboxes foram marcadas, mas não quais.)
+Quando o loop `foreach` é executado na view e imprime uma linha para cada tarefa a fazer, uma cópia deste form existirá em cada linha. O campo hidden que contém o ID da tarefa permite que o código do controller indique qual checkbox foi marcado. (Sem isso, você seria capaz de dizer que *alguns* checkboxes foram marcadas, mas não quais.)
 
 Se você executar sua aplicação agora, os checkboxes ainda não farão nada, porque não há nenhum botão de envio (submit) para dizer ao navegador para criar uma solicitação POST com os dados do form. Você poderia adicionar um botão de envio em cada checkbox, mas isso seria uma experiência ruim para o usuário. O idela é que ao clicar no checkbox o form seja enviado automaticamente. Você pode implementar este recurso utilizando JavaScript.
 
