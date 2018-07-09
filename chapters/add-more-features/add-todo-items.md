@@ -1,18 +1,18 @@
-## Add new to-do items
+## Adicionando novos items na lista de to-do
 
-The user will add new to-do items with a simple form below the list:
+O usuário adicionará novas tarefas a fazer com um form (formulário) simples como o abaixo:
 
-![Final form](final-form.png)
+![Form final](final-form.png)
 
-Adding this feature requires a few steps:
+Implementar esta funcionalidade requer alguns passos:
 
-* Adding a form to the view
-* Creating a new action on the controller to handle the form
-* Adding code to the service layer to update the database
+* Adicionar um form na view
+* Criar uma nova action no controller para manipular o form
+* Adicionar código na camada de serviço para atualizar o banco de dados
 
-### Add a form
+### Adicionando o form
 
-The `Views/Todo/Index.cshtml` view has a placeholder for the Add Item form:
+A view `Views/Todo/Index.cshtml` possui um placeholder para o form de inclusão de itens:
 
 ```html
 <div class="panel-footer add-item-form">
@@ -20,9 +20,9 @@ The `Views/Todo/Index.cshtml` view has a placeholder for the Add Item form:
 </div>
 ```
 
-To keep things separate and organized, you'll create the form as a **partial view**. A partial view is a small piece of a larger view that lives in a separate file.
+Para manter as coisas organizadas e separadas, você criará o form como uma **partial view** (view parcial). Uma partial view é um pequeno pedaço de uma view maior codificada em um arquivo separado.
 
-Create an `AddItemPartial.cshtml` view:
+Crie a view `AddItemPartial.cshtml`:
 
 **Views/Todo/AddItemPartial.cshtml**
 
@@ -36,15 +36,15 @@ Create an `AddItemPartial.cshtml` view:
 </form>
 ```
 
-The `asp-action` tag helper can generate a URL for the form, just like when you use it on an `<a>` element. In this case, the `asp-action` helper gets replaced with the real path to the `AddItem` route you'll create:
+O tag helper `asp-action` pode gerar uma URL para o form, assim como quando você o usa em um elemento `<a>`. Neste caso, o helper `asp-action` é substituído pelo caminho real para a rota `AddItem` que você criará:
 
 ```html
 <form action="/Todo/AddItem" method="POST">
 ```
 
-Adding an `asp-` tag helper to the `<form>` element also adds a hidden field to the form containing a verification token. This verification token can be used to prevent cross-site request forgery (CSRF) attacks. You'll verify the token when you write the action.
+Adicionar um tag helper `asp-` ao elemento `<form>` também adiciona um campo oculto ao form que contém um token de verificação. Esse token de verificação pode ser usado para evitar ataques cross-site request forgery (CSRF). Você verificará o token quando escrever o código da action.
 
-That takes care of creating the partial view. Now, reference it from the main Todo view:
+Isso cuida da criação da partial view. Agora, faça referência à visualização principal da view Todo:
 
 **Views/Todo/Index.cshtml**
 
@@ -54,11 +54,11 @@ That takes care of creating the partial view. Now, reference it from the main To
 </div>
 ```
 
-### Add an action
+### Adicionando uma action
 
-When a user clicks Add on the form you just created, their browser will construct a POST request to `/Todo/AddItem` on your application. That won't work right now, because there isn't any action that can handle the `/Todo/AddItem` route. If you try it now, ASP.NET Core will return a `404 Not Found` error.
+Quando um usuário clica em Adicionar no form que você acabou de criar, o navegador cria uma solicitação POST para `/Todo/AddItem` em seu aplicativo. Isso não funcionará agora, porque não há nenhuma action (ação) que possa manipular a rota `/Todo/AddItem`. Se você tentar agora, o ASP.NET Core retornará um erro "404 Not Found" (Não Encontrado).
 
-You'll need to create a new action called `AddItem` on the `TodoController`:
+Você precisará criar uma nova action chamada `AddItem` no` TodoController`:
 
 ```csharp
 [ValidateAntiForgeryToken]
@@ -79,23 +79,24 @@ public async Task<IActionResult> AddItem(TodoItem newItem)
 }
 ```
 
-Notice how the new `AddItem` action accepts a `TodoItem` parameter? This is the same `TodoItem` model you created in the _MVC basics_ chapter to store information about a to-do item. When it's used here as an action parameter, ASP.NET Core will automatically perform a process called **model binding**.
+Viu como a nova action `AddItem` aceita um parâmetro `TodoItem`? Este é o mesmo modelo `TodoItem` que você criou no capítulo _MVC basics_ para armazenar informações sobre um item de tarefa a fazer. Quando usado aqui como um parâmetro na action, o ASP.NET Core executará automaticamente um processo chamado **model binding** (binding de modelo).
 
-Model binding looks at the data in a request and tries to intelligently match the incoming fields with properties on the model. In other words, when the user submits this form and their browser POSTs to this action, ASP.NET Core will grab the information from the form and place it in the `newItem` variable.
+Model binding examina os dados em uma solicitação e tenta corresponder de maneira inteligente os campos de entrada com propriedades no model. Em outras palavras, quando o usuário envia este form e seus POSTs de navegador para essa action, o ASP.NET Core irá capturar as informações do form e colocá-las na variável `newItem`.
 
-The `[ValidateAntiForgeryToken]` attribute before the action tells ASP.NET Core that it should look for (and verify) the hidden verification token that was added to the form by the `asp-action` tag helper. This is an important security measure to prevent cross-site request forgery (CSRF) attacks, where your users could be tricked into submitting data from a malicious site. The verification token ensures that your application is actually the one that rendered and submitted the form.
+O atributo `[ValidateAntiForgeryToken]` antes da action diz ao ASP.NET Core que ele deve procurar (e verificar) o token de verificação oculto que foi adicionado ao form pelo tag helper `asp-action`. Essa é uma medida de segurança importante para evitar ataques cross-site request forgery (CSRF), em que os usuários podem ser induzidos a enviar dados de um site mal-intencionado. O token de verificação garante que seu aplicativo é realmente aquele que processou e enviou o form.
 
-Take a look at the `AddItemPartial.cshtml` view once more. The `@model TodoItem` line at the top of the file tells ASP.NET Core that the view should expect to be paired with the `TodoItem` model. This makes it possible to use `asp-for="Title"` on the `<input>` tag to let ASP.NET Core know that this input element is for the `Title` property.
+Dê uma olhada na view `AddItemPartial.cshtml` mais uma vez. A linha `@model TodoItem` na parte superior do arquivo informa ao ASP.NET Core que a visualização deve estar emparelhada com o modelo `TodoItem`. Isto torna possível usar `asp-for="Title"` na tag `<input>` para que o ASP.NET Core saiba que este elemento de entrada é para a propriedade `Title`.
 
-Because of the `@model` line, the partial view will expect to be passed a `TodoItem` object when it's rendered. Passing it a `new TodoItem` via `Html.PartialAsync` initializes the form with an empty item. (Try appending `{ Title = "hello" }` and see what happens!)
+Por causa da linha `@ model`, a partial view esperará receber um objeto` TodoItem` quando for renderizada. Passar um `new TodoItem` através de `Html.PartialAsync` inicializa o form com um item vazio. (Tente passar junto `{ Title = "hello" }` e veja o que acontece!)
 
-During model binding, any model properties that can't be matched up with fields in the request are ignored. Since the form only includes a `Title` input element, you can expect that the other properties on `TodoItem` (the `IsDone` flag, the `DueAt` date) will be empty or contain default values.
+Durante o model binding, todas as propriedades de modelo que não podem ser correspondidas com campos no request são ignoradas. Como o form inclui apenas o elemento de entrada `Title`, você pode esperar que as outras propriedades em `TodoItem` (o flag `IsDone`, a data de` DueAt`) estarão vazias ou conterão valores default (padrão).
 
-> Instead of reusing the `TodoItem` model, another approach would be to create a separate model (like `NewTodoItem`) that's only used for this action and only has the specific properties (Title) you need for adding a new to-do item. Model binding is still used, but this way you've separated the model that's used for storing a to-do item in the database from the model that's used for binding incoming request data. This is sometimes called a **binding model** or a **data transfer object** (DTO). This pattern is common in larger, more complex projects.
+> Em vez de reutilizar o model `TodoItem`, outra abordagem seria criar um model separado (como `NewTodoItem`) que é usado apenas para esta action e possui apenas as propriedades específicas (Title) necessárias para adicionar uma novoa tarefa a fazer. Model binding ainda é usado, mas dessa forma você separou o model usado para salvar itens no banco de dados do model usado na requisicao. Às vezes, isso é chamado de **binding model** ou **data transfer object** (DTO). Esse padrão de projetos (design pattern) é comum em projetos maiores e mais complexos.
 
-After binding the request data to the model, ASP.NET Core also performs **model validation**. Validation checks whether the data bound to the model from the incoming request makes sense or is valid. You can add attributes to the model to tell ASP.NET Core how it should be validated.
 
-The `[Required]` attribute on the `Title` property tells ASP.NET Core's model validator to consider the title invalid if it is missing or blank. Take a look at the code of the `AddItem` action: the first block checks whether the `ModelState` (the model validation result) is valid. It's customary to do this validation check right at the beginning of the action:
+Depois de vincular os dados do request ao model, o ASP.NET Core também realiza **validação de modelo** (model validation). A validação verifica se os dados ligados ao model do request recebido fazem sentido ou são válidos. Você pode adicionar atributos ao model para informar ao ASP.NET Core como ele deve ser validado.
+
+O atributo `[Required]` na propriedade `Title` informa ao validador do model do ASP.NET Core para considerar o título inválido se estiver faltando ou em branco. Dê uma olhada no código da action `AddItem`: o primeiro bloco verifica se o `ModelState` (o resultado da validação do model) é válido. É costume fazer essa verificação de validação logo no início da action:
 
 ```csharp
 if (!ModelState.IsValid)
@@ -104,9 +105,9 @@ if (!ModelState.IsValid)
 }
 ```
 
-If the `ModelState` is invalid for any reason, the browser will be redirected to the `/Todo/Index` route, which refreshes the page.
+Se o `ModelState` for inválido por qualquer motivo, o navegador será redirecionado para a rota `/Todo/Index`, que atualiza a página.
 
-Next, the controller calls into the service layer to do the actual database operation of saving the new to-do item:
+Em seguida, o controller chama o service layer para realizar a operação real do banco de dados de salvar a nova tarefa a fazer:
 
 ```csharp
 var successful = await _todoItemService.AddItemAsync(newItem);
@@ -116,15 +117,15 @@ if (!successful)
 }
 ```
 
-The `AddItemAsync` method will return `true` or `false` depending on whether the item was successfully added to the database. If it fails for some reason, the action will return an HTTP `400 Bad Request` error along with an object that contains an error message.
+O método `AddItemAsync` retornará` true` ou `false` dependendo se a tarefa foi adicionada com sucesso ao banco de dados. Se falhar por algum motivo, a action retornará um erro HTTP `400 Bad Request` juntamente com um objeto que contenha uma mensagem de erro.
 
-Finally, if everything completed without errors, the action redirects the browser to the `/Todo/Index` route, which refreshes the page and displays the new, updated list of to-do items to the user.
+Finalmente, se tudo for concluído sem erros, a action redireciona o navegador para a rota `/Todo/Index`, que atualiza a página e exibe a nova lista atualizada de tarefas a fazer para o usuário.
 
-### Add a service method
+### Adicionando um método de serviço (service method)
 
-If you're using a code editor that understands C#, you'll see red squiggely lines under `AddItemAsync` because the method doesn't exist yet.
+Se você estiver usando um editor de código que entenda C#, você verá o método 'AddItemAsync' sublinhado de vermelho porque o método ainda não existe.
 
-As a last step, you need to add a method to the service layer. First, add it to the interface definition in `ITodoItemService`:
+Como último passo, você precisa adicionar um método ao service layer. Primeiro, adicione-o à definição da interface em `ITodoItemService`:
 
 ```csharp
 public interface ITodoItemService
@@ -135,7 +136,7 @@ public interface ITodoItemService
 }
 ```
 
-Then, the actual implementation in `TodoItemService`:
+Depois, a implementação em `TodoItemService`:
 
 ```csharp
 public async Task<bool> AddItemAsync(TodoItem newItem)
@@ -151,10 +152,10 @@ public async Task<bool> AddItemAsync(TodoItem newItem)
 }
 ```
 
-The `newItem.Title` property has already been set by ASP.NET Core's model binder, so this method only needs to assign an ID and set the default values for the other properties. Then, the new item is added to the database context. It isn't actually saved until you call `SaveChangesAsync()`. If the save operation was successful, `SaveChangesAsync()` will return 1.
+A propriedade `newItem.Title` já foi definida pelo model binder do ASP.NET Core, portanto, este método só precisa atribuir um ID e definir os valores padrão para as outras propriedades. Em seguida, a nova tarefa é adicionada ao contexto do banco de dados. Na verdade, ela não é salva até que você chame `SaveChangesAsync()`. Se a operação for bem sucedida, o método `SaveChangesAsync()` retornará 1.
 
-### Try it out
+### Experimente
 
-Run the application and add some items to your to-do list with the form. Since the items are being stored in the database, they'll still be there even after you stop and start the application again.
+Execute a aplicação e adicione algumas tarefas à sua lista com o formulário. Como as tarefas estão sendo armazenadas no banco de dados, elas ainda estarão lá mesmo depois que a aplicação for parada e iniciada novamente.
 
-> As an extra challenge, try adding a date picker using HTML and JavaScript, and let the user choose an (optional) date for the `DueAt` property. Then, use that date instead of always making new tasks that are due in 3 days.
+> Como um desafio extra, tente adicionar um selecionador de data (date picker) usando HTML e JavaScript e deixe o usuário escolher uma data (opcional) para a propriedade "DueAt". Em seguida, use essa data em vez de sempre criar novas tarefas com prazo de 3 dias.
