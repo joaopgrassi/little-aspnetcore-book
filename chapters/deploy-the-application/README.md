@@ -1,26 +1,26 @@
-# Deploy the application
-You've come a long way, but you're not quite done yet. Once you've created a great application, you need to share it with the world!
+# Implantando a aplicação
+Você percorreu um longo caminho, mas ainda não terminou. Depois de criar uma ótima aplicação, você precisa compartilhá-la com o mundo!
 
-Because ASP.NET Core applications can run on Windows, Mac, or Linux, there are a number of different ways you can deploy your application. In this chapter, I'll show you the most common (and easiest) ways to go live.
+Como as aplicações ASP.NET Core podem ser executados no Windows, Mac ou Linux, há várias maneiras diferentes de implantar sua aplicação. Neste capítulo, mostrarei as formas mais comuns (e mais fáceis) de go live.
 
-## Deployment options
+## Oções de implantação
 
-ASP.NET Core applications are typically deployed to one of these environments:
+As aplicações ASP.NET Core são normalmente implantados em um desses ambientes:
 
-* **A Docker host**. Any machine capable of hosting Docker containers can be used to host an ASP.NET Core application. Creating a Docker image is a very quick way to get your application deployed, especially if you're familiar with Docker. (If you're not, don't worry! I'll cover the steps later.)
+* **Um host do Docker**. Qualquer máquina capaz de hospedar contêineres Docker pode ser usada para hospedar uma aplicação ASP.NET Core. Criar uma imagem do Docker é uma maneira muito rápida de implantar sua aplicação, especialmente se você estiver familiarizado com o Docker. (Se você não for, não se preocupe! Eu cobrirei os passos mais tarde.)
 
-* **Azure**. Microsoft Azure has native support for ASP.NET Core applications. If you have an Azure subscription, you just need to create a Web App and upload your project files. I'll cover how to do this with the Azure CLI in the next section.
+* **Azure**. O Microsoft Azure tem suporte nativo para aplicações ASP.NET Core. Se você tiver uma assinatura do Azure, basta criar um Web App e fazer o upload de seus arquivos de projeto. Eu cobrirei como fazer isso com o CLI do Azure na próxima seção.
 
-* **Linux (with Nginx)**. If you don't want to go the Docker route, you can still host your application on any Linux server (this includes Amazon EC2 and DigitalOcean virtual machines). It's typical to pair ASP.NET Core with the Nginx reverse proxy. (More about Nginx below.)
+* **Linux (com Nginx)**. Se você não quiser ir para a rota do Docker, ainda poderá hospedar sua aplicação em qualquer servidor Linux (isso inclui as máquinas virtuais Amazon EC2 e DigitalOcean). É típico associar o ASP.NET Core ao proxy reverso Nginx. (Mais sobre Nginx abaixo.)
 
-* **Windows**. You can use the IIS web server on Windows to host ASP.NET Core applications. It's usually easier (and cheaper) to just deploy to Azure, but if you prefer managing Windows servers yourself, it'll work just fine.
+* **Windows**. Você pode usar o servidor da Web IIS no Windows para hospedar aplicações ASP.NET Core. Geralmente, é mais fácil (e mais barato) implantar apenas no Azure, mas se você preferir gerenciar os servidores Windows por conta própria, tudo vai funcionar bem.
 
-## Kestrel and reverse proxies
+## Kestrel e proxies reversos
 
-> If you don't care about the guts of hosting ASP.NET Core applications and just want the step-by-step instructions, feel free to skip to one of the next two sections.
+> Se você não se importa com a coragem de hospedar as aplicações ASP.NET Core e quiser apenas as instruções passo a passo, sinta-se à vontade para pular para uma das próximas duas seções.
 
-ASP.NET Core includes a fast, lightweight web server called Kestrel. It's the server you've been using every time you ran `dotnet run` and browsed to `http://localhost:5000`. When you deploy your application to a production environment, it'll still use Kestrel behind the scenes. However, it's recommended that you put a reverse proxy in front of Kestrel, because Kestrel doesn't yet have load balancing and other features that more mature web servers have.
+O ASP.NET Core inclui um servidor web rápido e leve chamado Kestrel. É o servidor que você usa toda vez que você roda o comando `dotnet run` e navega para` http: // localhost: 5000`. Quando você implanta sua aplicação em um ambiente de produção, ele ainda usa o Kestrel nos bastidores. No entanto, é recomendável que você coloque um proxy reverso na frente do Kestrel, porque o Kestrel ainda não possui balanceamento de carga e outros recursos que os servidores da Web mais maduros têm.
 
-On Linux (and in Docker containers), you can use Nginx or the Apache web server to receive incoming requests from the internet and route them to your application hosted with Kestrel. If you're on Windows, IIS does the same thing.
+No Linux (e em contêineres do Docker), você pode usar o Nginx ou o servidor da Web Apache para receber requisições de entrada da Internet e encaminhá-las para sua aplicação hospedada com o Kestrel. Se você estiver no Windows, o IIS faz a mesma coisa.
 
-If you're using Azure to host your application, this is all done for you automatically. I'll cover setting up Nginx as a reverse proxy in the Docker section.
+Se você estiver usando o Azure para hospedar sua aplicação, tudo isso será feito automaticamente. Eu cobrirei a configuração do Nginx como um proxy reverso na seção do Docker.
