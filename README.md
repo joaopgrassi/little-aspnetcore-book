@@ -40,7 +40,7 @@ Graças a alguns fantásticos contribuidores multilíngues, The Little ASP.NET C
  	 
 * [**简明 ASP.NET Core 手册**](https://windsting.github.io/little-aspnetcore-book/book/) (Chinese)
 
-* **ASP.NET Core - Guia de Bolso** (https://github.com/joaopgrassi/little-aspnetcore-book) (Brazilian Portuguese) (em andamento)
+* [**ASP.NET Core - Guia de Bolso**](https://github.com/joaopgrassi/little-aspnetcore-book) (Brazilian Portuguese - em andamento)
 
 
 ## Para quem é esse livro
