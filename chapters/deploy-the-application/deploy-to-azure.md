@@ -1,17 +1,17 @@
-## Deploy to Azure
+## Deploy para o Azure
 
-Deploying your ASP.NET Core application to Azure only takes a few steps. You can do it through the Azure web portal, or on the command line using the Azure CLI. I'll cover the latter.
+O deploy da aplicação ASP.NET Core no Azure leva apenas alguns passos. Você pode fazê-lo através do portal Web do Azure ou na linha de comando usando a CLI do Azure. Eu cobrirei o último.
 
-### What you'll need
+### O que você precisará
 
-* Git (use `git --version` to make sure it's installed)
-* The Azure CLI (follow the install instructions at https://github.com/Azure/azure-cli)
-* An Azure subscription (the free subscription is fine)
-* A deployment configuration file in your project root
+* Git (use o comando `git --version` para ter certeza de que está instalado)
+* A CLI do Azure (siga as instruções de instalação em https://github.com/Azure/azure-cli)
+* Uma assinatura do Azure (a assinatura gratuita é válida)
+* Um arquivo de configuração de deployment na raiz do seu projeto
 
-### Create a deployment configuration file
+### Criando um arquivo de configuração de deployment
 
-Since there are multiple projects in your directory structure (the web application, and two test projects), Azure won't know which one to publish. To fix this, create a file called `.deployment` at the very top of your directory structure:
+Como existem vários projetos em sua estrutura de diretório (a aplicação Web e dois projetos de teste), o Azure não saberá qual publicar. Para corrigir isso, crie um arquivo chamado `.deployment` no topo da sua estrutura de diretórios:
 
 **.deployment**
 
@@ -20,9 +20,9 @@ Since there are multiple projects in your directory structure (the web applicati
 project = AspNetCoreTodo/AspNetCoreTodo.csproj
 ```
 
-Make sure you save the file as `.deployment` with no other parts to the name. (On Windows, you may need to put quotes around the filename, like `".deployment"`, to prevent a `.txt` extension from being added.)
+Certifique-se de salvar o arquivo como `.deployment` sem nenhuma outra parte no nome. (No Windows, você pode precisar colocar aspas ao redor do nome do arquivo, como `" .deployment "`, para evitar que uma extensão `.txt` seja adicionada.)
 
-If you `ls` or `dir` in your top-level directory, you should see these items:
+Se você executar o comando `ls` ou` dir` no seu diretório de nível superior, você deve ver estes itens:
 
 ```
 .deployment
@@ -31,42 +31,41 @@ AspNetCoreTodo.IntegrationTests
 AspNetCoreTodo.UnitTests
 ```
 
-### Set up the Azure resources
+### Configurando os recursos do Azure
 
-
-If you just installed the Azure CLI for the first time, run
+Se você acabou de instalar a CLI do Azure pela primeira vez, execute
 
 ```
 az login
 ```
 
-and follow the prompts to log in on your machine. Then, create a new Resource Group for this application:
+e siga as instruções para efetuar login na sua máquina. Em seguida, crie um novo Resource Group (grupo de recursos) para esta aplicação:
 
 ```
 az group create -l westus -n AspNetCoreTodoGroup
 ```
 
-This creates a Resource Group in the West US region. If you're located far away from the western US, use `az account list-locations` to get a list of locations and find one closer to you.
+Isso cria um Resource Group na região Oeste dos EUA (West US). Se você estiver longe do Oeste dos EUA, use `az account list-locations` para obter uma lista de locais e encontrar um mais próximo de você.
 
-Next, create an App Service plan in the group you just created:
+Em seguida, crie um App Service plan (plano de serviço de aplicação) no grupo que você acabou de criar:
 
 ```
 az appservice plan create -g AspNetCoreTodoGroup -n AspNetCoreTodoPlan --sku F1
 ```
 
-> F1 is the free app plan. If you want to use a custom domain name with your app, use the D1 ($10/month) plan or higher.
+> F1 é o plano de aplicação gratuito. Se você quiser usar um nome de domínio personalizado com sua aplicação, use o plano D1 ($10/mês) ou superior.
 
-Now create a Web App in the App Service plan:
+Agora crie uma aplicação Web no App Service plan:
 
 ```
 az webapp create -g AspNetCoreTodoGroup -p AspNetCoreTodoPlan -n MyTodoApp
 ```
 
-The name of the app (`MyTodoApp` above) must be globally unique in Azure. Once the app is created, it will have a default URL in the format: http://mytodoapp.azurewebsites.net
+O nome da aplicação acima (`MyTodoApp`) deve ser globalmente exclusivo no Azure. Uma vez que a aplicação é criada, ele terá uma URL padrão no formato: http://mytodoapp.azurewebsites.net
 
-### Deploy your project files to Azure
+### Deploy dos seus arquivos de projeto para o Azure
 
-You can use Git to push your application files up to the Azure Web App. If your local directory isn't already tracked as a Git repo, run these commands to set it up:
+Você pode usar o Git para enviar os arquivos de sua aplicação para o Azure Web App. Se o seu diretório local não estiver sendo rastreado como repositório do Git, execute estes comandos para configurá-lo:
 
 ```
 git init
@@ -74,13 +73,13 @@ git add .
 git commit -m "First commit!"
 ```
 
-Next, create an Azure username and password for deployment:
+Em seguida, crie um nome de usuário e senha do Azure para deployment:
 
 ```
 az webapp deployment user set --user-name nate
 ```
 
-Follow the instructions to create a password. Then use `config-local-git` to spit out a Git URL:
+Siga as instruções para criar uma senha. Então use `config-local-git` para gerar uma URL do Git:
 
 ```
 az webapp deployment source config-local-git -g AspNetCoreTodoGroup -n MyTodoApp --out tsv
@@ -88,18 +87,18 @@ az webapp deployment source config-local-git -g AspNetCoreTodoGroup -n MyTodoApp
 https://nate@mytodoapp.scm.azurewebsites.net/MyTodoApp.git
 ```
 
-Copy the URL to the clipboard, and use it to add a Git remote to your local repository:
+Copie a URL para a área de transferência e use-a para adicionar o repositório remoto do Git ao seu repositório local:
 
 ```
 git remote add azure <paste>
 ```
 
-You only need to do these steps once. Now, whenever you want to push your application files to Azure, check them in with Git and run
+Você só precisa seguir estas etapas uma vez. Agora, sempre que você quiser enviar os arquivos de sua aplicação para o Azure, verifique-os com o Git e execute
 
 ```
 git push azure master
 ```
 
-You'll see a stream of log messages as the application is deployed to Azure.
+Você verá um fluxo de mensagens de log à medida que o deploy da aplicação é feito para o Azure.
 
-When it's complete, browse to http://yourappname.azurewebsites.net to check out the app!
+Quando estiver completo, navegue até http://yourappname.azurewebsites.net para verificar a aplicação!
