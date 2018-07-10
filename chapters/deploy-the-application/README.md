@@ -1,11 +1,11 @@
-# Implantando a aplicação
+# Deploy (implantação) da aplicação
 Você percorreu um longo caminho, mas ainda não terminou. Depois de criar uma ótima aplicação, você precisa compartilhá-la com o mundo!
 
-Como as aplicações ASP.NET Core podem ser executados no Windows, Mac ou Linux, há várias maneiras diferentes de implantar sua aplicação. Neste capítulo, mostrarei as formas mais comuns (e mais fáceis) de go live.
+Como as aplicações ASP.NET Core podem ser executados no Windows, Mac ou Linux, há várias maneiras diferentes de realizar o deploy de sua aplicação. Neste capítulo, mostrarei as formas mais comuns (e mais fáceis) de go live.
 
-## Oções de implantação
+## Opções de deploy
 
-As aplicações ASP.NET Core são normalmente implantados em um desses ambientes:
+O deploy de aplicações ASP.NET Core normalmente é realizado em um desses ambientes:
 
 * **Um host do Docker**. Qualquer máquina capaz de hospedar contêineres Docker pode ser usada para hospedar uma aplicação ASP.NET Core. Criar uma imagem do Docker é uma maneira muito rápida de implantar sua aplicação, especialmente se você estiver familiarizado com o Docker. (Se você não for, não se preocupe! Eu cobrirei os passos mais tarde.)
 
