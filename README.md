@@ -40,7 +40,7 @@ Graças a alguns fantásticos contribuidores multilíngues, The Little ASP.NET C
  	 
 * [**简明 ASP.NET Core 手册**](https://windsting.github.io/little-aspnetcore-book/book/) (Chinês Simplificado)
 
-* [**ASP.NET Core - Guia de Bolso**](https://github.com/joaopgrassi/little-aspnetcore-book) (Português do Brasil - em andamento)
+* [**ASP.NET Core - Guia de Bolso**](https://github.com/joaopgrassi/little-aspnetcore-book) (Português do Brasil)
 
 ## Para quem é esse livro
 Se você é novo em programação, esse livro irá lhe apresentar padrões e conceitos usados para criar aplicações web modernas. Você vai aprender como criar uma aplicação web (e como todas as partes se integram) construindo uma do zero! Enquanto esse pequeno livro não será capaz de cobrir absolutamente tudo que você precisa saber sobre programação, ele oferecerá um ponto de partida para que você possa aprofundar-se sobre tópicos mais avançados após completar sua leitura.
