@@ -2,8 +2,6 @@
 
 Segurança é uma das principais preocupações de qualquer aplicação ou API web moderna. É importante manter os dados de seus usuários ou clientes seguros e fora do alcance dos invasores. Este é
 
-Security is a major concern of any modern web application or API. It's important to keep your user or customer data safe and out of the hands of attackers. Este é um tópico muito amplo, envolvendo:
-
 * Sanitização de entrada de dados para evitar ataques de injeção de SQL
 * Prevenção de ataques cross-domain (CSRF) em forms
 * Utilização de HTTPS (criptografia de conexão) para que os dados não possam ser interceptados enquanto trafegam pela Internet
