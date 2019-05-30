@@ -13,7 +13,7 @@ O deploy de aplicações ASP.NET Core normalmente é realizado em um desses ambi
 
 * **Linux (com Nginx)**. Se você não quiser ir para o caminho do Docker, ainda poderá hospedar sua aplicação em qualquer servidor Linux (isso inclui as máquinas virtuais Amazon EC2 e DigitalOcean). É típico associar o ASP.NET Core ao proxy reverso Nginx. (Mais sobre Nginx abaixo.)
 
-* **Windows**. Você pode usar o servidor da Web IIS no Windows para hospedar aplicações ASP.NET Core. Geralmente, é mais fácil (e mais barato) implantar apenas no Azure, mas se você preferir gerenciar os servidores Windows por conta própria, tudo vai funcionar bem.
+* **Windows**. Você pode usar o servidor web com IIS no Windows para hospedar aplicações ASP.NET Core. Geralmente, é mais fácil (e mais barato) implantar apenas no Azure, mas se você preferir gerenciar os servidores Windows por conta própria, tudo vai funcionar bem.
 
 ## Kestrel e proxies reversos
 
