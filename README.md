@@ -11,7 +11,7 @@ Publicado sobre a licença Creative Commons Attribution 4.0. Você é livre para
 Para mais informações, visite https://creativecommons.org/licenses/by/4.0/
 
 ## Introdução
-Obrigado por obter o Little ASP.NET Core Book! Eu escrevi esse resumido livro com o intuito de ajudar desenvolvedores e pessoas interessadas em desenvolvimento web a aprender sobre ASP.NET Core, um novo framework para desenvolver aplicações web e APIs.
+Obrigado por obter o Little ASP.NET Core Book! Eu escrevi esse resumido livro com o intuito de ajudar desenvolvedores e pessoas interessadas em desenvolvimento web a aprender sobre ASP.NET Core 2.0, um framework para desenvolver aplicações web e APIs.
 
 "The Little ASP.NET Core Book" é organizado como um tutorial. Você desenvolverá uma aplicação do início ao fim e aprenderá:
 
@@ -37,8 +37,8 @@ O livro em si é atualizado frequentemente com correções de erros e novos cont
 Graças a alguns fantásticos contribuidores multilíngues, The Little ASP.NET Core Book foi traduzido nos seguintes idiomas:
 
 * [**ASP.NET Core El Kitabı**](https://sahinyanlik.gitbooks.io/kisa-asp-net-core-kitabi/) (Turco)
- 	 
-* [**简明 ASP.NET Core 手册**](https://windsting.github.io/little-aspnetcore-book/book/) (Chinês Simplificado)
+
+* [**简明 ASP.NET Core 手册**](https://windsting.github.io/little-aspnetcore-book/book/) (Chinês)
 
 * [**ASP.NET Core - Guia de Bolso**](https://github.com/nicolastarzia/little-aspnetcore-book) (Português do Brasil)
 
