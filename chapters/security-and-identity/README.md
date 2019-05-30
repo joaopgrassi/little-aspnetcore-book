@@ -5,7 +5,7 @@ Segurança é uma das principais preocupações de qualquer aplicação ou API w
 * Remover os dados sensiveis de entrada para evitar ataques de injeção de SQL
 * Prevenção de ataques cross-domain (CSRF) nas paginas web
 * Utilização de HTTPS (criptografia de conexão) para que os dados não possam ser interceptados enquanto trafegam pela Internet
-* Disponibilização aos usuários uma maneira de sign in com segurança com senha ou outras credenciais
+* Disponibilizar aos usuários uma maneira de autenticar com segurança, utilizando uma senha ou qualquer outra credencial.
 * Criação de fluxos de autenticação multifato, de redefinição de senha e de recuperação de conta
 
 ASP.NET Core pode ajudar a tornar tudo isso mais fácil de implementar. Os dois primeiros (proteção contra injeção de SQL e ataques cross-domain) já estão incorporados e você pode adicionar algumas linhas de código para habilitar o suporte a HTTPS. Este capítulo focará principalmente nos aspectos de **identity** da segurança: manipulação de contas de usuário, autenticação (logging in) de seus usuários com segurança e tomada de decisões de autorização após a autenticação.
