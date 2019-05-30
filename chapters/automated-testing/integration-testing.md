@@ -150,7 +150,7 @@ Esse teste faz uma requisição anônima (sem login) à rota `/todo` e verifica 
 
 Esse cenário é um bom candidato para um teste de integração, porque envolve vários componentes da aplicação: o sistema de roteamento, o controller, o fato de o controller estar marcado com `[Authorize]` e assim por diante. Também é um bom teste, pois garante que você nunca removerá acidentalmente o atributo `[Authorize]` e tornará a visão dos to-do items acessível a todos.
 
-## Rode o teste
+## Executando o teste
 
 Execute o teste no terminal com o comando `dotnet test`. Se tudo estiver funcionando corretamente, você verá uma mensagem de sucesso:
 
