@@ -10,6 +10,6 @@ ASP.NET Core Identity não é a única maneira de adicionar funcionalidade de id
 
 * **Faça você mesmo**: Não recomendado, a menos que você seja um especialista em segurança!
 * **ASP.NET Core Identity**: você obtém muito código de graça com os templates, o que torna muito fácil o início da codificação de sua aplicação. Você ainda precisará escrever algum código para cenários mais avançados e manter um banco de dados para armazenar informações do usuário.
-* **Serviços de identidade hospedados em nuvem**. Estes serviços lidam com cenários simples e avançados (autenticação de múltiplos fatores, recuperação de contas, federation) e reduz significativamente a quantidade de código que você precisa escrever para sua aplicação. Além disso, os dados confidenciais do usuário não são armazenados em seu próprio banco de dados.
+* **Serviços de identidade hospedados em nuvem**. Estes serviços lidam com cenários simples e avançados (autenticação de múltiplos fatores, recuperação de contas, federação) e reduz significativamente a quantidade de código que você precisa escrever para sua aplicação. Além disso, os dados confidenciais do usuário não são armazenados em seu próprio banco de dados.
 
 Para este projeto, o ASP.NET Core Identity cai muito bem. Para projetos mais complexos, recomendo fazer algumas pesquisas e experimentar as duas opções para entender qual é o melhor para o seu caso de uso.
