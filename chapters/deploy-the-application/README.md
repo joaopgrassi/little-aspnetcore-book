@@ -21,6 +21,6 @@ O deploy de aplicações ASP.NET Core normalmente é realizado em um desses ambi
 
 O ASP.NET Core inclui um servidor web rápido e leve chamado Kestrel. É o servidor que você usa toda vez que você roda o comando `dotnet run` e navega para `http://localhost:5000`. Quando você implanta sua aplicação em um ambiente de produção, ele ainda usa o Kestrel nos bastidores. No entanto, é recomendável que você coloque um proxy reverso na frente do Kestrel, porque o Kestrel ainda não possui balanceamento de carga e outros recursos que os servidores da Web mais maduros têm.
 
-No Linux (e em contêineres do Docker), você pode usar o Nginx ou o servidor da Web Apache para receber requisições de entrada da Internet e encaminhá-las para sua aplicação hospedada com o Kestrel. Se você estiver no Windows, o IIS faz a mesma coisa.
+No Linux (e em contêineres do Docker), você pode usar o Nginx ou o Apache para receber requisições de entrada da internet e encaminhá-las para sua aplicação hospedada com o Kestrel. Se você estiver no Windows, o IIS faz a mesma coisa.
 
 Se você estiver usando o Azure para hospedar sua aplicação, tudo isso será feito automaticamente. Eu cobrirei a configuração do Nginx como um proxy reverso na seção do Docker.
