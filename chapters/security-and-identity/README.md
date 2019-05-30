@@ -1,6 +1,6 @@
 # Segurança e identity (identidade)
 
-Segurança é uma das principais preocupações de qualquer aplicação ou API web moderna. É importante manter os dados de seus usuários ou clientes seguros e fora do alcance dos invasores. Este é
+Segurança é uma das principais preocupações de qualquer aplicação ou API web moderna. É importante manter os seus usuarios ou os dados de seus clientes seguros e fora do alcance dos invasores. Este é um tópico muito abrangente, envolvendo itens como:
 
 * Sanitização de entrada de dados para evitar ataques de injeção de SQL
 * Prevenção de ataques cross-domain (CSRF) em forms
