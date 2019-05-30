@@ -18,7 +18,7 @@ Se você está atualmente no diretório do seu projeto, o comando `cd` sobe um n
 dotnet new xunit -o AspNetCoreTodo.UnitTests
 ```
 
-O xUnit.NET é um framework de teste popular para código .NET que pode ser usado para escrever testes unitários e de integração. Como tudo mais, é um conjunto de pacotes NuGet que podem ser instalados em qualquer projeto. O modelo `dotnet new xunit` já inclui tudo o que você precisa.
+O xUnit.NET é um framework de teste popular para código .NET que pode ser usado para escrever testes unitários e de integração. Como todos os outros, é um conjunto de pacotes NuGet que podem ser instalados em qualquer projeto. O modelo `dotnet new xunit` já inclui tudo o que você precisa.
 
 Sua estrutura de diretórios deve estar assim:
 
