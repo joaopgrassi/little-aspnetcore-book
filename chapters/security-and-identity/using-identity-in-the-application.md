@@ -115,7 +115,7 @@ dotnet ef database update
 
 ### Atualizando a service class
 
-Com o banco de dados e seu context atualizados, você pode atualizar o método `GetIncompleteItemsAsync()` no `TodoItemService` e adicionar outra cláusula à instrução `Where`:
+Com o banco de dados e seu contexto atualizados, você pode atualizar o método `GetIncompleteItemsAsync()` no `TodoItemService` e adicionar outra cláusula à instrução `Where`:
 
 **Services/TodoItemService.cs**
 
