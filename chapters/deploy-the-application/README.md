@@ -11,7 +11,7 @@ O deploy de aplicações ASP.NET Core normalmente é realizado em um desses ambi
 
 * **Azure**. O Microsoft Azure tem suporte nativo para aplicações ASP.NET Core. Se você tiver uma assinatura do Azure, basta criar um Web App e fazer o upload de seus arquivos de projeto. Eu cobrirei como fazer isso com o CLI do Azure na próxima seção.
 
-* **Linux (com Nginx)**. Se você não quiser ir para a rota do Docker, ainda poderá hospedar sua aplicação em qualquer servidor Linux (isso inclui as máquinas virtuais Amazon EC2 e DigitalOcean). É típico associar o ASP.NET Core ao proxy reverso Nginx. (Mais sobre Nginx abaixo.)
+* **Linux (com Nginx)**. Se você não quiser ir para o caminho do Docker, ainda poderá hospedar sua aplicação em qualquer servidor Linux (isso inclui as máquinas virtuais Amazon EC2 e DigitalOcean). É típico associar o ASP.NET Core ao proxy reverso Nginx. (Mais sobre Nginx abaixo.)
 
 * **Windows**. Você pode usar o servidor da Web IIS no Windows para hospedar aplicações ASP.NET Core. Geralmente, é mais fácil (e mais barato) implantar apenas no Azure, mas se você preferir gerenciar os servidores Windows por conta própria, tudo vai funcionar bem.
 
