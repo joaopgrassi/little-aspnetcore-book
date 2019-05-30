@@ -100,7 +100,7 @@ docker run --name aspnetcoretodo_sample --rm -it -p 8080:80 aspnetcoretodo
 
 O sinalizador `-it` diz ao Docker para executar o container no modo interativo (saída para o terminal, ao invés de rodar em background). Quando você quiser parar o contêiner, pressione Ctrl-C.
 
-Lembra-se da variável `ASPNETCORE_URLS` que disse ao ASP.NET Core para escutar na porta 80? A opção `-p 8080:80` diz ao Docker para mapear a porta 8080 na máquina *sua* para a porta 80 do *container*. Abra seu navegador e navegue para http://localhost:8080 para ver a aplicação sendo executada no container!
+Lembra-se da variável `ASPNETCORE_URLS` que disse ao ASP.NET Core para escutar na porta 80? A opção `-p 8080:80` diz ao Docker para mapear a porta 8080 na *sua* máquina para a porta 80 do *container*. Abra seu navegador e navegue para http://localhost:8080 para ver a aplicação sendo executada no container!
 
 ### Configurando o Nginx
 
