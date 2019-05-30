@@ -101,7 +101,7 @@ namespace AspNetCoreTodo.IntegrationTests
 
 Esta classe cuida da criação de um `TestServer` e ajudará a manter os testes limpos e ordenados.
 
-Agora você está (realmente) pronto para escrever um teste de integração. Crie uma nova classe chamada `TodoRouteShould`:
+Agora você está (finalmente) pronto para escrever um teste de integração. Crie uma nova classe chamada `TodoRouteShould`:
 
 **AspNetCoreTodo.IntegrationTests/TodoRouteShould.cs**
 
