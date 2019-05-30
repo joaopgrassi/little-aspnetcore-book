@@ -12,7 +12,7 @@ ASP.NET Core pode ajudar a tornar tudo isso mais fácil de implementar. Os dois 
 
 > Autenticação e autorização são ideias distintas que são frequentemente confundidas. **Autenticação** lida com o fato de um usuário estar logado, enquanto **autorização** lida com o que ele tem permissão para fazer *depois de* fazer login. Você pode pensar na autenticação utilizando a seguinte pergunta: "Eu conheço este usuário?", e para a autorização seria "Este usuário tem permissão para fazer *X*?
 
-O modelo MVC + Individual Authentication que você usou para estruturar o projeto inclui várias classes baseadas no ASP.NET Core Identity, um sistema de autenticação e identidade que faz parte do ASP.NET Core. E também já adiciona a capacidade de efetuar login com um email e uma senha.
+O modelo MVC + Individual Authentication que você usou para estruturar o projeto inclui várias classes baseadas no ASP.NET Core Identity, um sistema de autenticação e identidade que faz parte do ASP.NET Core. Sem nenhuma configuração a mais, isto já adiciona a capacidade de efetuar login utilizando email e senha.
 
 ## O que é ASP.NET Core Identity?
 
