@@ -10,7 +10,7 @@ Para escrever testes de integração que fazem solicitações HTTP, você pode i
 
 ### Criando um projeto de testes de integração
 
-Se você está atualmente no diretório do seu projeto, o comando `cd` sobe um nível para o diretório root` AspNetCoreTodo`. Use este comando para criar um novo projeto de teste:
+Se você está atualmente no diretório do seu projeto, o comando `cd` sobe um nível para o diretório root` AspNetCoreTodo`. Utilize este comando para criar um novo projeto de teste:
 
 ```
 dotnet new xunit -o AspNetCoreTodo.IntegrationTests
