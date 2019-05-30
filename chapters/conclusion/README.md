@@ -1,63 +1,67 @@
-# Conclusion
+# Conclusão
 
-Thanks for making it to the end of the Little ASP.NET Core Book! If this book was helpful (or not), I'd love to hear your thoughts. Send me your comments via Twitter: https://twitter.com/nbarbettini
+Obrigado por chegar ao final do ASP.NET Core - Guia de Bolso! Se este livro foi útil (ou não), eu adoraria ouvir seus comentários. Envie-me seus comentários via Twitter: https://twitter.com/nbarbettini
 
-## How to learn more
+## Como aprender mais
 
-There's a lot more that ASP.NET Core can do that couldn't fit in this short book, including
+Há muito mais que o ASP.NET Core pode fazer que não cabe neste pequeno livro, incluindo
 
-* Building RESTful APIs and microservices
-* Using ASP.NET Core with single-page apps like Angular and React
-* Razor Pages
-* Bundling and minifying static assets
-* WebSockets and SignalR
+* Construindo APIs RESTful e microserviços (microservices)
+* Usando o ASP.NET Core com single-page apps como Angular e React
+* Páginas Razor
+* Bundling e minifying de conteúdos estáticos
+* WebSockets e SignalR
 
-There are a number of ways you can learn more:
+Existem várias maneiras de aprender mais:
 
-* **The ASP.NET Core documentation.** The official ASP.NET Core documentation at http://docs.asp.net contains a number of in-depth tutorials covering many of these topics. I'd highly recommend it!
+* **A documentação do ASP.NET Core.** A documentação oficial do ASP.NET Core em http://docs.asp.net contém uma série de tutoriais detalhados cobrindo muitos desses tópicos. Eu recomendo!
 
-* **ASP.NET Core in Action.** This book by Andrew Lock is a comprehensive, deep dive into ASP.NET Core. You can get it from Amazon or a local bookstore.
+* **ASP.NET Core in Action.** Este livro de Andrew Lock é um profundo e abrangente mergulho no ASP.NET Core. Você pode obtê-lo na Amazon ou em uma livraria local.
 
-* **Courses on LinkedIn Learning and Pluralsight.** If you learn best from videos, there are fantastic courses available on Pluralsight and LinkedIn Learning (including some by yours truly). If you don't have an account and need a coupon, send me an email: nate@barbettini.com.
+* **Cursos do LinkedIn Learning e da Pluralsight.** Se você aprende melhor com vídeos, existem cursos fantásticos disponíveis na Pluralsight e no LinkedIn Learning (incluindo alguns deste que vos escreve). Se você não tem uma conta e precisa de um cupom, me envie um email: nate@barbettini.com.
 
-* **Nate's blog.** I also write about ASP.NET Core and more on my blog at https://www.recaffeinate.co.
+* **Blog do Nate** Eu também escrevo sobre ASP.NET Core e outros assuntos no meu blog em https://www.recaffeinate.co.
 
-Happy coding!
+Tenha uma boa codificação!
 
-## About the author
+## Sobre o autor
 
-Hey, I'm Nate! I wrote the Little ASP.NET Core Book in a long, caffeine-fueled weekend because I love the .NET community and wanted to give back in my own little way. I hope it helped you learn something new!
+Oi, eu sou o Nate! Eu escrevi o ASP.NET Core - Guia de Bolso em um longo fim de semana, abastecido com cafeína, porque eu amo a comunidade .NET e queria retribuir do meu próprio jeito. Espero que tenha ajudado você a aprender algo novo!
 
-You can stay in touch with me on Twitter ([@nbarbettini](https://twitter.com/nbarbettini)) or on my blog (https://www.recaffeinate.co). You can also reach me via email at nate@barbettini.com.
+Você pode manter contato comigo no Twitter ([@nbarbettini](https://twitter.com/nbarbettini)) ou no meu blog (https://www.recaffeinate.co). Você também pode entrar em contato comigo pelo e-mail nate@barbettini.com.
 
-## Special thanks
+## Agradecimentos especiais
 
-To Jennifer, who always supports my crazy ideas.
+Para Jennifer, que sempre apóia minhas idéias malucas.
 
-To the following contributors who improved the Little ASP.NET Core Book:
+Para os seguintes contribuidores que melhoraram o ASP.NET Core - Guia de Bolso:
 
 * 0xNF
-* Matt Welke
+* Matt Welke [welkie]
+* Raman Zhylich [zhilich]
 
-To these amazing polyglot programmers who translated the Little ASP.NET Core Book:
+Para esses incríveis programadores poliglotas que traduziram o Pequeno ASP.NET Core Book:
 
-* sahinyanlik (Turkish)
-* windsting, yuyi (Simplified Chinese)
+* sahinyanlik (Turco)
+* windsting, yuyi (Chinês Simplificado)
+* joaopgrassi, nicolastarzia, joao-marcos, oliveiramarcio (Português do Brasil)
 
 ## Changelog
 
-The full, detailed changelog is always available here:
+O changelog completo e detalhado está sempre disponível aqui:
 
 https://github.com/nbarbettini/little-aspnetcore-book/releases
 
-**1.1.0** (2018-05-03): Significantly reworked the *Add more features* chapter to use MVC thorough the whole stack and remove the AJAX pattern. Removed Facebook login to simplify the security chapter and streamline testing and deployment. Updated the Docker instructions to reflect the latest best practices. Fixed typos and added suggestions from readers. The book also sports a new, improved cover design!
+**1.1.1** (11-06-2018): Corrigidos erros de digitação e sugestões adicionais dos leitores.
 
-**1.0.4** (2018-01-15): Added explanation of service container lifecycles, clarified server ports and the -o flag, and removed semicolons after Razor directives. Corrected Chinese translation author credit. Fixed other small typos and issues noticed by readers.
+**1.1.0** (03-05-2018): Reelaborado significativamente o capítulo *Adicionando mais recursos* para usar MVC em todo o projeto e removido o padrão AJAX. Removido o login do Facebook para simplificar o capítulo de segurança e para simplificar os testes e o deploy. Atualizadas as instruções do Docker para refletir as práticas recomendadas mais recentes. Corrigidos erros de digitação e sugestões adicionais dos leitores. O livro também apresenta um novo design de capa melhorado!
 
-**1.0.3** (2017-11-13): Typo fixes and small improvements suggested by readers.
+**1.0.4** (15-01-2018): Adicionada explicação sobre os ciclos de vida dos service container, esclarecidas portas de servidor e o sinalizador -o, e removidos pontos e vírgulas após as diretivas Razor. Corrigidos os créditos de autor da tradução do idioma Chinês. Corrigidos outros pequenos erros e problemas notados pelos leitores.
 
-**1.0.2** (2017-10-20): More bug fixes and small improvements. Added link to translations.
+**1.0.3** (13-11-2017): correções de digitação e pequenas melhorias sugeridas pelos leitores.
 
-**1.0.1** (2017-09-23): Bug fixes and small improvements.
+**1.0.2** (20-10-2017): Mais correções de bugs e pequenas melhorias. Adicionado link para traduções.
 
-**1.0.0** (2017-09-18): Initial release.
+**1.0.1** (23-09-2017): Correções de bugs e pequenas melhorias.
+
+**1.0.0** (18-09-2017): Lançamento inicial.

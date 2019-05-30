@@ -1,6 +1,6 @@
 {
-    "title": "The Little ASP.NET Core Book",
-    "description": "A friendly introduction to building web applications with the ASP.NET Core framework.",
+    "title": "ASP.NET Core - Guia de Bolso",
+    "description": "Uma introdução para construir aplicações web com o framework ASP.NET Core",
     "author": "Nate Barbettini",
     "isbn": "978-1-387-75615-5",
     "pdf": {
@@ -11,7 +11,7 @@
     "pluginsConfig": {
         "forkmegithub": {
             "color": "green",
-            "url": "https://github.com/nbarbettini/little-aspnetcore-book"
+            "url": "https://github.com/nicolastarzia/little-aspnetcore-book"
         }
     }
 }

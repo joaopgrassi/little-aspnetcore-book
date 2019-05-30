@@ -1,25 +1,25 @@
-## Hello World in C# #
-Before you dive into ASP.NET Core, try creating and running a simple C# application.
+## Hello World em C# #
+Antes de aprofundarmos no ASP.NET Core, tente criar e executar uma simples aplicação C#.
 
-You can do this all from the command line. First, open up the Terminal (or PowerShell on Windows). Navigate to the location you want to store your projects, such as your Documents directory:
+Você pode executar todos os passos a seguir através da linha de comando. Primeiro, abra o Terminal (ou PowerShell no Windows). Navegue até a pasta que você quer armazenar os projetos, por exemplo, o seu diretorio de Documentos:
 
 ```
 cd Documents
 ```
 
-Use the `dotnet` command to create a new project:
+Utilize o comando `dotnet` para criar um novo projeto:
 
 ```
 dotnet new console -o CsharpHelloWorld
 ```
 
-The `dotnet new` command creates a new .NET project in C# by default. The `console` parameter selects a template for a console application (a program that outputs text to the screen). The `-o CsharpHelloWorld` parameter tells `dotnet new` to create a new directory called `CsharpHelloWorld` for all the project files. Move into this new directory:
+O comando `dotnet new` cria um novo projeto .NET em C# como padrão. O parâmetro `console` seleciona o template para um console application (um programa que exibe textos no seu terminal). O parâmetro `-o CsharpHelloWorld` diz ao comando `dotnet new` para criar um novo diretorio chamado `CsharpHelloWorld` com todos os arquivos do projeto. Entre neste diretório:
 
 ```
 cd CsharpHelloWorld
 ```
 
-`dotnet new console` creates a basic C# program that writes the text `Hello World!` to the screen. The program is comprised of two files: a project file (with a `.csproj` extension) and a C# code file (with a `.cs` extension). If you open the former in a text or code editor, you'll see this:
+`dotnet new console` cria um programa em C# básico que imprime o texto `Hello World!` no seu terminal. O programa é composto por dois arquivos: Um arquivo de projeto (com a extensão `.csproj`) e um arquivo com o código C# (com a extensão `.cs`). Se você abrir os arquivos no seu editor, você vai ver isso:
 
 **CsharpHelloWorld.csproj**
 
@@ -34,7 +34,7 @@ cd CsharpHelloWorld
 </Project>
 ```
 
-The project file is XML-based and defines some metadata about the project. Later, when you reference other packages, those will be listed here (similar to a `package.json` file for npm). You won't have to edit this file by hand very often.
+O arquivo do projeto é feito em XML e define todas as propriedades sobre o projeto. Posteriormente, quando você referenciar outros pacotes, eles serão listados aqui (muito proximo ao arquivo `package.json` do npm). Você não precisa editar este arquivo com muita frequência.
 
 **Program.cs**
 
@@ -53,9 +53,9 @@ namespace CsharpHelloWorld
 }
 ```
 
-`static void Main` is the entry point method of a C# program, and by convention it's placed in a class (a type of code structure or module) called `Program`. The `using` statement at the top imports the built-in `System` classes from .NET and makes them available to the code in your class.
+`static void Main` é o ponto de entrada de um programa C#, e por convenção ele é inserido em uma classe (um tipo de estrutura do codigo ou modulo) chamado `Program`. A declaração `using` no inicio é para importar a classe 'System' e disponibilizar para o código da sua classe.
 
-From inside the project directory, use `dotnet run` to run the program. You'll see the output written to the console after the code compiles:
+Dentro do diretorio do seu projeto, execute o comando `dotnet run` para executar o seu programa. Você vai ver escrito no seu console após a execução do programa:
 
 ```
 dotnet run
@@ -63,4 +63,4 @@ dotnet run
 Hello World!
 ```
 
-That's all it takes to scaffold and run a .NET program! Next, you'll do the same thing for an ASP.NET Core application.
+Isso é tudo para criar a estrutura e executar um programa em .NET! À seguir, você vai fazer exatamente a mesma coisa para uma aplicação ASP.NET Core.
