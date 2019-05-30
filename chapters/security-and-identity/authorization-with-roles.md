@@ -136,7 +136,7 @@ Isso ocorre porque ainda não temos nenhum usuário administrador.
 
 ### Criando uma conta de administrator para testes
 
-Por razões óbvias de segurança, não é possível para ninguém registrar uma nova conta de administrador. Na verdade, o papel de administrador nem existe no banco de dados ainda!
+Por razões óbvias de segurança, nenhum usuário consegue registrar uma nova conta de administrador. Na verdade, o papel de administrador nem existe no banco de dados ainda!
 
 Você pode adicionar a role Administrador mais uma conta de administrador de teste ao banco de dados na primeira vez que o aplicativo for iniciado. A adição de dados pela primeira vez ao banco de dados é chamada de inicialização ou **seeding** do banco de dados.
 
