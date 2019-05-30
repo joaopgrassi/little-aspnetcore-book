@@ -1,26 +1,26 @@
-## Unit testing
+## Testes unitários
 
-Unit tests are small, short tests that check the behavior of a single method or class. When the code you're testing relies on other methods or classes, unit tests rely on **mocking** those other classes so that the test only focuses on one thing at a time.
+Testes unitários são pequenos testes que verificam o comportamento de um método ou classe. Quando o código que você está testando depende de outros métodos ou classes, os testes unitários dependem do **mocking** dessas outras classes, de modo que o teste se concentre apenas em uma coisa por vez.
 
-For example, the `TodoController` class has two dependencies: an `ITodoItemService` and the `UserManager`. The `TodoItemService`, in turn, depends on the `ApplicationDbContext`. (The idea that you can draw a line from `TodoController` > `TodoItemService` > `ApplicationDbContext` is called a **dependency graph**).
+Por exemplo, a classe `TodoController` tem duas dependências: uma `ITodoItemService` e o `UserManager`. O `TodoItemService`, por sua vez, depende do `ApplicationDbContext`. (A idéia de que você pode desenhar uma linha de `TodoController` > `TodoItemService` > `ApplicationDbContext` é chamada de **dependency graph [gráfico de dependência]**).
 
-When the application runs normally, the ASP.NET Core service container and dependency injection system injects each of those objects into the dependency graph when the `TodoController` or the `TodoItemService` is created.
+Quando a aplicação é executada normalmente, o contêiner de serviço do ASP.NET Core e o sistema de injeção de dependência injetam cada um desses objetos no dependency graph quando o `TodoController` ou o` TodoItemService` é criado.
 
-When you write a unit test, on the other hand, you have to handle the dependency graph yourself. It's typical to provide test-only or "mocked" versions of those dependencies. This means you can isolate just the logic in the class or method you are testing. (This is important! If you're testing a service, you don't want to **also** be accidentally writing to your database.)
+Quando você escreve um teste unitário, você precisa manipular o dependency graph sozinho. É típico fornecer versões somente de teste ou "mockadas" dessas dependências. Isso significa que você pode isolar apenas a lógica da classe ou método que está testando. (Isto é importante! Se você está testando um serviço, você não quer **também** acidentalmente gravar dados no seu banco de dados.)
 
-### Create a test project
+### Criando um projeto de testes
 
-It's a best practice to create a separate project for your tests, so they are kept separate from your application code. The new test project should live in a directory that's next to (not inside) your main project's directory.
+É uma boa prática criar um projeto separado para seus testes, para que eles sejam mantidos separados do código da aplicação. O novo projeto de teste deve estar em um diretório próximo (não dentro) do diretório do seu projeto principal.
 
-If you're currently in your project directory, `cd` up one level. (This root directory will also be called `AspNetCoreTodo`). Then use this command to scaffold a new test project:
+Se você está atualmente no diretório do seu projeto, o comando `cd` sobe um nível. (Este diretório raiz também será chamado `AspNetCoreTodo`). Em seguida, use este comando para criar um novo projeto de teste:
 
 ```
 dotnet new xunit -o AspNetCoreTodo.UnitTests
 ```
 
-xUnit.NET is a popular test framework for .NET code that can be used to write both unit and integration tests. Like everything else, it's a set of NuGet packages that can be installed in any project. The `dotnet new xunit` template already includes everything you need.
+O xUnit.NET é um framework de teste popular para código .NET que pode ser usado para escrever testes unitários e de integração. Como todos os outros, é um conjunto de pacotes NuGet que podem ser instalados em qualquer projeto. O modelo `dotnet new xunit` já inclui tudo o que você precisa.
 
-Your directory structure should now look like this:
+Sua estrutura de diretórios deve estar assim:
 
 ```
 AspNetCoreTodo/
@@ -33,19 +33,19 @@ AspNetCoreTodo/
         AspNetCoreTodo.UnitTests.csproj
 ```
 
-Since the test project will use the classes defined in your main project, you'll need to add a reference to the `AspNetCoreTodo` project:
+Como o projeto de teste usará as classes definidas em seu projeto principal, você precisará adicionar uma referência ao projeto `AspNetCoreTodo`:
 
 ```
 dotnet add reference ../AspNetCoreTodo/AspNetCoreTodo.csproj
 ```
 
-Delete the `UnitTest1.cs` file that's automatically created. You're ready to write your first test.
+Exclua o arquivo `UnitTest1.cs` criado automaticamente. Você está pronto para escrever seu primeiro teste.
 
-> If you're using Visual Studio Code, you may need to close and reopen the Visual Studio Code window to get code completion working in the new project.
+> Se você estiver usando o Visual Studio Code, talvez seja necessário fechar e reabrir a janela do Visual Studio Code para que o autocomplete volte a funcionar no novo projeto.
 
-### Write a service test
+### Escrevendo um teste de serviço
 
-Take a look at the logic in the `AddItemAsync()` method of the `TodoItemService`:
+Dê uma olhada na lógica do método `AddItemAsync()` do `TodoItemService`:
 
 ```csharp
 public async Task<bool> AddItemAsync(
@@ -63,18 +63,18 @@ public async Task<bool> AddItemAsync(
 }
 ```
 
-This method makes a number of decisions or assumptions about the new item (in other words, performs business logic on the new item) before it actually saves it to the database:
+Esse método faz uma série de decisões ou suposições sobre o novo item (em outras palavras, executa a lógica de negócio no novo item) antes de realmente salvá-lo no banco de dados:
 
-* The `UserId` property should be set to the user's ID
-* New items should always be incomplete (`IsDone = false`)
-* The title of the new item should be copied from `newItem.Title`
-* New items should always be due 3 days from now
+* A propriedade `UserId` deve ser configurada para o ID do usuário
+* Novos itens devem estar sempre incompletos (`IsDone = false`)
+* O título do novo item deve ser copiado de `newItem.Title`
+* Novos itens devem sempre ser finalizados daqui a 3 dias
 
-Imagine if you or someone else refactored the `AddItemAsync()` method and forgot about part of this business logic. The behavior of your application could change without you realizing it! You can prevent this by writing a test that double-checks that this business logic hasn't changed (even if the method's internal implementation changes).
+Imagine se você ou alguém refatorasse o método `AddItemAsync()` e se esquecesse dessa lógica de negócios. O comportamento do seu aplicativo pode mudar sem você perceber! Você pode evitar isso escrevendo um teste que verifique duas vezes se essa lógica de negócio não foi alterada (mesmo que a implementação interna do método seja alterada).
 
-> It might seem unlikely now that you could introduce a change in business logic without realizing it, but it becomes much harder to keep track of decisions and assumptions in a large, complex project. The larger your project is, the more important it is to have automated checks that make sure nothing has changed!
+> Pode parecer improvável agora que você possa introduzir uma mudança na lógica de negócio sem perceber, mas fica muito mais difícil acompanhar as decisões e suposições em um projeto grande e complexo. Quanto maior o seu projeto, mais importante é ter verificações automatizadas que garantem que nada mudou!
 
-To write a unit test that will verify the logic in the `TodoItemService`, create a new class in your test project:
+Para escrever um teste unitário que irá verificar a lógica no `TodoItemService`, crie uma nova classe no seu projeto de teste:
 
 **AspNetCoreTodo.UnitTests/TodoItemServiceShould.cs**
 
@@ -100,13 +100,13 @@ namespace AspNetCoreTodo.UnitTests
 }
 ```
 
-> There are many different ways of naming and organizing tests, all with different pros and cons. I like postfixing my test classes with `Should` to create a readable sentence with the test method name, but feel free to use your own style!
+> Existem muitas maneiras diferentes de nomear e organizar testes, todos com diferentes prós e contras. Eu gosto de usar postfixing em minhas classes de teste com `Should` para criar uma frase legível com o nome do método de teste, mas sinta-se livre para usar seu próprio estilo!
 
-The `[Fact]` attribute comes from the xUnit.NET package, and it marks this method as a test method.
+O atributo `[Fact]` vem do pacote Nuget xUnit.NET e marca este método como um método de teste.
 
-The `TodoItemService` requires an `ApplicationDbContext`, which is normally connected to your database. You won't want to use that for tests. Instead, you can use Entity Framework Core's in-memory database provider in your test code. Since the entire database exists in memory, it's wiped out every time the test is restarted. And, since it's a proper Entity Framework Core provider, the `TodoItemService` won't know the difference!
+O `TodoItemService` requer um `ApplicationDbContext`, que normalmente está conectado ao seu banco de dados. Você não vai querer usar isso para testes. Em vez disso, você pode usar o provider do Entity Framework Core's in-memory database em seu código de teste. Como todo o banco de dados existe na memória, ele é apagado toda vez que o teste é reiniciado. E, como é um provider do Entity Framework Core, o `TodoItemService` não saberá a diferença!
 
-Use a `DbContextOptionsBuilder` to configure the in-memory database provider, and then make a call to `AddItemAsync()`:
+Use um `DbContextOptionsBuilder` para configurar o in-memory database provider e, em seguida faça uma chamada para `AddItemAsync()`:
 
 ```csharp
 var options = new DbContextOptionsBuilder<ApplicationDbContext>()
@@ -130,9 +130,9 @@ using (var context = new ApplicationDbContext(options))
 }
 ```
 
-The last line creates a new to-do item called `Testing?`, and tells the service to save it to the (in-memory) database.
+A última linha cria um novo to-do item chamado `Testing?`, E diz ao serviço para salvá-lo no banco de dados (in-memory).
 
-To verify that the business logic ran correctly, write some more code below the existing `using` block:
+Para verificar se a lógica de negócios foi executada corretamente, escreva mais alguns códigos abaixo do bloco `using` existente:
 
 ```csharp
 // Use a separate context to read data back from the "DB"
@@ -152,21 +152,21 @@ using (var context = new ApplicationDbContext(options))
 }
 ```
 
-The first assertion is a sanity check: there should never be more than one item saved to the in-memory database. Assuming that's true, the test retrieves the saved item with `FirstAsync` and then asserts that the properties are set to the expected values.
+A primeira assertion é uma verificação de integridade: nunca deve haver mais de um item salvo no in-memory database. Supondo que isso seja verdade, o teste recupera o item salvo com "FirstAsync" e, em seguida, afirma que as propriedades estão definidas para os valores esperados.
 
-> Both unit and integration tests typically follow the AAA (Arrange-Act-Assert) pattern: objects and data are set up first, then some action is performed, and finally the test checks (asserts) that the expected behavior occurred.
+> Tanto os testtes unitários quanto os de integração geralmente seguem o padrão AAA (Arrange-Act-Assert): objetos e dados são configurados primeiro, depois alguma ação é executada e, finalmente, o teste verifica (confirma) que o comportamento esperado ocorreu.
 
-Asserting a datetime value is a little tricky, since comparing two dates for equality will fail if even the millisecond components are different. Instead, the test checks that the `DueAt` value is less than a second away from the expected value.
+Fazer Asserting em valores de data e hora é um pouco complicado, uma vez que comparar duas datas para igualdade falhará se até mesmo os milissegundos forem diferentes. Em vez disso, o teste verifica se o valor de `DueAt` está a menos de um segundo do valor esperado.
 
-### Run the test
+### Executando o teste
 
-On the terminal, run this command (make sure you're still in the `AspNetCoreTodo.UnitTests` directory):
+No terminal, execute este comando (verifique se você ainda está no diretório `AspNetCoreTodo.UnitTests`):
 
 ```
 dotnet test
 ```
 
-The `test` command scans the current project for tests (marked with `[Fact]` attributes in this case), and runs all the tests it finds. You'll see output similar to:
+O comando `test` examina o projeto atual para testes (marcado com atributos `[Fact]` neste caso), e executa todos os testes que encontrar. Você verá uma saída semelhante a:
 
 ```
 Starting test execution, please wait...
@@ -180,8 +180,8 @@ Test Run Successful.
 Test execution time: 1.9074 Seconds
 ```
 
-You now have one test providing test coverage of the `TodoItemService`. As an extra challenge, try writing unit tests that ensure:
+Agora você tem um teste fornecendo cobertura de teste do `TodoItemService`. Como um desafio extra, tente escrever testes de unidade que garantam:
 
-* The `MarkDoneAsync()` method returns false if it's passed an ID that doesn't exist
-* The `MarkDoneAsync()` method returns true when it makes a valid item as complete
-* The `GetIncompleteItemsAsync()` method returns only the items owned by a particular user
+* O método `MarkDoneAsync()` retorna false se for passado um ID que não existe
+* O método `MarkDoneAsync()` retorna true quando um item válido é marcado como completo
+* O método `GetIncompleteItemsAsync()` retorna apenas os itens pertencentes a um usuário em particular
