@@ -2,7 +2,7 @@
 
 Roles são uma abordagem comum para lidar com autorização e permissões em uma aplicação web. Por exemplo, é comum criar uma role de Administrador que ofereça aos usuários administradores mais permissões ou poder do que aos usuários normais.
 
-Neste projeto, você adicionará uma página chamada "Gerenciar Usuários" que somente os administradores poderão ver. Se usuários normais tentarem acessá-la, verão um erro.
+Neste projeto, você adicionará uma página chamada "Gerenciar Usuários" que somente os administradores conseguem visualizar. Se usuários normais tentarem acessá-la, será apresentado um erro.
 
 ### Adicionando a página "Gerenciar Usuários"
 
