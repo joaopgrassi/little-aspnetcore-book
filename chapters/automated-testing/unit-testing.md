@@ -6,7 +6,7 @@ Por exemplo, a classe `TodoController` tem duas dependências: uma `ITodoItemSer
 
 Quando a aplicação é executada normalmente, o contêiner de serviço do ASP.NET Core e o sistema de injeção de dependência injetam cada um desses objetos no dependency graph quando o `TodoController` ou o` TodoItemService` é criado.
 
-Quando você escreve um teste unitário você precisa manipular o dependency graph sozinho. É típico fornecer versões somente de teste ou "mockadas" dessas dependências. Isso significa que você pode isolar apenas a lógica da classe ou método que está testando. (Isto é importante! Se você está testando um serviço, você não quer **também** acidentalmente gravar dados no seu banco de dados.)
+Quando você escreve um teste unitário, você precisa manipular o dependency graph sozinho. É típico fornecer versões somente de teste ou "mockadas" dessas dependências. Isso significa que você pode isolar apenas a lógica da classe ou método que está testando. (Isto é importante! Se você está testando um serviço, você não quer **também** acidentalmente gravar dados no seu banco de dados.)
 
 ### Criando um projeto de testes unitários
 
