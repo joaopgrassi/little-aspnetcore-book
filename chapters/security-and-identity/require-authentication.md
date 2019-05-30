@@ -22,4 +22,4 @@ using Microsoft.AspNetCore.Authorization;
 
 Rode a aplicação e tente acessar `/ todo` sem estar logado. Você será redirecionado para a página de login automaticamente.
 
-> O atributo `[Authorize]` está fazendo uma verificação de autenticação aqu e não uma verificação de autorização (apesar do nome do atributo). Posteriormente, você usará o atributo para verificar **a autenticação e a autorização**.
+> O atributo `[Authorize]` está fazendo uma verificação de autenticação aqui e não uma verificação de autorização (apesar do nome do atributo). Posteriormente, você usará o atributo para verificar **a autenticação e a autorização**.
