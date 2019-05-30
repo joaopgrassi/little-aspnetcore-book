@@ -2,7 +2,7 @@
 
 Em comparação com testes unitários, os testes de integração são muito maiores em escopo e exercitam toda a pilha da aplicação. Em vez de isolar uma classe ou método, os testes de integração asseguram que todos os componentes do seu aplicativo estejam funcionando adequadamente: roteamento, controllers, services, banco de dados e assim por diante.
 
-Os testes de integração são mais lentos e mais envolvidos do que os testes unitários, portanto, é comum que um projeto tenha muitos testes unitários pequenos, mas apenas um punhado de testes de integração.
+Os testes de integração são mais lentos e envolve mais do que os testes unitários, portanto, é comum que um projeto tenha muitos testes unitários pequenos, mas apenas um projeto de teste de integração.
 
 Para testar a pilha inteira (incluindo o roteamento dos controllers), os testes de integração geralmente fazem chamadas HTTP para a aplicação da mesma forma que um navegador Web faria.
 
