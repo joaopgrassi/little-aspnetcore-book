@@ -8,7 +8,7 @@ Quando a aplicação é executada normalmente, o contêiner de serviço do ASP.N
 
 Quando você escreve um teste unitário, você precisa manipular o dependency graph sozinho. É típico fornecer versões somente de teste ou "mockadas" dessas dependências. Isso significa que você pode isolar apenas a lógica da classe ou método que está testando. (Isto é importante! Se você está testando um serviço, você não quer **também** acidentalmente gravar dados no seu banco de dados.)
 
-### Criando um projeto de testes unitários
+### Criando um projeto de testes
 
 É uma boa prática criar um projeto separado para seus testes, para que eles sejam mantidos separados do código da aplicação. O novo projeto de teste deve estar em um diretório próximo (não dentro) do diretório do seu projeto principal.
 
