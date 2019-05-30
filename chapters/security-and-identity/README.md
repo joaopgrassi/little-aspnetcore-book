@@ -10,7 +10,7 @@ Segurança é uma das principais preocupações de qualquer aplicação ou API w
 
 ASP.NET Core pode ajudar a tornar tudo isso mais fácil de implementar. Os dois primeiros (proteção contra injeção de SQL e ataques cross-domain) já estão incorporados e você pode adicionar algumas linhas de código para habilitar o suporte a HTTPS. Este capítulo focará principalmente nos aspectos de **identity** da segurança: manipulação de contas de usuário, autenticação (logging in) de seus usuários com segurança e tomada de decisões de autorização após a autenticação.
 
-> Autenticação e autorização são ideias distintas que são frequentemente confundidas. **Autenticação** lida com o fato de um usuário estar logado, enquanto **autorização** lida com o que ele tem permissão para fazer *depois de* fazer login. Você pode pensar na autenticação como a pergunta "Eu sei quem este usuário é?" enquanto a autorização pergunta "Este usuário tem permissão para fazer *X*?"
+> Autenticação e autorização são ideias distintas que são frequentemente confundidas. **Autenticação** lida com o fato de um usuário estar logado, enquanto **autorização** lida com o que ele tem permissão para fazer *depois de* fazer login. Você pode pensar na autenticação utilizando a seguinte pergunta: "Eu conheço este usuário?", e para a autorização seria "Este usuário tem permissão para fazer *X*?
 
 O modelo MVC + Individual Authentication que você usou para estruturar o projeto inclui várias classes baseadas no ASP.NET Core Identity, um sistema de autenticação e identidade que faz parte do ASP.NET Core. E também já adiciona a capacidade de efetuar login com um email e uma senha.
 
