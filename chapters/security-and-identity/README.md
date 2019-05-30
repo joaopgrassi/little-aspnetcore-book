@@ -2,7 +2,7 @@
 
 Segurança é uma das principais preocupações de qualquer aplicação ou API web moderna. É importante manter os seus usuarios ou os dados de seus clientes seguros e fora do alcance dos invasores. Este é um tópico muito abrangente, envolvendo itens como:
 
-* Sanitização de entrada de dados para evitar ataques de injeção de SQL
+* Remover os dados sensiveis de entrada para evitar ataques de injeção de SQL
 * Prevenção de ataques cross-domain (CSRF) em forms
 * Utilização de HTTPS (criptografia de conexão) para que os dados não possam ser interceptados enquanto trafegam pela Internet
 * Disponibilização aos usuários uma maneira de sign in com segurança com senha ou outras credenciais
