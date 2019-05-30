@@ -1,54 +1,54 @@
-## Deploy with Docker
+## Deploy para o Docker
 
-If you aren't using a platform like Azure, containerization technologies like Docker can make it easy to deploy web applications to your own servers. Instead of spending time configuring a server with the dependencies it needs to run your app, copying files, and restarting processes, you can simply create a Docker image that describes everything your app needs to run, and spin it up as a container on any Docker host.
+Se você não estiver usando uma plataforma como o Azure, tecnologias de contêiner como o Docker podem facilitar a implantação de aplicações web em seus próprios servidores. Em vez de gastar tempo configurando um servidor com as dependências necessárias para executar a aplicação, copiar arquivos e reiniciar processos, basta criar uma imagem do Docker que descreva tudo o que o sua aplicação precisa para rodar e transformá-la em um contêiner em qualquer host Docker.
 
-Docker can make scaling your app across multiple servers easier, too. Once you have an image, using it to create 1 container is the same process as creating 100 containers.
+O Docker também pode facilitar o dimensionamento de sua aplicação em vários servidores. Depois de ter uma imagem, usá-la para criar um contêiner é o mesmo processo que criar 100 contêineres.
 
-Before you start, you need the Docker CLI installed on your development machine. Search for "get docker for (mac/windows/linux)" and follow the instructions on the official Docker website. You can verify that it's installed correctly with
+Antes de começar, você precisa do Docker CLI instalado em sua máquina de desenvolvimento. Procure por "obter docker para (mac/windows/linux)" e siga as instruções no site oficial do Docker. Você pode verificar se o Docker está instalado corretamente com
 
 ```
 docker version
 ```
 
-### Add a Dockerfile
+### Adicionando um Dockerfile
 
-The first thing you'll need is a Dockerfile, which is like a recipe that tells Docker what your application needs to build and run.
+A primeira coisa que você precisa é de um Dockerfile, que é como uma receita que informa ao Docker o que sua aplicação precisa para compilar e executar.
 
-Create a file called `Dockerfile` (no extension) in the root, top-level `AspNetCoreTodo` folder. Open it in your favorite editor. Write the following line:
+Crie um arquivo chamado `Dockerfile` (sem extensão) no diretório raiz `AspNetCoreTodo`. Abra no seu editor favorito. Escreva a seguinte linha:
 
 ```dockerfile
 FROM microsoft/dotnet:2.0-sdk AS build
 ```
 
-This tells Docker to use the `microsoft/dotnet:2.0-sdk` image as a starting point. This image is published by Microsoft and contains the tools and dependencies you need to execute `dotnet build` and compile your application. By using this pre-built image as a starting point, Docker can optimize the image produced for your app and keep it small.
+Isso diz ao Docker para usar a imagem `microsoft/dotnet:2.0-sdk` como ponto de partida. Esta imagem é publicada pela Microsoft e contém as ferramentas e dependências necessárias para executar `dotnet build` e compilar sua aplicação. Ao usar essa imagem pré-construída como ponto de partida, o Docker pode otimizar a imagem produzida para sua aplicação e mantê-la pequena.
 
-Next, add this line:
+Em seguida, adicione esta linha:
 
 ```dockerfile
 COPY AspNetCoreTodo/*.csproj ./app/AspNetCoreTodo/
 ```
 
-The `COPY` command copies the `.csproj` project file into the image at the path `/app/AspNetCoreTodo/`. Note that none of the actual code (`.cs` files) have been copied into the image yet. You'll see why in a minute.
+O comando `COPY` copia o arquivo de projeto `.csproj` para a imagem no caminho `/app/AspNetCoreTodo/`. Note que nenhum dos códigos atuais (arquivos `.cs`) foram copiados para a imagem ainda. Você verá porque em um minuto.
 
 ```dockerfile
 WORKDIR /app/AspNetCoreTodo
 RUN dotnet restore
 ```
 
-`WORKDIR` is the Docker equivalent of `cd`. This means any commands executed next will run from inside the `/app/AspNetCoreTodo` directory that the `COPY` command created in the last step.
+`WORKDIR` é o equivalente do comando `cd` no Docker. Isto significa que qualquer comando executado a seguir será executado dentro do diretório `/app/AspNetCoreTodo` que o comando` COPY` criou na última etapa.
 
-Running the `dotnet restore` command restores the NuGet packages that the application needs, defined in the `.csproj` file. By restoring packages inside the image **before** adding the rest of the code, Docker is able to cache the restored packages. Then, if you make code changes (but don't change the packages defined in the project file), rebuilding the Docker image will be super fast.
+Executar o comando `dotnet restore` restaura os pacotes NuGet que a aplicação precisa, definidos no arquivo `.csproj`. Ao restaurar pacotes dentro da imagem **antes** de adicionar o restante do código, o Docker pode armazenar em cache os pacotes restaurados. Então, se você fizer alterações de código (mas não alterar os pacotes definidos no arquivo de projeto), a reconstrução da imagem do Docker será super rápida.
 
-Now it's time to copy the rest of the code and compile the application:
+Agora é hora de copiar o resto do código e compilar a aplicação:
 
 ```dockerfile
 COPY AspNetCoreTodo/. ./AspNetCoreTodo/
 RUN dotnet publish -o out /p:PublishWithAspNetCoreTargetManifest="false"
 ```
 
-The `dotnet publish` command compiles the project, and the `-o out` flag puts the compiled files in a directory called `out`.
+O comando `dotnet publish` compila o projeto, e o sinalizador `-o out` coloca os arquivos compilados em um diretório chamado `out`.
 
-These compiled files will be used to run the application with the final few commands:
+Esses arquivos compilados serão usados ​​para executar a aplicação com os poucos comandos finais:
 
 ```dockerfile
 FROM microsoft/dotnet:2.0-runtime AS runtime
@@ -58,11 +58,11 @@ COPY --from=build /app/AspNetCoreTodo/out ./
 ENTRYPOINT ["dotnet", "AspNetCoreTodo.dll"]
 ```
 
-The `FROM` command is used again to select a smaller image that only has the dependencies needed to run the application. The `ENV` command is used to set environment variables in the container, and the `ASPNETCORE_URLS` environment variable tells ASP.NET Core which network interface and port it should bind to (in this case, port 80).
+O comando `FROM` é usado novamente para selecionar uma imagem menor que tenha apenas as dependências necessárias para executar a aplicação. O comando `ENV` é usado para definir variáveis ​​de ambiente no container, e a variável de ambiente `ASPNETCORE_URLS` diz ao ASP.NET Core qual interface de rede e porta ele deve ligar (neste caso, porta 80).
 
-The `ENTRYPOINT` command lets Docker know that the container should be started as an executable by running `dotnet AspNetCoreTodo.dll`. This tells `dotnet` to start up your application from the compiled file created by `dotnet publish` earlier. (When you do `dotnet run` during development, you're accomplishing the same thing in one step.)
+O comando `ENTRYPOINT` permite ao Docker saber que o container deve ser iniciado como um executável executando o `dotnet AspNetCoreTodo.dll`. Isto diz `dotnet` para iniciar sua aplicação a partir do arquivo compilado criado pelo `dotnet publish` anteriormente. (Quando você executa `dotnet run` durante o desenvolvimento, você está realizando a mesma coisa em uma única etapa).
 
-The full Dockerfile looks like this:
+O Dockerfile completo é assim:
 
 **Dockerfile**
 
@@ -82,39 +82,39 @@ COPY --from=build /app/AspNetCoreTodo/out ./
 ENTRYPOINT ["dotnet", "AspNetCoreTodo.dll"]
 ```
 
-### Create an image
+### Criando uma imagem
 
-Make sure the Dockerfile is saved, and then use `docker build` to create an image:
+Verifique se o Dockerfile está salvo e, em seguida, use `docker build` para criar uma imagem:
 
 ```
 docker build -t aspnetcoretodo .
 ```
 
-Don't miss the trailing period! That tells Docker to look for a Dockerfile in the current directory.
+Não esqueça o ponto final! Isso diz ao Docker para procurar por um Dockerfile no diretório atual.
 
-Once the image is created, you can run `docker images` to to list all the images available on your local machine. To test it out in a container, run
+Depois que a imagem é criada, você pode executar `docker images` para listar todas as imagens disponíveis em sua máquina local. Para testá-la em um contêiner, execute
 
 ```
 docker run --name aspnetcoretodo_sample --rm -it -p 8080:80 aspnetcoretodo
 ```
 
-The `-it` flag tells Docker to run the container in interactive mode (outputting to the terminal, as opposed to running in the background). When you want to stop the container, press Control-C.
+O sinalizador `-it` diz ao Docker para executar o container no modo interativo (saída para o terminal, ao invés de rodar em background). Quando você quiser parar o contêiner, pressione Ctrl-C.
 
-Remember the `ASPNETCORE_URLS` variable that told ASP.NET Core to listen on port 80? The `-p 8080:80` option tells Docker to map port 8080 on *your* machine to the *container's* port 80. Open up your browser and navigate to http://localhost:8080 to see the application running in the container!
+Lembra-se da variável `ASPNETCORE_URLS` que disse ao ASP.NET Core para escutar na porta 80? A opção `-p 8080:80` diz ao Docker para mapear a porta 8080 na *sua* máquina para a porta 80 do *container*. Abra seu navegador e navegue para http://localhost:8080 para ver a aplicação sendo executada no container!
 
-### Set up Nginx
+### Configurando o Nginx
 
-At the beginning of this chapter, I mentioned that you should use a reverse proxy like Nginx to proxy requests to Kestrel. You can use Docker for this, too.
+No início deste capítulo, mencionei que você deve usar um proxy reverso como Nginx para fazer requisições de proxy ao Kestrel. Você também pode usar o Docker para isso.
 
-The overall architecture will consist of two containers: an Nginx container listening on port 80, forwarding requests to the container you just built that hosts your application with Kestrel.
+A arquitetura geral consistirá em dois contêineres: um contêiner Nginx que atende na porta 80, encaminhando requisições para o contêiner recém-construído que hospeda sua aplicação com o Kestrel.
 
-The Nginx container needs its own Dockerfile. To keep it from conflicting with the Dockerfile you just created, make a new directory in the web application root:
+O contêiner Nginx precisa de seu próprio Dockerfile. Para evitar que ele entre em conflito com o Dockerfile que você acabou de criar, crie um novo diretório na raiz da aplicação web:
 
 ```
 mkdir nginx
 ```
 
-Create a new Dockerfile and add these lines:
+Crie um novo Dockerfile e adicione estas linhas:
 
 **nginx/Dockerfile**
 
@@ -123,7 +123,7 @@ FROM nginx
 COPY nginx.conf /etc/nginx/nginx.conf
 ```
 
-Next, create an `nginx.conf` file:
+Em seguida, crie um arquivo `nginx.conf`:
 
 **nginx/nginx.conf**
 
@@ -145,15 +145,15 @@ http {
 }
 ```
 
-This configuration file tells Nginx to proxy incoming requests to `http://kestrel:80`. (You'll see why `kestrel` works as a hostname in a moment.)
+Este arquivo de configuração informa ao Nginx para fazer o proxy das requisições recebidas em `http://kestrel:80`. (Já já você verá porque o `kestrel` funciona como um hostname.)
 
-> When you make deploy your application to a production environment, you should add the `server_name` directive and validate and restrict the host header to known good values. For more information, see:
+> Ao implementar sua aplicação em um ambiente de produção, você deve adicionar a diretiva `server_name` e validar e restringir o header do host a valores válidos. Para mais informações, veja:
 
 > https://github.com/aspnet/Announcements/issues/295
 
-### Set up Docker Compose
+### Configurando o Docker Compose
 
-There's one more file to create. Up in the root directory, create `docker-compose.yml`:
+Há mais um arquivo para criar. No diretório raiz, crie o `docker-compose.yml`:
 
 **docker-compose.yml**
 
@@ -170,18 +170,18 @@ kestrel:
         - "80"
 ```
 
-Docker Compose is a tool that helps you create and run multi-container applications. This configuration file defines two containers: `nginx` from the `./nginx/Dockerfile` recipe, and `kestrel` from the `./Dockerfile` recipe. The containers are explicitly linked together so they can communicate.
+O Docker Compose é uma ferramenta que ajuda a criar e executar aplicações com vários contêineres. Este arquivo de configuração define dois containers: `nginx` a partir do `./Nginx/Dockerfile` e `kestrel` a partir do`./Dockerfile`. Os contêineres são explicitamente vinculados entre si para que possam se comunicar.
 
-You can try spinning up the entire multi-container application by running:
+Você pode tentar rodar toda a aplicação multi-contêiner executando:
 
 ```
 docker-compose up
 ```
 
-Try opening a browser and navigating to http://localhost (port 80, not 8080!). Nginx is listening on port 80 (the default HTTP port) and proxying requests to your ASP.NET Core application hosted by Kestrel.
+Tente abrir um navegador e navegue até http://localhost (porta 80, não 8080!). O Nginx está escutando na porta 80 (a porta HTTP padrão) e enviando requisições de proxy para sua aplicação ASP.NET Core hospedada pelo Kestrel.
 
-### Set up a Docker server
+### Configurando um servidor Docker
 
-Specific setup instructions are outside the scope of this book, but any modern flavor of Linux (like Ubuntu) can be used to set up a Docker host. For example, you could create a virtual machine with Amazon EC2, and install the Docker service. You can search for "amazon ec2 set up docker" (for example) for instructions.
+Instruções específicas de configuração estão fora do escopo deste livro, mas qualquer versão moderna do Linux (como o Ubuntu) pode ser utilizado para configurar um host do Docker. Por exemplo, você pode criar uma máquina virtual com o Amazon EC2 e instalar o serviço Docker. Você pode procurar por "amazon ec2 set up docker" (por exemplo) para obter instruções.
 
-I like using DigitalOcean because they've made it really easy to get started. DigitalOcean has both a pre-built Docker virtual machine, and in-depth tutorials for getting Docker up and running (search for "digitalocean docker").
+Eu gosto de usar a DigitalOcean porque eles tornaram realmente fácil começar. A DigitalOcean tem uma máquina virtual Docker pré-construída e tutoriais detalhados para colocar o Docker em funcionamento (procure por "docker digitalocean").
