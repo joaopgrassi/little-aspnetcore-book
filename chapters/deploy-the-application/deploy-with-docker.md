@@ -182,6 +182,6 @@ Tente abrir um navegador e navegue até http://localhost (porta 80, não 8080!).
 
 ### Configurando um servidor Docker
 
-Instruções específicas de configuração estão fora do escopo deste livro, mas qualquer versão moderna do Linux (como o Ubuntu) pode ser usada para configurar um host do Docker. Por exemplo, você pode criar uma máquina virtual com o Amazon EC2 e instalar o serviço Docker. Você pode procurar por "amazon ec2 set up docker" (por exemplo) para obter instruções.
+Instruções específicas de configuração estão fora do escopo deste livro, mas qualquer versão moderna do Linux (como o Ubuntu) pode ser utilizado para configurar um host do Docker. Por exemplo, você pode criar uma máquina virtual com o Amazon EC2 e instalar o serviço Docker. Você pode procurar por "amazon ec2 set up docker" (por exemplo) para obter instruções.
 
 Eu gosto de usar o DigitalOcean porque eles tornaram realmente fácil começar. A DigitalOcean tem uma máquina virtual Docker pré-construída e tutoriais detalhados para colocar o Docker em funcionamento (procure por "docker digitalocean").
