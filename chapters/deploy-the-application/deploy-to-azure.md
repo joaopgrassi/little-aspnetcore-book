@@ -1,6 +1,6 @@
 ## Deploy para o Azure
 
-O deploy da aplicação ASP.NET Core no Azure leva apenas alguns passos. Você pode fazê-lo através do portal Web do Azure ou na linha de comando usando a CLI do Azure. Eu cobrirei o último.
+O deploy da aplicação ASP.NET Core no Azure leva apenas alguns passos. Você pode fazê-lo através do portal Web do Azure ou na linha de comando usando a CLI do Azure. Eu cobrirei o último mais para frente.
 
 ### O que você precisará
 
