@@ -18,6 +18,6 @@ O modelo MVC + Individual Authentication que você usou para estruturar o projet
 
 O ASP.NET Core Identity é o sistema de identidade fornecido com o ASP.NET Core. Como tudo no ecossistema do ASP.NET Core, é um conjunto de pacotes NuGet que podem ser instalados em qualquer projeto (e já estão incluídos se você usar o modelo padrão).
 
-O ASP.NET Core Identity cuida do armazenamento de contas de usuário, hashing e armazenamento de senhas e gerenciamento de roles para usuários. Ele suporta login por e-mail/senha, autenticação de múltiplos fatores, login social com provedores como Google e Facebook, bem como conexão a outros serviços usando protocolos como OAuth 2.0 e OpenID Connect.
+O ASP.NET Core Identity cuida do armazenamento de contas de usuário, hashing e armazenamento de senhas e gerenciamento de funções (roles) para usuários. Ele suporta login por e-mail/senha, autenticação de múltiplos fatores, login social com provedores como Google e Facebook, bem como conexão a outros serviços usando protocolos como OAuth 2.0 e OpenID Connect.
 
 As views Register e Login fornecidas com o modelo MVC + Individual Authentication já aproveitam o ASP.NET Core Identity e já funcionam! Tente registrar-se para uma conta e fazer login.
