@@ -158,7 +158,7 @@ A primeira assertion é uma verificação de integridade: nunca deve haver mais 
 
 Fazer Asserting em valores de data e hora é um pouco complicado, uma vez que comparar duas datas para igualdade falhará se até mesmo os milissegundos forem diferentes. Em vez disso, o teste verifica se o valor de `DueAt` está a menos de um segundo do valor esperado.
 
-### Rode o teste
+### Executando o teste
 
 No terminal, execute este comando (verifique se você ainda está no diretório `AspNetCoreTodo.UnitTests`):
 
