@@ -1,12 +1,12 @@
-## Authorization with roles
+## Autorização (authorization) com roles
 
-Roles are a common approach to handling authorization and permissions in a web application. For example, it's common to create an Administrator role that gives admin users more permissions or power than normal users.
+Roles são uma abordagem comum para lidar com autorização e permissões em uma aplicação web. Por exemplo, é comum criar uma role de Administrador que ofereça aos usuários administradores mais permissões ou poder do que aos usuários normais.
 
-In this project, you'll add a Manage Users page that only administrators can see. If normal users try to access it, they'll see an error.
+Neste projeto, você adicionará uma página chamada "Gerenciar Usuários" que somente os administradores conseguem visualizar. Se usuários normais tentarem acessá-la, será apresentado um erro.
 
-### Add a Manage Users page
+### Adicionando a página "Gerenciar Usuários"
 
-First, create a new controller:
+Primeiro, crie um novo controller:
 
 **Controllers/ManageUsersController.cs**
 
@@ -55,9 +55,9 @@ namespace AspNetCoreTodo.Controllers
 }
 ```
 
-Setting the `Roles` property on the `[Authorize]` attribute will ensure that the user must be logged in **and** assigned the Administrator role in order to view the page.
+Definir a propriedade `Roles` no atributo `[Authorize]` garantirá que o usuário esteja logado **e** tenha a role Administrador para visualizar a página.
 
-Next, create a view model:
+Em seguida, crie uma view model:
 
 **Models/ManageUsersViewModel.cs**
 
@@ -75,7 +75,7 @@ namespace AspNetCoreTodo.Models
 }
 ```
 
-Finally, create a `Views/ManageUsers` folder and a view for the `Index` action:
+Por último, crie o diretório `Views/ManageUsers` e a view para a action `Index`:
 
 **Views/ManageUsers/Index.cshtml**
 
@@ -127,20 +127,19 @@ Finally, create a `Views/ManageUsers` folder and a view for the `Index` action:
 </table>
 ```
 
-Start up the application and try to access the `/ManageUsers` route while logged in as a normal user. You'll see this access denied page:
+Rode a aplicação e tente acessar a rota `/ManageUsers` logado com um usuário normal. Você verá a página de acesso negado:
 
-![Access denied error](access-denied.png)
+![Erro de acesso negado](access-denied.png)
 
-That's because users aren't assigned the Administrator role automatically.
+Isso ocorre porque ainda não temos nenhum usuário administrador.
 
+### Criando uma conta de administrator para testes
 
-### Create a test administrator account
+Por razões óbvias de segurança, nenhum usuário consegue registrar uma nova conta de administrador. Na verdade, o papel de administrador nem existe no banco de dados ainda!
 
-For obvious security reasons, it isn't possible for anyone to register a new administrator account themselves. In fact, the Administrator role doesn't even exist in the database yet!
+Você pode adicionar a role Administrador mais uma conta de administrador de teste ao banco de dados na primeira vez que o aplicativo for iniciado. A adição de dados pela primeira vez ao banco de dados é chamada de inicialização ou **seeding** do banco de dados.
 
-You can add the Administrator role plus a test administrator account to the database the first time the application starts up. Adding first-time data to the database is called initializing or **seeding** the database.
-
-Create a new class in the root of the project called `SeedData`:
+Crie uma nova class na raiz do projeto chamada `SeedData`:
 
 **SeedData.cs**
 
@@ -172,10 +171,9 @@ namespace AspNetCoreTodo
 }
 ```
 
-The `InitializeAsync()` method uses an `IServiceProvider` (the collection of services that is set up in the `Startup.ConfigureServices()` method) to get the `RoleManager` and `UserManager` from ASP.NET Core Identity.
+O método `InitializeAsync()` usa um `IServiceProvider` (a coleção de serviços que é configurada no método `Startup.ConfigureServices()`) para obter o `RoleManager` e o `UserManager` do ASP.NET Core Identity.
 
-
-Add two more methods below the `InitializeAsync()` method. First, the `EnsureRolesAsync()` method:
+Adicione mais dois métodos abaixo do método `InitializeAsync()`. Primeiro, o método `EnsureRolesAsync()`:
 
 ```csharp
 private static async Task EnsureRolesAsync(
@@ -191,7 +189,7 @@ private static async Task EnsureRolesAsync(
 }
 ```
 
-This method checks to see if an `Administrator` role exists in the database. If not, it creates one. Instead of repeatedly typing the string `"Administrator"`, create a small class called `Constants` to hold the value:
+Este método verifica se existe uma role `Administrador` no banco de dados. Se não, cria uma. Em vez de digitar repetidamente a string `"Administrator"`, crie uma pequena classe chamada "Constants" para conter o valor:
 
 **Constants.cs**
 
@@ -205,9 +203,9 @@ namespace AspNetCoreTodo
 }
 ```
 
-> If you want, you can update the `ManageUsersController` to use this constant value as well.
+> Se você quiser, você pode atualizar o `ManageUsersController` para usar este valor constante também.
 
-Next, write the `EnsureTestAdminAsync()` method:
+Em seguida, escreva o método `EnsureTestAdminAsync()`:
 
 **SeedData.cs**
 
@@ -233,9 +231,9 @@ private static async Task EnsureTestAdminAsync(
 }
 ```
 
-If there isn't already a user with the username `admin@todo.local` in the database, this method will create one and assign a temporary password. After you log in for the first time, you should change the account's password to something secure!
+Se já não houver um usuário com o nome de usuário `admin@todo.local` no banco de dados, esse método criará um e atribuirá uma senha temporária. Depois de fazer o login pela primeira vez, você deve alterar a senha da conta para uma senha segura!
 
-Next, you need to tell your application to run this logic when it starts up. Modify `Program.cs` and update `Main()` to call a new method, `InitializeDatabase()`:
+Em seguida, você precisa dizer a sua aplicação para executar essa lógica quando for iniciada. Modifique a classe `Program.cs` e atualize o método `Main()` para chamar o novo método `Initialize Database()` que você irá criar:
 
 **Program.cs**
 
@@ -248,7 +246,7 @@ public static void Main(string[] args)
 }
 ```
 
-Then, add the new method to the class below `Main()`:
+Em seguida, adicione o novo método abaixo de `Main()`:
 
 ```csharp
 private static void InitializeDatabase(IWebHost host)
@@ -271,25 +269,25 @@ private static void InitializeDatabase(IWebHost host)
 }
 ```
 
-Add this `using` statement to the top of the file:
+Adicione um novo comando `using` ao início do arquivo:
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
 ```
 
-This method gets the service collection that `SeedData.InitializeAsync()` needs and then runs the method to seed the database. If something goes wrong, an error is logged.
+Esse método obtém a coleção de serviços que `SeedData.InitializeAsync()` precisa e, em seguida, executa o método de seed do banco de dados. Se algo der errado, um erro será registrado.
 
-> Because `InitializeAsync()` returns a `Task`, the `Wait()` method must be used to make sure it finishes before the application starts up. You'd normally use `await` for this, but for technical reasons you can't use `await` in the `Program` class. This is a rare exception. You should use `await` everywhere else!
+> Como `InitializeAsync()` retorna uma `Task`, o método `Wait()` deve ser usado para garantir que seja finalizado antes que a aplicação seja inicializada. Você normalmente usaria `await` para isso, mas por razões técnicas você não pode usar `await` na classe `Program`. Esta é uma exceção rara. Você deve usar o `await` em qualquer outro lugar!
 
-When you start the application next, the `admin@todo.local` account will be created and assigned the Administrator role. Try logging in with this account, and navigating to `http://localhost:5000/ManageUsers`. You'll see a list of all users registered for the application.
+Quando você iniciar a aplicação, a conta `admin@todo.local` será criada e atribuída à role Administrador. Tente fazer login com essa conta e navegue até `http://localhost:5000/ManageUsers`. Você verá uma lista de todos os usuários registrados na aplicação.
 
-> As an extra challenge, try adding more administration features to this page. For example, you could add a button that gives an administrator the ability to delete a user account.
+> Como um desafio extra, tente adicionar mais recursos de administração a esta página. Por exemplo, você pode adicionar um botão que permita ao administrador excluir uma conta de usuário.
 
-### Check for authorization in a view
+### Verificando autorização (authorization) em uma view
 
-The `[Authorize]` attribute makes it easy to perform an authorization check in a controller or action method, but what if you need to check authorization in a view? For example, it would be nice to display a "Manage users" link in the navigation bar if the logged-in user is an administrator.
+O atributo `[Authorize]` facilita a execução de uma verificação de autorização em um controller ou action method, mas e se você precisar verificar a autorização em uma view? Por exemplo, seria bom exibir um link "Gerenciar usuários" na barra de navegação se o usuário logado for um administrador.
 
-You can inject the `UserManager` directly into a view to do these types of authorization checks. To keep your views clean and organized, create a new partial view that will add an item to the navbar in the layout:
+Você pode injetar o `UserManager` diretamente em uma view para realizar esses tipos de verificações. Para manter suas views limpas e organizadas, crie uma nova partial view que adicionará um item à barra de navegação no layout:
 
 **Views/Shared/_AdminActionsPartial.cshtml**
 
@@ -323,11 +321,11 @@ You can inject the `UserManager` directly into a view to do these types of autho
 }
 ```
 
-> It's conventional to name shared partial views starting with an `_` underscore, but it's not required.
+> É convencional nomear partial views compartilhadas começando com um sublinhado `_`, mas não é obrigatório.
 
-This partial view first uses the `SignInManager` to quickly determine whether the user is logged in. If they aren't, the rest of the view code can be skipped. If there **is** a logged-in user, the `UserManager` is used to look up their details and perform an authorization check with `IsInRoleAsync()`. If all checks succeed and the user is an adminstrator, a **Manage users** link is added to the navbar.
+Esta partial view usa o `SignInManager` para determinar se o usuário está logado. Se não estiver, o resto do código da view pode ser ignorado. Se **é** um usuário logado, o `UserManager` é usado para procurar seus detalhes e executar uma verificação de autorização com `IsInRoleAsync()`. Se todas as verificações forem bem-sucedidas e o usuário for um administrador, um link **Gerenciar usuários** será adicionado à barra de navegação.
 
-To include this partial in the main layout, edit `_Layout.cshtml` and add it in the navbar section:
+Para incluir esta partial view no layout principal, edite `_Layout.cshtml` e adicione-a na seção navbar:
 
 **Views/Shared/_Layout.cshtml**
 
@@ -341,7 +339,7 @@ To include this partial in the main layout, edit `_Layout.cshtml` and add it in 
 </div>
 ```
 
-When you log in with an administrator account, you'll now see a new item on the top right:
+Quando você fizer login com uma conta de administrador, você verá um novo item no canto superior direito:
 
 ![Manage Users link](manage-users.png)
 

@@ -1,8 +1,8 @@
-## Require authentication
+## Solicitando autenticação
 
-Often you'll want to require the user to log in before they can access certain parts of your application. For example, it makes sense to show the home page to everyone (whether you're logged in or not), but only show your to-do list after you've logged in.
+Muitas vezes você vai querer exigir que o usuário faça login antes de acessar certas partes de sua aplicação. Por exemplo, faz sentido mostrar a home page para todos (esteja você logado ou não), mas a lista de tarefas só deve ser exibida para quem fizer login.
 
-You can use the `[Authorize]` attribute in ASP.NET Core to require a logged-in user for a particular action, or an entire controller. To require authentication for all actions of the `TodoController`, add the attribute above the first line of the controller:
+Você pode usar o atributo `[Authorize]` no ASP.NET Core para exigir que o usuário esteja logado para executar uma action específica ou um controller inteiro. Para requerer autenticação para todas as ações do `TodoController`, adicione o atributo acima da primeira linha do controller:
 
 **Controllers/TodoController.cs**
 
@@ -14,12 +14,12 @@ public class TodoController : Controller
 }
 ```
 
-Add this `using` statement at the top of the file:
+Adicione este comando `using` ao início do arquivo:
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
 ```
 
-Try running the application and accessing `/todo` without being logged in. You'll be redirected to the login page automatically.
+Rode a aplicação e tente acessar `/ todo` sem estar logado. Você será redirecionado para a página de login automaticamente.
 
-> The `[Authorize]` attribute is actually doing an authentication check here, not an authorization check (despite the name of the attribute). Later, you'll use the attribute to check **both** authentication and authorization.
+> O atributo `[Authorize]` está fazendo uma verificação de autenticação aqui e não uma verificação de autorização (apesar do nome do atributo). Posteriormente, você usará o atributo para verificar **a autenticação e a autorização**.
