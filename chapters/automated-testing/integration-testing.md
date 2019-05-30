@@ -32,7 +32,7 @@ AspNetCoreTodo/
         AspNetCoreTodo.IntegrationTests.csproj
 ```
 
-> Se preferir, você pode manter seus testes unitários e testes de integração no mesmo projeto. Para projetos grandes, é comum dividi-los, pois isso permite facilmente executá-los separadamente.
+> Se preferir, você pode manter seus testes unitários e de integração no mesmo projeto. Para projetos grandes, é comum dividi-los, pois isso permite facilmente executá-los separadamente.
 
 Como o projeto de teste usará as classes definidas em seu projeto principal, você precisará adicionar uma referência ao projeto principal:
 
